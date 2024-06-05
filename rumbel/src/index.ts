@@ -1,13 +1,12 @@
-let maxBack: number = 8;
-let wrapper = document.querySelector("div.hal-wrapper");
-let max: number = wrapper.scrollHeight;
-let ratio: number = (wrapper.scrollTop) / max;
-let ratioN: number = Math.floor(ratio * (maxBack));
-let maxBack2: number = 7;
-
 let backEl = document.body.querySelector("div#back").children;
 let backElJml: number = backEl.length;
 let backAr: HTMLDivElement[] = [];
+
+let maxBack: number = backElJml;
+let max: number = window.document.body.scrollHeight - window.innerHeight;
+let ratio: number = (window.scrollY) / max;
+let ratioN: number = Math.floor(ratio * (maxBack));
+let maxBack2: number = 7;
 
 let ctr = 0;
 function update() {
@@ -50,9 +49,9 @@ function debug(str: string) {
 }
 
 function updateRatio() {
-	ratio = (wrapper.scrollTop) / max;
+	ratio = (window.scrollY) / max;
 	ratioN = Math.floor(ratio * (maxBack));
-	if (ratioN > maxBack2) ratioN = maxBack2;
+	if (ratioN >= maxBack) ratioN--;
 	debug("rationN " + ratioN + "/ratio " + ratio + "/max " + max);
 }
 updateRatio();
@@ -68,7 +67,7 @@ for (let i = 0; i < backElJml; i++) {
 	item.style.bottom = '0px';
 
 	if (i == 0) {
-		item.style.opacity = '0';
+		item.style.opacity = '1';
 	}
 	console.log(i);
 }
@@ -81,7 +80,10 @@ for (let i = 0; i < backElJml; i++) {
 
 window.onscroll = () => {
 	updateRatio();
-	console.log(ratioN);
-	console.log(wrapper.scrollTop);
+	// console.log(ratioN);
+	// console.log(wrapper.scrollTop);
+	// console.log(window.document.body.scrollHeight - window.innerHeight);
+	// console.log(window.scrollY);
 }
-window.requestAnimationFrame(update);
+
+// window.requestAnimationFrame(update);
