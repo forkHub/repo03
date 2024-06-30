@@ -52,7 +52,7 @@ function updateRatio() {
 	ratio = (window.scrollY) / max;
 	ratioN = Math.floor(ratio * (maxBack));
 	if (ratioN >= maxBack) ratioN--;
-	debug("rationN " + ratioN + "/ratio " + ratio + "/max " + max);
+	// console.log("rationN " + ratioN + "/ratio " + ratio + "/max " + max);
 }
 updateRatio();
 
@@ -78,12 +78,22 @@ for (let i = 0; i < backElJml; i++) {
 // console.log("ratio n " + ratioN);
 // console.log(backAr);
 
+function resize() {
+	(document.body.querySelector("div#back") as HTMLDivElement).style.height = window.outerHeight + 'px';
+}
+
 window.onscroll = () => {
+	console.log('window on scroll');
 	updateRatio();
+	// update();
 	// console.log(ratioN);
 	// console.log(wrapper.scrollTop);
 	// console.log(window.document.body.scrollHeight - window.innerHeight);
 	// console.log(window.scrollY);
 }
 
-// window.requestAnimationFrame(update);
+window.requestAnimationFrame(update);
+window.onresize = () => {
+	resize();
+}
+resize();
