@@ -1,10 +1,13 @@
-import { IEntity, IFile, Entity, IProject, EEntity } from "./Entity";
+import { IFile, Entity, IProject, EEntity } from "./Entity";
 import { Store } from "./Store";
 import { Dialog } from "./Dialog";
 import { Index2 } from "./index2";
 import * as Blockly from 'blockly/core';
+import { demoList } from "./List";
+import { Op } from "./Op";
 
-declare var demoData: IEntity[];
+//TODO: dep
+// declare var demoData: IEntity[];
 
 export class HalListProject {
 	private static cont: HTMLDialogElement;
@@ -32,65 +35,21 @@ export class HalListProject {
 		let code;
 
 		if (Store.tutMode) {
-			try {
-
-				fetch(
-					`./tut/p${Store.selectedId}.json`,
-					{
-						// headers: { 'Content-Type': 'application/json' }, // Added in response to comment
-						method: 'GET',
-					}
-				).then(function (response) {
-					console.log(response);
-					console.log(response.text().then((e) => {
-						console.log("load projek response text")
-						console.log(e);
-
-						// while (Entity.list.length > 0) {
-						//     Entity.list.pop();
-						// }
-
-						// let obj = JSON.parse(e);
-						// console.log(obj);
-
-						// obj.forEach((item: any) => {
-						//     Entity.list.push(item);
-						// })
-
-						// e; //TODO:
-
-						let obj = JSON.parse(e);
-						console.log(obj);
-
-						Store.idFile = "";
-						Store.projectId = Store.selectedId;
-
-						Blockly.serialization.workspaces.load(obj, Index2.workspace);
-
-						HalListProject.closeKlik();
-						Index2.updateName();
-
-					}));
-				}).catch((e) => {
-					console.error(e);
-				})
-			}
-			catch (e) {
-				console.error(e);
-			}
+			window.location.href = './?tut=true&tid=' + Store.selectedId;
+			return;
 		}
 		else {
 			f = Entity.getByParentId(Store.selectedId) as IFile;
 			code = JSON.parse(f.wspace);
 			project = Entity.getById(Store.selectedId) as IProject;
-			// }
 
 			Store.idFile = f.id;
 			Store.projectId = project.id;
 
 			Blockly.serialization.workspaces.load(code, Index2.workspace);
+			Store.snapshot = code;
 			this.closeKlik();
-			Index2.updateName();
+			Index2.updateProjectName();
 		}
 	}
 
@@ -121,8 +80,10 @@ export class HalListProject {
 			Entity.commit();
 
 			//delete file
-			console.log("delete file");
-			Entity.delete(Entity.getByParentId(Store.selectedId).id);
+			if (Store.tutMode == false) {
+				console.log("delete file");
+				Entity.delete(Entity.getByParentId(Store.selectedId).id);
+			}
 
 			console.log("get view to delete");
 			this.listCont.querySelectorAll('.project').forEach((item) => {
@@ -134,6 +95,11 @@ export class HalListProject {
 
 
 			Store.selectedId = '';
+
+			if (Store.tutMode) {
+				Op.saveTutList();
+				Op.saveTutData();
+			}
 		}
 		else {
 			console.log('cancel');
@@ -268,6 +234,11 @@ class ProjectList {
 
 	render(cont: HTMLDivElement) {
 		let list: IProject[] = Entity.getByType(EEntity.PROJECT) as IProject[];
+
+		// if (Store.tutMode) {
+		// 	list = demoList;
+		// }
+
 		list = list.sort((item, item2) => {
 			if (item.nama < item2.nama) return -1;
 			if (item.nama > item2.nama) return 1;
@@ -311,9 +282,11 @@ class ListDemoEl {
 	}
 
 	render(cont: HTMLDivElement): void {
-		let list: IProject[] = (demoData as IProject[]).filter((item) => {
-			return item.type == "project";
-		});
+		// let list: IProject[] = (demoData as IProject[]).filter((item) => {
+		// 	return item.type == "project";
+		// });
+
+		let list: IProject[] = demoList;
 
 		list = list.sort((item, item2) => {
 			if (item.nama < item2.nama) return -1;
@@ -355,28 +328,29 @@ export class HalListDemo {
 			return;
 		}
 
-		let f: IFile;
-		// let project
-		let code;
+		// let f: IFile;
+		// let code;
 
 		console.group("open project");
 		console.log("selectedId:", Store.selectedId);
 
-		f = demoData.find((item) => {
-			console.log(item);
-			return (item as IEntity).parentId == Store.selectedId;
-		}) as IFile;
-		console.log(f);
-		console.groupEnd();
+		window.location.href = "./?pid=" + Store.selectedId;
 
-		code = JSON.parse(f.wspace);
+		// f = demoData.find((item) => {
+		// 	console.log(item);
+		// 	return (item as IEntity).parentId == Store.selectedId;
+		// }) as IFile;
+		// console.log(f);
+		// console.groupEnd();
 
-		Store.idFile = f.id;
-		Store.projectId = '';
+		// code = JSON.parse(f.wspace);
 
-		Blockly.serialization.workspaces.load(code, Index2.workspace);
-		this.closeKlik();
-		Index2.updateName();
+		// Store.idFile = f.id;
+		// Store.projectId = '';
+
+		// Blockly.serialization.workspaces.load(code, Index2.workspace);
+		// this.closeKlik();
+		// Index2.updateProjectName();
 	}
 
 	static closeKlik() {
@@ -399,11 +373,19 @@ export class HalListDemo {
                     <div class='list-cont' style="flex-grow:1; overflow-y:auto">
                     </div>
                     <div>
-                        <button onclick="ha.blockly.HalListDemo.openKlik();">open</button>
-                        <button onclick="ha.blockly.HalListDemo.closeKlik();">close</button>
+                        <button class="open" klik="ha.blockly.HalListDemo.openKlik();">open</button>
+                        <button class="close" klik="ha.blockly.HalListDemo.closeKlik();">close</button>
                     </div>
                 </div>
             `;
+
+		(this.cont.querySelector("button.open") as HTMLButtonElement).onclick = () => {
+			HalListDemo.openKlik();
+		}
+
+		(this.cont.querySelector("button.close") as HTMLButtonElement).onclick = () => {
+			HalListDemo.closeKlik();
+		}
 
 		this.listCont = this.cont.querySelector("div.list-cont");
 		document.body.append(this.cont);

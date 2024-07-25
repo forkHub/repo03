@@ -1,14 +1,15 @@
 import { EOutput, TToolBoxBlockDef } from "../toolboxType";
 
 class ImageBlockData {
-	readonly group: string = "Image 1";
+	readonly group: string = "Image ";
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	// ha.be.Spr.Muat
 	readonly blitz_Muat: TToolBoxBlockDef = {
 		type: "ha.be.Spr.Muat",
-		message0: 'LoadImage %1 from url: %2',
+		message0: 'Muat Image URL: %2 %1',
 		perintah: "LoadImage",
 		args: {
 			dummy: '',
@@ -17,8 +18,8 @@ class ImageBlockData {
 		inputsInline: true,
 		output: EOutput.Any,
 		tooltip: `
-            Load an Image from url.
-            Url can be local or absolute.
+            Memuat Image dari url.
+            Url bisa local atau absolute.
         `
 	}
 
@@ -48,11 +49,51 @@ class ImageBlockData {
         `
 		})
 
+		// const ImageLoaded = ha.be.Spr.Dimuat;
+		// ImageLoaded
+		this.list.push({
+			type: "ha.be.Spr.Dimuat",
+			perintah: "ImageLoaded",
+			message0: "Image %1 loaded",
+			inputsInline: true,
+			args: {
+				sprite: {},
+			},
+			tooltip: `Return true is image is already loaded`,
+			output: EOutput.Boolean
+		})
+
+		// const AllImageLoaded = ha.be.Spr.StatusMuat;
+		this.list.push({
+			type: "ha.be.Spr.StatusMuat",
+			perintah: "AllImageLoaded",
+			message0: "All Images Loaded",
+			output: EOutput.Boolean,
+			tooltip: 'Return true if All Images have been loaded'
+		})
+
+		this.gambar();
+
+		// const PositionImageXY = ha.be.Spr.Posisi;
+		// PositionImageXY
+		this.list.push({
+			type: "ha.be.Spr.Posisi",
+			perintah: "PositionImageXY",
+			message0: "Image %1 position x %2 y %3",
+			inputsInline: true,
+			args: {
+				sprite: {},
+				x: 0,
+				y: 0
+			},
+			tooltip: `Mengatur posisi Image`
+		})
+
 		// HandleImage
 		// ha.be.Spr.Handle
 		this.list.push({
 			type: "ha.be.Spr.Handle",
-			message0: "HandleImage: %1 image %2 x: %3 y: %4",
+			message0: "Image %2 pusat x %3 y %4 %1 ",
 			perintah: "Handle",
 			inputsInline: true,
 			args: {
@@ -62,9 +103,9 @@ class ImageBlockData {
 				y: 0,
 			},
 			tooltip: `
-            Set the position of image handle, 
-            useful for rotation when you want to rotate at specific position 
-            rather than from top-left position
+			Mengatur posisi pusat dari sebuah Image. 
+			Posisi pusat dipakai sebagai acuan saat menggambar, rotasi, dll
+			Posisi pusat dihitung pojok kiri atas. 
         `
 		})
 
@@ -73,7 +114,7 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Ukuran",
 			perintah: "ResizeImage",
-			message0: "ResizeImage: %1 image %2 width: %3 height: %4",
+			message0: "Image %2 panjang %3 lebar %4 %1",
 			inputsInline: true,
 			args: {
 				dummy: '',
@@ -81,133 +122,186 @@ class ImageBlockData {
 				width: 0,
 				height: 0,
 			},
-			tooltip: `Resize an Image`
+			tooltip: `Merubah ukuran panjang dan lebar dari Image`
 		})
 
-		// RotateImage 
-		// ha.be.Spr.Rotasi;
+		this.polar();
+
+		// ha.be.Spr.Tabrakan
+		//Collide
 		this.list.push({
-			type: "ha.be.Spr.Rotasi",
-			perintah: "Rotation",
-			message0: "RotateImage: %1 image %2 value (0-360): %3",
-			inputsInline: true,
+			type: "ha.be.Spr.Tabrakan",
+			perintah: "Collide",
+			message0: "check Image %1 is collided with Image %2",
 			args: {
-				dummy: '',
-				sprite: {},
-				angle: 0
+				sprite1: {},
+				sprite2: {},
 			},
-			tooltip: `Rotate an image`
+			output: EOutput.Boolean,
+			inputsInline: true,
+			tooltip: 'return true if two images is collided'
 		})
 
-		// ImageAlpha
-		// ha.be.Spr.Alpha
-		this.list.push({
-			type: "ha.be.Spr.Alpha",
-			perintah: "ImageAlpha",
-			message0: "ImageAlpha: %1 image %2 value (0-100): %3",
-			inputsInline: true,
-			args: {
-				dummy: '',
-				image: {},
-				alpha: 50
-			},
-			tooltip: `Set image alpha/transparency`
-		})
-
-		// CopyImage
 		//TODO
-
+		// CopyImage
 
 		/**
 		 * INFO
 		 * ==== 
 		 */
+	}
 
-		// ImageWidth
-		// ha.be.Spr.Panjang;
-		// Width
+	gambar() {
+		// DrawImage
 		this.list.push({
-			type: "ha.be.Spr.Panjang",
-			perintah: "Width",
-			message0: "Image %2 get width %1",
+			type: "ha.be.Spr.Gambar_no_frame",
+			perintah: "DrawImage",
+			message0: "Draw Image %1",
 			inputsInline: true,
 			args: {
-				dummy: '',
 				sprite: {},
 			},
-			output: EOutput.Number,
-			tooltip: `Return image width
-        Will return zero when image is still loading
+			tooltip: "Draw image to screen"
+		})
+
+		// DrawImage
+		// ha.be.Spr.GambarXY
+		// DrawImageXY
+		this.list.push({
+			type: "ha.be.Spr.Gambar",
+			message0: "DrawImage: %4 image %1 x: %2 y: %3",
+			perintah: "DrawImageXY",
+			inputsInline: true,
+			args: {
+				sprite: {},
+				x: 0,
+				y: 0,
+				dummy: ""
+			},
+			tooltip: `
+            Draw image at x, y location.
+            When the image is not yet fully loaded, then it will not draw anything.
         `
 		})
 
-		// ImageHeight
-		// ha.be.Spr.Lebar;
-		// Height
+		// TileImage
+		//ha.be.Spr.Ubin;
 		this.list.push({
-			type: "ha.be.Spr.Lebar",
-			perintah: "Height",
-			message0: "%1 Image %2 get height",
-			args: {
-				dummy: '',
-				sprite: {},
-			},
+			type: "ha.be.Spr.Ubin",
+			message0: "TileImage: %5 image %1 x: %2 y: %3 frame: %4",
+			perintah: "Tile",
 			inputsInline: true,
-			output: EOutput.Number,
-			tooltip: `Return image get height
-        Will return zero when image is still loading
+			args: {
+				sprite: {},
+				x: 0,
+				y: 0,
+				frame: 0,
+				dummy: ''
+			},
+			tooltip: `
+            Draw image with tiling effect
+            When the image is not yet fully loaded, then it will not draw anything.
         `
 		})
 
-		// ImageXHandle
-		// ha.be.Spr.HandleX
+		// DrawImageAnim
+		// DrawImage
+		// ha.be.Spr.Gambar animasi
 		this.list.push({
-			type: "ha.be.Spr.HandleX",
-			perintah: "ha.be.Spr.HandleX",
-			message0: "Image %2 get handle X position %1",
-			args: {
-				dummy: '',
-				sprite: {},
-			},
-			tooltip: "Return the image handle X position",
-			output: EOutput.Number,
-			inputsInline: true
-		})
-
-		// ImageYHandle
-		// ha.be.Spr.HandleY
-		this.list.push({
-			type: "ha.be.Spr.HandleY",
-			perintah: "ha.be.Spr.HandleY",
-			message0: "image %2 get handle Y position %1",
-			args: {
-				dummy: '',
-				sprite: {},
-			},
-			tooltip: "return the image-handle Y position",
-			output: EOutput.Number,
-			inputsInline: true
-		})
-
-		// ImagesCollideXY
-		// ha.be.Spr.TabrakanXY;
-		this.list.push({
-			type: "ha.be.Spr.TabrakanXY",
-			message0: "image1 %2 at x1 %3 y1 %4 %1 collide with image2 %5 at x2 %6 y2 %7",
-			perintah: "ha.be.Spr.TabrakanXY",
-			args: {
-				dummy: '',
-				sprite: {},
-				x1: 0,
-				y1: 0,
-				sprite2: {},
-				x2: 0,
-				y2: 0
-			},
+			type: "ha.be.Spr.Gambar_animasi",
+			message0: "image %2 %1 draw at frame: %3",
+			perintah: "DrawImage",
 			inputsInline: true,
-			tooltip: "return true if two images are collided at the specified position",
-			output: EOutput.Boolean,
+			args: {
+				dummy: '',
+				sprite: {},
+				frame: 0,
+			},
+			tooltip: `
+            Draw image at specific frame.
+			Use the last position 
+        `
 		})
+
+		// const DrawAllImage = ha.be.Spr.GambarSemua;
+		this.list.push({
+			type: "ha.be.Spr.GambarSemua",
+			perintah: "DrawAllImage",
+			message0: "DrawAllImage",
+			tooltip: 'Draw All Images, ordered by created time'
+		})
+
+	}
+
+	polar() {
+		// const PositionImagePolar = ha.be.Spr.posisiPolar;
+		// PositionImagePolar
+		//depecrated
+		this.list.push({
+			type: "ha.be.Spr.posisiPolar_no_scale",
+			perintah: "PositionImagePolar",
+			message0: "Image %1 Poisisi relative terhadap x %4 y %5 sudut %2 jarak %3",
+			inputsInline: true,
+			args: {
+				sprite: {},
+				angle: 0,
+				dist: 100,
+				x: 0,
+				y: 0,
+			},
+			tooltip: `
+				Posisikan Image relative terhadap x, y dengan jarak dan sudut tertentu
+	        `
+		})
+
+		// const PositionImagePolar = ha.be.Spr.posisiPolar;
+		// PositionImagePolar
+		this.list.push({
+			type: "ha.be.Spr.posisiPolar",
+			perintah: "PositionImagePolar",
+			message0: "Image %1 Posisi reltive terhadap x %4 y %5 sudut %2 at jarak %3 skala x %6 skala y %7",
+			inputsInline: true,
+			args: {
+				sprite: {},
+				angle: 0,
+				dist: 100,
+				x: 0,
+				y: 0,
+				scaleX: 1,
+				scaleY: 1
+			},
+			tooltip: `
+				Posisikan Image relative terhadap x, y dengan jarak, dan skala tertentu
+			`
+		})
+
+		// const PositionImagePolar = ha.be.Spr.posisiPolar;
+		// PositionImagePolar
+		this.list.push({
+			type: "ha.be.Spr.posisiPolar_tilt",
+			perintah: "PositionImagePolar",
+			message0: "Image %1 Posisi relative terhadap x %4 y %5 sudut %2 jarak %3 skala x %6 skala y %7 kemiringan %8",
+			inputsInline: true,
+			args: {
+				sprite: {},
+				angle: 0,
+				dist: 100,
+				x: 0,
+				y: 0,
+				scaleX: 1,
+				scaleY: 1,
+				tilt: 0
+			},
+			tooltip: `
+				Posisikan Image relative terhadap x, y, dengan jarak, skala dan kemiringan tertentu
+			`
+		})
+
+	}
+
+	posisi() {
+
+
 	}
 }
 export const imageBlockData = new ImageBlockData();

@@ -4,6 +4,7 @@ class DebugData {
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly group = "Misc";
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	constructor() {
 		this.list.push({
@@ -13,7 +14,7 @@ class DebugData {
 			args: {
 				log: ""
 			},
-			tooltip: "console log",
+			tooltip: "Alias for console log",
 		});
 
 		this.list.push({
@@ -22,7 +23,7 @@ class DebugData {
 			message0: "Pause",
 			tooltip: `
 				Pause a program when developer tool is open.
-				This is the alias for debugger
+				This is the alias for debugger command in javascript
 			`,
 			kurung: false
 		});
@@ -37,6 +38,10 @@ class DebugData {
 			},
 			tooltip: "Add note. Will be converted into comment in the real code",
 		});
+
+		// this.list.push({
+
+		// })
 	}
 }
 

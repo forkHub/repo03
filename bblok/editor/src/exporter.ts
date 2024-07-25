@@ -5,17 +5,27 @@ export class Export {
 window.onload = () => {
     console.log('start');
     /** script here **/
-    let __update; // = update || Update || UPDATE as any;
+
+    let __update;
     if (typeof _update === "function")
         __update = _update;
-    console.log(__update);
 	
     let __updater = () => {
-        if (__update) {
-            __update();
-        }
-        requestAnimationFrame(__updater);
+		try {
+			if (__update) {
+				__update();
+			}
+
+			//todo: exit checking
+			requestAnimationFrame(__updater);	
+		}
+		catch (e) {
+			//todo: alert
+			
+			console.log(e);
+		}
     };
+
     requestAnimationFrame(__updater);
 };
         `;

@@ -1,307 +1,173 @@
+// import { Order } from "blockly/javascript";
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class ImageBlockData2 {
-	readonly group: string = "Image 2";
+	readonly group: string = "Image Prop";
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	constructor() {
-		// DrawImage
-		this.list.push({
-			type: "ha.be.Spr.Gambar_no_frame",
-			perintah: "DrawImage",
-			message0: "Draw Image %1",
-			inputsInline: true,
-			args: {
-				sprite: {},
-			},
-			tooltip: "Draw image to screen"
-		})
 
-		// DrawImage
-		// ha.be.Spr.GambarXY
-		// DrawImageXY
-		this.list.push({
-			type: "ha.be.Spr.Gambar",
-			message0: "DrawImage: %4 image %1 x: %2 y: %3",
-			perintah: "DrawImageXY",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				x: 0,
-				y: 0,
-				dummy: ""
-			},
-			tooltip: `
-            Draw image at x, y location.
-            When the image is not yet fully loaded, then it will not draw anything.
-        `
-		})
-
-		// TileImage
-		//ha.be.Spr.Ubin;
-		this.list.push({
-			type: "ha.be.Spr.Ubin",
-			message0: "TileImage: %5 image %1 x: %2 y: %3 frame: %4",
-			perintah: "Tile",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				x: 0,
-				y: 0,
-				frame: 0,
-				dummy: ''
-			},
-			tooltip: `
-            Draw image with tiling effect
-            When the image is not yet fully loaded, then it will not draw anything.
-        `
-		})
-
-
-		// DrawImageAnim
-		// DrawImage
-		// ha.be.Spr.Gambar animasi
-		this.list.push({
-			type: "ha.be.Spr.Gambar_animasi",
-			message0: "image %2 %1 draw at frame: %3",
-			perintah: "DrawImage",
-			inputsInline: true,
-			args: {
-				dummy: '',
-				sprite: {},
-				frame: 0,
-			},
-			tooltip: `
-            Draw image at specific frame.
-			Use the last position 
-        `
-		})
-
-		// const DrawAllImage = ha.be.Spr.GambarSemua;
-		this.list.push({
-			type: "ha.be.Spr.GambarSemua",
-			perintah: "DrawAllImage",
-			message0: "DrawAllImage",
-			tooltip: 'Draw All Images, ordered by created time'
-		})
-
-		// ha.be.Spr.DragMode();
-		this.list.push({
-			type: "ha.be.Spr.DragMode",
-			perintah: "ha.be.Spr.DragMode",
-			message0: "Image %1 set drag mode to %2",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				dragMode: 1
-			},
-			tooltip: `
-            Make an image dragable.
-
-            There are two drag-mode available:
-            - 0: no interaction, default
-            - 1: move
-            - 2: rotate
-            - 3: move on any drag, even if you don't actually touch the image 
-            - 4: rotate on any drag, even if you don't actually touch the image
-        `
-		})
-
-		// const PositionImageXY = ha.be.Spr.Posisi;
-		// PositionImageXY
-		this.list.push({
-			type: "ha.be.Spr.Posisi",
-			perintah: "PositionImageXY",
-			message0: "Image %1 set position to x %2 y %3",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				x: 0,
-				y: 0
-			},
-			tooltip: `Position image at x, y`
-		})
-
-
-		// const PositionImagePolar = ha.be.Spr.posisiPolar;
-		// PositionImagePolar
-		this.list.push({
-			type: "ha.be.Spr.posisiPolar_no_scale",
-			perintah: "PositionImagePolar",
-			message0: "Image %1 set position relative to x %4 y %5 by angle %2 at dist %3",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				angle: 0,
-				dist: 100,
-				x: 0,
-				y: 0,
-			},
-			tooltip: `Position image relative to a certain position
-        Can be used to create orbitng motion
-        `
-		})
-
-
-		// const PositionImagePolar = ha.be.Spr.posisiPolar;
-		// PositionImagePolar
-		this.list.push({
-			type: "ha.be.Spr.posisiPolar",
-			perintah: "PositionImagePolar",
-			message0: "Image %1 set position relative to x %4 y %5 by angle %2 at dist %3 scale x %6 scale y %7",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				angle: 0,
-				dist: 100,
-				x: 0,
-				y: 0,
-				scaleX: 1,
-				scaleY: 1
-			},
-			tooltip: 'Position image relative to certain position, scale is used to create an elipse movement'
-		})
-
-		// const PositionImagePolar = ha.be.Spr.posisiPolar;
-		// PositionImagePolar
-		this.list.push({
-			type: "ha.be.Spr.posisiPolar_tilt",
-			perintah: "PositionImagePolar",
-			message0: "Image %1 set position relative to x %4 y %5 by angle %2 at dist %3 scale x %6 scale y %7 tilt %8",
-			inputsInline: true,
-			args: {
-				sprite: {},
-				angle: 0,
-				dist: 100,
-				x: 0,
-				y: 0,
-				scaleX: 1,
-				scaleY: 1,
-				tilt: 0
-			},
-			tooltip: `
-        Position image relative to certain position, 
-        scale is used to create an elipse movement, 
-        tilt is used to create a rotated elipse effect`
-		})
-
-		// const ImageAlpha = ha.be.Spr.Alpha;
-		// ImageAlpha
-		this.list.push({
-			type: "ha.be.Spr.Alpha",
-			perintah: "ImageAlpha",
-			message0: "Image %1 set alpha to (0-100) %2",
-			args: {
-				sprite: {},
-				alpha: 100
-			},
-			inputsInline: true,
-			tooltip: 'Set image alpha '
-		})
-
-		// const ImageLoaded = ha.be.Spr.Dimuat;
-		// ImageLoaded
-		this.list.push({
-			type: "ha.be.Spr.Dimuat",
-			perintah: "ImageLoaded",
-			message0: "Image %1 loaded",
-			inputsInline: true,
-			args: {
-				sprite: {},
-			},
-			tooltip: `Return true is image is already loaded`,
-			output: EOutput.Boolean
-		})
-
-		// const AllImageLoaded = ha.be.Spr.StatusMuat;
-		this.list.push({
-			type: "ha.be.Spr.StatusMuat",
-			perintah: "AllImageLoaded",
-			message0: "All Images Loaded",
-			output: EOutput.Boolean,
-			tooltip: 'Return true if All Images have been loaded'
-		})
-
-
+		// Image X Getter
 		// const ImageXPosition = ha.be.Spr.PosisiX;
 		// ImageXPosition
 		this.list.push({
 			type: "ha.be.Spr.PosisiX",
 			perintah: "ImageXPosition",
-			message0: "Image %1 get X position",
+			message0: "Image %1 X",
 			args: {
 				sprite: {},
 			},
 			inputsInline: true,
 			output: EOutput.Number,
-			tooltip: 'Return Image x position'
+			tooltip: 'Posisi X Image',
+			f: (arg: string[]): string => {
+				let res = arg[0] + ".x"
+				return res;
+			}
 		})
 
+		//Image Y Getter
 		// const ImageYPosition = ha.be.Spr.PosisiY;
 		// ImageYPosition
 		this.list.push({
 			type: "ha.be.Spr.PosisiY",
 			perintah: "ImageYPosition",
-			message0: "Image %1 get Y position",
+			message0: "Image %1 Y",
 			args: {
 				sprite: {},
 			},
 			inputsInline: true,
 			output: EOutput.Number,
-			tooltip: 'Return Image y position'
+			tooltip: 'Posisi Y Image',
+			f: (arg: string[]): string => {
+				return arg[0] + ".y";
+			}
 		})
 
-		//rotation get
+		//Rotation get
 		// Rotation
 		// ha.be.Spr.Rotasi
 		this.list.push({
 			type: "ha.be.Spr.Rotasi_get",
 			perintah: "Rotation",
-			message0: "Image %1 get rotation",
+			message0: "Image %1 rotasi",
 			args: {
 				sprite: {},
 			},
 			inputsInline: true,
 			output: EOutput.Number,
-			tooltip: 'Set image rotation'
+			tooltip: 'Rotasi Image',
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.rotasi";
+			}
+		})
+
+		// ImageAlpha (getter)
+
+		// ImageWidth getter
+		// ha.be.Spr.Panjang;
+		// Width
+		this.list.push({
+			type: "ha.be.Spr.Panjang",
+			message0: "Image %2 width %1",
+			inputsInline: true,
+			args: {
+				dummy: '',
+				sprite: {},
+			},
+			output: EOutput.Number,
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.panjang";
+			},
+			tooltip: `
+			Panjang Image.
+			Mengembalikan 0 bila image sedang di load
+        `
+		})
+
+		//width (setter)
+
+		// ImageHeight getter
+		// ha.be.Spr.Lebar;
+		// Height
+		this.list.push({
+			type: "ha.be.Spr.Lebar",
+			perintah: "Height",
+			message0: "Image %2 height %1",
+			args: {
+				dummy: '',
+				sprite: {},
+			},
+			inputsInline: true,
+			output: EOutput.Number,
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.lebar";
+			},
+
+			tooltip: `
+				Tinggi Image
+        		Mengembalikan 0 bila Image masih di load
+        `
+		})
+
+		// ha.be.Spr.DragMode(); (setter)
+		//set drag mode
+
+		// ImageXHandle (getter)
+		// ha.be.Spr.HandleX
+		this.list.push({
+			type: "ha.be.Spr.HandleX",
+			message0: "Image %2 pusat X %1",
+			args: {
+				dummy: '',
+				sprite: {},
+			},
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.handleX";
+			},
+			tooltip: "Pusat X",
+			output: EOutput.Number,
+			inputsInline: true
+		})
+
+		//handle y
+		this.list.push({
+			type: "ha.be.Spr.HandleY",
+			message0: "image %2 Pusat Y %1",
+			args: {
+				dummy: '',
+				sprite: {},
+			},
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.handleY";
+			},
+			tooltip: "Pusat Y",
+			output: EOutput.Number,
+			inputsInline: true
 		})
 
 		// const ImageIsDragged = ha.be.Spr.StatusDrag;
 		this.list.push({
 			type: "ha.be.Spr.StatusDrag",
 			perintah: "ImageIsDragged",
-			message0: "Image %1 is dragged",
+			message0: "Image %1 status drag",
 			args: {
 				sprite: {},
 			},
 			inputsInline: true,
 			output: EOutput.Boolean,
-			tooltip: 'return true if image is dragged'
+			f: (arg: string[]): string => {
+				return arg[0] + ".dragged";
+			},
+			tooltip: `
+				True bila sedang di drag dan false bila tidak.
+				Blok ini bersifat read-only
+			`
 		})
 
-		// ha.be.Spr.Tabrakan
-		//Collide
-		this.list.push({
-			type: "ha.be.Spr.Tabrakan",
-			perintah: "Collide",
-			message0: "check Image %1 is collided with Image %2",
-			args: {
-				sprite1: {},
-				sprite2: {},
-			},
-			output: EOutput.Boolean,
-			inputsInline: true,
-			tooltip: 'return true if two images is collided'
-		})
 	}
 }
 
 export const imageBlockData2 = new ImageBlockData2();
-
-//next
-// const CopyImage = ha.be.Spr.Copy;
-// const ImageBound = ha.be.Spr.Bound;
-
-//next 2
-// const SpriteKontek = ha.be.Spr.kontek;

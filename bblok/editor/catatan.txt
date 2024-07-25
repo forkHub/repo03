@@ -1,0 +1,61 @@
+simpan pakai deskripsi
+exit/pause
+highlight error
+snapshot
+about page
+bblok enggine
+sub
+klamp
+image di klik 
+konfigurasi grafis
+
+validasi
+	error saat init dan update
+	validasi Image
+	validasi saat run dari engine
+	validasi parameter gak diisi
+	validasi depecrated block
+
+doc API
+	parameter
+	best practice
+
+demo:
+	flappy bird
+	meteor avoid
+	doodle (brush)
+	geser tangkap
+	pukul nyamuk
+	tombol
+	kurva yang bisa di edit
+	shape yang bisa di edit
+	
+motion:
+	image [] move [] horizontally
+	image [] move [] vertically
+	image [] forward step []
+	image [] move to x [] y [] step [] 
+	image [] rotate to x [] y [] step [] 
+	image [] resize x to [] step [] 
+	image [] resize y to [] step [] 
+	image [] resize to x [] y [] step [] 
+	
+timer:
+	create timer
+	timer [] has elapsed [] seconds
+	timer [] has elapsed [] updates
+
+Image:
+	aktif
+	hapus()
+
+extends image => 
+	auto value
+	extendObj = {
+		id
+		name
+		type
+	}
+
+	implement =
+	image["name"]

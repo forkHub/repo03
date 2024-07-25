@@ -63,6 +63,9 @@ export class DialogImport {
 		(this.dlg.querySelector("button.ok") as HTMLButtonElement).onclick = () => {
 			DialogImport.klik();
 		}
+		(this.dlg.querySelector("button.batal") as HTMLButtonElement).onclick = () => {
+			this.batal();
+		}
 	}
 
 	static batal() {

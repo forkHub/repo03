@@ -1,12 +1,13 @@
 import { Index2 } from "./index2";
 import { IProject, EEntity, Entity, IFile } from "./Entity";
-import { HalListProject } from "./HalListProject";
+import { HalListDemo, HalListProject } from "./HalListProject";
 import { Store } from "./Store";
 import { DialogPublish, DialogExport, DialogImport } from "./Dialogs";
 import { Id } from "./Id";
 import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
 import { Export } from "./exporter";
+import { Dialog } from "./Dialog";
 // import { Iframe } from "./iframe";
 
 
@@ -29,6 +30,11 @@ export class Op {
 		(document.body.querySelector("div.menu-cont button.muat") as HTMLDivElement).onclick =
 			() => {
 				Op.loadKlik();
+			}
+
+		(document.body.querySelector("div.menu-cont button.demo") as HTMLDivElement).onclick =
+			() => {
+				HalListDemo.show();
 			}
 
 		// w.tambahVar = () => {
@@ -55,6 +61,17 @@ export class Op {
 				}
 			}
 
+		(document.body.querySelector("div.menu-cont button.baru") as HTMLDivElement).onclick =
+			() => {
+				window.location.href = "./";
+			}
+
+		(document.body.querySelector("div.menu-cont button.galeri") as HTMLDivElement).onclick =
+			() => {
+				window.open("./galery.html", "_blank");
+			}
+
+
 		(document.body.querySelector("div.menu-cont button.html") as HTMLDivElement).onclick =
 			() => {
 				Op.publish();
@@ -69,6 +86,12 @@ export class Op {
 			() => {
 				Op.import();
 			}
+
+		(document.body.querySelector("div.menu-cont button.about") as HTMLDivElement).onclick =
+			() => {
+				window.location.href = "./about.html";
+			}
+
 	}
 
 	static loadKlik() {
@@ -119,6 +142,8 @@ export class Op {
 				console.log(value);
 				let code = JSON.parse(value);
 				Blockly.serialization.workspaces.load(code, Index2.workspace);
+				Store.snapshot = code;
+				//TODO: dialog confirm simpan
 			}
 			catch (e) {
 				console.error(e);
@@ -170,6 +195,14 @@ export class Op {
 		let nama = window.prompt("project name", "def1");
 
 		//TOOD: validasi nama
+		if (nama == null) return;
+		if (nama == '') return;
+		if (nama.length == 0) return;
+		if (Entity.getProjekByName(nama) != null) {
+			//TODO: dialog sama 
+			Dialog.show("the file already exists");
+			return;
+		}
 
 		//save new project
 		let p: IProject = {
@@ -195,7 +228,7 @@ export class Op {
 
 		Entity.tambah(f);
 		Entity.commit();
-		Index2.updateName();
+		Index2.updateProjectName();
 
 		if (Store.tutMode) {
 			this.saveTutData();
@@ -220,13 +253,14 @@ export class Op {
 			}
 		}
 
-		Index2.updateName();
+		Index2.updateProjectName();
 
 		if (Store.devMode) {
 			Op.demo();
 		}
 	}
 
+	//tampilkan code dan json code
 	static code() {
 		// let code = javascript.javascriptGenerator.workspaceToCode(Index.workspace);
 		console.log(Blockly.serialization.workspaces.save(Index2.workspace));
@@ -237,6 +271,7 @@ export class Op {
 		window.open('./about.html', "_blank");
 	}
 
+	//simpan demo dan tutorial
 	static demo() {
 
 		if (Store.tutMode) {
@@ -252,6 +287,7 @@ export class Op {
 			fd.append("dev", 'true');
 			fd.append("tut", 'false');
 			fd.append("list", "false");
+			fd.append("mode", "tut");
 
 			fetch(
 				"http://localhost/repo/bblocky/demo.php",
@@ -290,14 +326,13 @@ export class Op {
 			console.log(Blockly.serialization.workspaces.save(Index2.workspace));
 
 			let fd = new FormData();
-			fd.append("body", body);
-			fd.append("dev", 'false');
-			fd.append("tut", 'true');
+			fd.append("data", "window.pData = " + body);
+			fd.append("mode", 'tut');
 			fd.append("list", "false");
 			fd.append("id", Store.projectId);
 
 			fetch(
-				"http://localhost/repo/bblocky/demo.php",
+				"http://localhost/repo03/bblok/demo.php",
 				{
 					method: 'POST',
 					body: fd
@@ -326,15 +361,17 @@ export class Op {
 
 	static saveTutList() {
 		try {
-			const body = JSON.stringify(Entity.getByType(EEntity.PROJECT));
+			let body = JSON.stringify(Entity.getByType(EEntity.PROJECT));
 			let fd = new FormData();
-			fd.append("body", body);
-			fd.append("dev", 'false');
-			fd.append("tut", 'false');
+
+			body = "export const demoList:any[] = " + body;
+
+			fd.append("data", body);
+			fd.append("mode", "tut");
 			fd.append("list", "true");
 
 			fetch(
-				"http://localhost/repo/bblocky/demo.php",
+				"http://localhost/repo03/bblok/demo.php",
 				{
 					method: 'POST',
 					body: fd

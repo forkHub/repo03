@@ -4,6 +4,7 @@ class TextData {
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly group = "Text 2";
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	constructor() {
 		// Shortcut buat perintah-perintah font

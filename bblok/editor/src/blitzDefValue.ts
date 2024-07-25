@@ -23,9 +23,10 @@ export function normalizeAllBlock(list: TBlockRawData[]) {
 
 export function normalizeAllBlock2(list: TBlockRawData[]) {
 	list.forEach((item) => {
-		item.list.forEach((item) => {
-			normal(item);
-			console.log(JSON.stringify(item));
+		item.list.forEach((item2) => {
+			normalizeItem(item2);
+			// if (item2.)
+			// console.log(JSON.stringify(item));
 		});
 	})
 
@@ -83,7 +84,7 @@ function defValue(t: TToolBoxBlockDef): void {
  * @returns 
  */
 function createShadow(t: TArgDef): any {
-	return;
+	// return;
 
 	// t;
 	// return null;
@@ -135,6 +136,7 @@ function addArg(t: TToolBoxBlockDef) {
 	// console.log(t);
 
 	function getCheck(n: any): EOutput {
+		if (n == "Image") return EOutput.Image;
 		if (typeof n == "number") return EOutput.Number;
 		if (typeof n == "string") return EOutput.String;
 		if (typeof n == "boolean") return EOutput.Boolean;
@@ -142,6 +144,8 @@ function addArg(t: TToolBoxBlockDef) {
 		//TODO: null
 		throw Error(n);
 	}
+
+	if (t.args0) return;
 
 	t.args0 = [];
 	for (let i in t.args) {
@@ -222,15 +226,15 @@ function addInput(t: TToolBoxBlockDef) {
 	t.inputs = inputs;
 }
 
-function normal(t: TToolBoxBlockDef) {
+export function normalizeItem(t: TToolBoxBlockDef) {
 	defValue(t);
 	addArg(t);
 	addInput(t);
 	if (t.type == "ha.be.Be.Update") {
 		console.log(t);
 	}
-	console.log(t);
-	console.log("");
+	// console.log(t);
+	// console.log("");
 }
 
 

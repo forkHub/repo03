@@ -2,8 +2,9 @@ import { EOutput, TToolBoxBlockDef } from "../toolboxType";
 
 class InputBlockData {
 	readonly list: TToolBoxBlockDef[] = [];
-	readonly group = "Input";
+	readonly group = "Pointer";
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	constructor() {
 		// ha.be.Input.InputHit;
@@ -11,20 +12,23 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.InputHit",
 			perintah: "InputHit",
-			message0: "Input Hit count",
+			message0: "Jumlah Ditekan",
 			tooltip: `
-            Return how many time an input is pressed since the last call.
-            Calling this method inside update block will return the count between update.
+            Berapa banyak pointer di tekan, dihitung sejak pemanggilan terakhir.
+			Fungsi ini cocok dipanggil di bagian Update
         `,
 			output: EOutput.Number
 		})
+
+		//TODO:
+		//InputHit
 
 		// ha.be.Input.InputX;
 		this.list.push({
 			type: "ha.be.Input.InputX",
 			perintah: "InputX",
-			message0: "Input X position",
-			tooltip: "return the x position of input",
+			message0: "Pointer X",
+			tooltip: "posisi X dari pointer",
 			output: EOutput.Number
 		})
 
@@ -32,8 +36,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.InputY",
 			perintah: "InputY",
-			message0: "Input Y position",
-			tooltip: "return the y position of input",
+			message0: "Pointer Y",
+			tooltip: "Posisi Y dari pointer",
 			output: EOutput.Number
 		})
 
@@ -44,8 +48,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.Pencet",
 			perintah: "InputIsDown",
-			message0: "Input Is Down",
-			tooltip: "return true if an input is pressed",
+			message0: "Pointer Ditekan",
+			tooltip: "Mebgecek apakah pointer sedang di tekan",
 			output: EOutput.Boolean
 		})
 
@@ -53,8 +57,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.GeserX",
 			perintah: "InputDragX",
-			message0: "Drag X position",
-			tooltip: "return drag x position relative to start position",
+			message0: "Drag X",
+			tooltip: "Posisi x saat di drag, relatif terhadap posisi awal drag",
 			output: EOutput.Number
 		})
 
@@ -62,8 +66,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.GeserY",
 			perintah: "InputDragY",
-			message0: "Drag Y position",
-			tooltip: "return drag y position relative to start position",
+			message0: "Drag Y",
+			tooltip: "Posisi y saat di drag, relatif terhadap posisi awal drag",
 			output: EOutput.Number
 		})
 
@@ -71,8 +75,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.Geser",
 			perintah: "InputIsDragged",
-			message0: "Input Is Dragged",
-			tooltip: "return true if input is dragged",
+			message0: "Pointer di drag",
+			tooltip: "Mengecek apakah pointer sedang di drag",
 			output: EOutput.Boolean
 		})
 
@@ -80,8 +84,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.InputXAwal",
 			perintah: "InputDragStartX",
-			message0: "Input Drag Start X",
-			tooltip: "Return x position of the initial drag",
+			message0: "Drag X Awal",
+			tooltip: "Posisi X saat drag dimulai",
 			output: EOutput.Number
 		})
 
@@ -89,8 +93,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.InputYAwal",
 			perintah: "InputDragStartY",
-			message0: "Input Drag Start Y",
-			tooltip: "Return y position of the initial drag",
+			message0: "Drag Y Awal",
+			tooltip: "Posisi Y saat drag dimulai",
 			output: EOutput.Number
 		})
 
@@ -98,10 +102,10 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.JmlTap",
 			perintah: "InputTapCount",
-			message0: "Input Tap Count",
+			message0: "Jumlah tap",
 			tooltip: `
-            Return the number of tap happens since last call.
-            Calling this method inside update block will return the count between update.
+            Jumlah tap terhitung sejak pemanggilan terakhir.
+			Panggil blok ini di bagian Update
         `,
 			output: EOutput.Number
 		})
@@ -110,10 +114,10 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.JmlDragMulai",
 			perintah: "InputDragStartCount",
-			message0: "Input Drag Start Count",
+			message0: "Jumlah Drag Dimulai",
 			tooltip: `
-            Return the number drag happens since last call.
-            Calling this method inside update block will return the count between update.
+            Jumlah drag dimulai dihitung sejak pemanggilan terakhir.
+			Taruh blok ini di bagian Update
         `,
 			output: EOutput.Number
 		})
@@ -122,10 +126,10 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.JmlDragSelesai",
 			perintah: "InputDragEndCount",
-			message0: "Input Drag End Count",
+			message0: "Jumlah Drag Selesai",
 			tooltip: `
-            Return the number drag ends since last call.
-            Calling this method inside update block will return the count between update.
+			Jumlah drag selesai, dihitung sejak pemanggilan terakhir.
+			Letakkan blok ini di bagian Update
         `,
 			output: EOutput.Number
 		})

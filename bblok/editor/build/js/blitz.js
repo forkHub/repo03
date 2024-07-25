@@ -520,25 +520,52 @@ var ha;
 (function (ha) {
     var be;
     (function (be) {
-        class Gbr {
+        class ImgObj {
             constructor() {
                 this.frameW = 32;
                 this.frameH = 32;
-                this._rotasi = 0;
                 this.alpha = 100;
                 this.isAnim = false;
                 this.rect = new be.Kotak();
                 this.load = false;
-                this.panjang = 0;
-                this.lebar = 0;
-                this.panjangDiSet = false;
-                this.lebarDiSet = false;
                 this.handleX = 0;
                 this.handleY = 0;
                 this.ratioX = 1;
                 this.ratioY = 1;
                 this.klikKum = 0;
+                this._rotasi = 0;
+                this._panjang = 0;
+                this._lebar = 0;
+                this._panjangDiSet = false;
+                this._lebarDiSet = false;
                 this._ctrIdx = 0;
+            }
+            get panjang() {
+                return this._panjang;
+            }
+            set panjang(value) {
+                console.log('set panjang: ' + value);
+                this._panjang = value;
+                this._panjangDiSet = true;
+            }
+            get lebar() {
+                return this._lebar;
+            }
+            set lebar(value) {
+                this._lebar = value;
+                this._lebarDiSet = true;
+            }
+            get panjangDiSet() {
+                return this._panjangDiSet;
+            }
+            set panjangDiSet(value) {
+                this._panjangDiSet = value;
+            }
+            get lebarDiSet() {
+                return this._lebarDiSet;
+            }
+            set lebarDiSet(value) {
+                this._lebarDiSet = value;
             }
             get ctrIdx() {
                 return this._ctrIdx;
@@ -555,39 +582,12 @@ var ha;
             }
         }
         class Img {
-            // private static buatObj(
-            // 	img: HTMLImageElement,
-            // 	w: number,
-            // 	h: number,
-            // 	frameH: number,
-            // 	frameW: number,
-            // 	canvas: HTMLCanvasElement,
-            // 	rect: IRect
-            // ): IGambar {
-            // 	let gbr: IGambar = new Gambar();defaut 
-            // 	gbr.panjang = w;
-            // 	gbr.lebar = h;
-            // 	gbr.img = img;
-            // 	gbr.frameH = frameH;
-            // 	gbr.frameW = frameW;
-            // 	gbr.handleX = 0;
-            // 	gbr.handleY = 0;
-            // 	gbr.alpha = 1;
-            // 	gbr.isAnim = false;
-            // 	gbr.canvas = canvas;
-            // 	gbr.ctx = canvas.getContext('2d');
-            // 	gbr.rect = rect;
-            // 	gbr.load = false;
-            // 	gbr.panjangDiSet = false;
-            // 	gbr.lebarDiSet = false;
-            // 	return gbr;
-            // }
             static buatBagiCanvas(canvas, w = 32, h = 32, frameW = 32, frameH = 32) {
                 let img;
                 canvas.width = w;
                 canvas.height = h;
                 let rect = ha.be.Kotak.buat(0, 0, frameW, frameH);
-                img = new Gbr();
+                img = new ImgObj();
                 img.load = true;
                 img.panjang = w;
                 img.lebar = h;
@@ -615,50 +615,6 @@ var ha;
                 // }
                 return img;
             }
-            // static gambarRect(spr: ISprite) {
-            // 	Image.resetRect(spr.buffer);
-            // 	Image.rectToImageTransform(spr.buffer, spr.x, spr.y);
-            // 	let ctx: CanvasRenderingContext2D = Be.canvasAktif.ctx;
-            // 	let rect: IKotak = spr.buffer.rect;
-            // 	ctx.beginPath();
-            // 	ctx.strokeStyle = "#ffffff";
-            // 	ctx.lineWidth = 5;
-            // 	ctx.moveTo(rect.vs[0].x, rect.vs[0].y);
-            // 	ctx.lineTo(rect.vs[1].x, rect.vs[1].y);
-            // 	ctx.lineTo(rect.vs[2].x, rect.vs[2].y);
-            // 	ctx.lineTo(rect.vs[3].x, rect.vs[3].y);
-            // 	ctx.moveTo(rect.vs[0].x, rect.vs[0].y);
-            // 	ctx.stroke();
-            // }
-            // static buat(w: number = 32, h: number = 32, frameW: number = 32, frameH: number = 32): IGambar {
-            // 	let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
-            // 	return Image.buatBagiCanvas(canvas, w, h, frameW, frameH);
-            // 	// let img: IGambar;
-            // 	// canvas.width = w;
-            // 	// canvas.height = h;
-            // 	// let rect: IRect = ha.be.Rect.create(0, 0, frameW, frameH);
-            // 	// img = {
-            // 	// 	panjang: w,
-            // 	// 	lebar: h,
-            // 	// 	img: null,
-            // 	// 	frameH: frameH,
-            // 	// 	frameW: frameW,
-            // 	// 	handleX: 0,
-            // 	// 	handleY: 0,
-            // 	// 	rotasi: 0,
-            // 	// 	alpha: 1,
-            // 	// 	isAnim: false,
-            // 	// 	// scaleX: 1,
-            // 	// 	// scaleY: 1,
-            // 	// 	canvas: canvas,
-            // 	// 	ctx: canvas.getContext('2d'),
-            // 	// 	rect: rect,
-            // 	// 	load: true,
-            // 	// 	panjangDiSet: true,
-            // 	// 	lebarDiSet: true
-            // 	// }
-            // 	// return img;
-            // }
             static panjang(gbr, pj) {
                 if (typeof pj == 'number') {
                     gbr.panjang = pj;
@@ -675,8 +631,6 @@ var ha;
                 return gbr.lebar;
             }
             ;
-            //static handleX(gbr: IGambar): number { return gbr.handleX; };
-            //static handleY(gbr: IGambar): number { return gbr.handleY; };
             static tabrakan(gbr1, x1, y1, gbr2, x2, y2) {
                 Img.resetRect(gbr1);
                 Img.rectToImageTransform(gbr1, x1, y1);
@@ -700,7 +654,7 @@ var ha;
                 let ctx = canvas.getContext('2d');
                 let rect;
                 rect = ha.be.Kotak.buat(0, 0, fw, fh);
-                let gbr = new Gbr();
+                let gbr = new ImgObj();
                 gbr.isAnim = true;
                 gbr.img = img;
                 gbr.panjang = img.naturalWidth;
@@ -777,27 +731,25 @@ var ha;
                 let ctx = canvas.getContext('2d');
                 let rect;
                 rect = ha.be.Kotak.buat(0, 0, img.naturalWidth, img.naturalHeight);
-                let gbr = {
-                    img: img,
-                    panjang: img.naturalWidth,
-                    lebar: img.naturalHeight,
-                    frameH: img.naturalHeight,
-                    frameW: img.naturalWidth,
-                    isAnim: false,
-                    handleX: 0,
-                    handleY: 0,
-                    rotasi: 0,
-                    alpha: 1,
-                    // scaleX: 1,
-                    // scaleY: 1,
-                    ctx: ctx,
-                    canvas: canvas,
-                    rect: rect,
-                    load: false,
-                    panjangDiSet: false,
-                    lebarDiSet: false,
-                    ctrIdx: 0
-                };
+                let gbr;
+                gbr = new ImgObj();
+                gbr.img = img;
+                gbr.panjang = img.naturalWidth;
+                gbr.lebar = img.naturalHeight;
+                gbr.panjangDiSet = false;
+                gbr.lebarDiSet = false;
+                gbr.frameH = img.naturalHeight;
+                gbr.frameW = img.naturalWidth;
+                gbr.isAnim = false;
+                gbr.handleX = 0;
+                gbr.handleY = 0;
+                gbr.rotasi = 0;
+                gbr.alpha = 1;
+                gbr.ctx = ctx;
+                gbr.canvas = canvas;
+                gbr.rect = rect;
+                gbr.load = false;
+                gbr.ctrIdx = 0;
                 img.onload = () => {
                     onload();
                     imgOnLoad(img);
@@ -910,9 +862,6 @@ var ha;
                     }
                 }
             }
-            // static putarGambar(gbr: IGambar, sudut: number = 0) {
-            // 	gbr.rotasi = sudut;
-            // }
             /**
              * mengambil pixel di layar
              * @param x posisi x
@@ -947,13 +896,6 @@ var ha;
             static SetPiksel(x = 0, y = 0) {
                 be.Be.canvasAktif.ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
             }
-            // static handle(gbr: IGambar, x: number = 0, y: number = 0) {
-            // 	gbr.handleX = x;
-            // 	gbr.handleY = y;
-            // }
-            // static grabGambar(gbr: IGambar, x: number = 0, y: number = 0) {
-            // 	gbr.ctx.drawImage(Be.canvasAktif.canvas, x, y, gbr.panjang, gbr.lebar, 0, 0, gbr.panjang, gbr.lebar);
-            // }
             static gambar(gbr, x = 0, y = 0, frame = 0) {
                 let ctx = be.Be.canvasAktif.ctx;
                 let jmlH = 0;

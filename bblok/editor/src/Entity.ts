@@ -1,3 +1,4 @@
+import { demoList } from "./List";
 import { Store } from "./Store";
 
 declare var demoData: IEntity[];
@@ -21,7 +22,7 @@ export class Entity {
 		this.commit();
 	}
 
-	static loadSavedData() {
+	static loadLocalData() {
 		this.dbAktif = this.dbName;
 
 		let str;
@@ -40,10 +41,16 @@ export class Entity {
 
 	}
 
-	static init() {
+	private static loadListProjek() {
 		try {
 			if (Store.tutMode) {
-				this.loadDataFromUrl("./tut/list.json");
+				while (Entity.list.length > 0) {
+					Entity.list.pop();
+				}
+
+				demoList.forEach((item) => {
+					Entity.list.push(item);
+				});
 				return;
 			}
 
@@ -54,7 +61,11 @@ export class Entity {
 				return;
 			}
 
-			// this.loadSavedData();
+			if (Store.pMode) {
+
+			}
+
+			this.loadLocalData();
 		}
 		catch (e) {
 			console.log('load error');
@@ -62,6 +73,11 @@ export class Entity {
 		}
 	}
 
+	static init() {
+		this.loadListProjek();
+	}
+
+	/*
 	static loadDataFromUrl(url: string): void {
 		try {
 
@@ -74,8 +90,9 @@ export class Entity {
 			).then(function (response) {
 				console.log(response);
 				console.log(response.text().then((e) => {
-					console.log("load projek list response text")
+					console.group("load projek list response text")
 					console.log(e);
+					console.groupEnd();
 
 					while (Entity.list.length > 0) {
 						Entity.list.pop();
@@ -97,8 +114,7 @@ export class Entity {
 		}
 
 	}
-
-
+	*/
 
 	//session data
 	static loadDataFromStorage(): string {
@@ -111,6 +127,19 @@ export class Entity {
 			console.warn(e);
 			return "";
 		}
+	}
+
+	static getProjekByName(nama: string): IProject {
+		let list: IProject[] = this.getByType(EEntity.PROJECT) as IProject[];
+		let h: IProject;
+
+		list.forEach((item) => {
+			if (item.nama == nama) {
+				h = item;
+			}
+		})
+
+		return h;
 	}
 
 	static getByType(ty: EEntity): IEntity[] {

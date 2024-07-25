@@ -4,6 +4,7 @@
  */
 export class Logo {
 	static dlg: HTMLDialogElement;
+	static onOk: () => void;
 
 	static init() {
 		this.dlg = document.createElement('dialog');
@@ -16,13 +17,19 @@ export class Logo {
 		dlg.innerHTML = `
             <div>
                 <h1>BASIK BLOK</h1>
+				<h3>rev: #07 2024</h3>
                 <div class='block-cont'>
                     
                 </div>
+				<div class="link-cont">
+
+				</div>
             </div>
         	`;
 
-		tombol(dlg.querySelector('div.block-cont'))
+		tombol(dlg.querySelector('div.block-cont'));
+
+		//TODO: daftar wlink 
 
 		function tombol(cont: HTMLDivElement): void {
 			let tbl: HTMLButtonElement;
@@ -33,6 +40,7 @@ export class Logo {
 			tbl.style.margin = '4px';
 			tbl.onclick = () => {
 				dlg.close();
+				Logo.onOk();
 			}
 			cont.appendChild(tbl);
 
@@ -42,7 +50,7 @@ export class Logo {
 			tbl.style.margin = '4px';
 			tbl.onclick = () => {
 				dlg.close();
-				window.open("https://drive.google.com/drive/folders/101YzoTecPx7M3slR4zpxT_WiIJYqTZXz?usp=sharing", "_blank");
+				window.open("https://www.youtube.com/watch?v=TGR8VJwFFXI&list=PLwxcp0TuEV6inV5eBIgNBG_QL6E4GUonf", "_blank");
 			}
 			cont.appendChild(tbl);
 

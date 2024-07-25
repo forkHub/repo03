@@ -1,80 +1,20 @@
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class BlitzData {
-	readonly group = "Graphics";
+	readonly group = "Grafis";
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly hidden = "false";
+	readonly toolbox = false;
 
 	// Start
 	constructor() {
-		this.list.push({
-			type: "ha.be.Be.Start",
-			perintah: "Graphics",
-			message0: "🛩️ Start %1 width: %2 height: %3 %4",
-			inputsInline: true,
-			args: {
-				dummy: '',
-				width: 320,
-				height: 240,
-				statement: ""
-			},
-			stmt: false,
-			tooltip: `
-				Start Application.
-				Use this block as the first block in your app.
-	
-	
-				Parameters:
-				width: prefered canvas width
-				height: prefered canvas height
-			`
-		});
-
-		// Update
-		this.list.push({
-			type: "ha.be.Be.Update",
-			perintah: "function #update",
-			message0: "⏱️ update %1 %2 %3",
-			inputsInline: false,
-			args: {
-				dummy: "",
-				input_end_row: "",
-				statement: ""
-			},
-			stmt: true,
-			hat: true,
-			tooltip: `
-				Update Application.
-				Will be called up to 60x per second.
-				Put all block to update app here
-			`
-		});
-
-		// list.push(
-		//     {
-		//         "type": "block_type",
-		//         "message0": "test %1 %2",
-		//         "perintah": "test",
-		//         "args0": [
-		//             {
-		//                 "type": EArgType.input_end_row
-		//             },
-		//             {
-		//                 "type": EArgType.statementValue,
-		//                 "name": "NAME"
-		//             }
-		//         ],
-		//         "colour": 230,
-		//         "tooltip": "",
-		//         "helpUrl": ""
-		//     })
 
 		// ha.be.Be.Bersih
 		this.list.push({
 			type: "ha.be.Be.Bersih",
 			perintah: "Cls",
 			message0: 'Cls',
-			tooltip: "Clear the screen"
+			tooltip: "Bersihkan layar"
 		});
 
 		// Color
@@ -82,7 +22,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Warna",
 			perintah: "Color",
-			message0: 'Set Fill Color to red %1 green %2 blue %3 alpha %4',
+			message0: 'Warna fill: merah %1 hijau %2 biru %3 alpha %4',
 			inputsInline: true,
 			args: {
 				red: 0,
@@ -91,8 +31,9 @@ class BlitzData {
 				alpha: 100
 			},
 			tooltip: `
-				Set default fill color for font, drawing, etc.
-				red, green, blue are from 0-255
+				Mengeset default warna fill untuk font, shape, dll.
+				nilai untuk merah, hijau, biru adalah dari 0 - 255
+				alpa dari 0 - 100
 			`
 		});
 
@@ -100,7 +41,7 @@ class BlitzData {
 		this.list.push({
 			type: " ha.be.Be.StrokeColor",
 			perintah: "Stroke",
-			message0: 'Set Stroke Color to red %1 green %2 blue %3 alpha %4',
+			message0: 'Warna Stroke: merah %1 hijau %2 biru %3 alpha %4',
 			inputsInline: true,
 			args: {
 				red: 0,
@@ -109,7 +50,9 @@ class BlitzData {
 				alpha: 100
 			},
 			tooltip: `
-				Set default stroke color for font, drawing, etc
+				Mengest warna stroke untuk font, shape, dll
+				warna merah, hijau dan biru dari 0 - 255
+				alpha dari 0 - 100
 			`
 		});
 
@@ -117,7 +60,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Garis",
 			perintah: "Line",
-			message0: 'Draw Line x1 %1 y1 %2 x2 %3 y2 %4',
+			message0: 'Garis x1 %1 y1 %2 x2 %3 y2 %4',
 			inputsInline: true,
 			args: {
 				x1: 0,
@@ -126,7 +69,7 @@ class BlitzData {
 				y2: 100
 			},
 			tooltip: `
-				Draw Line
+				Menggambar garis
 			`
 		});
 
@@ -135,7 +78,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Kotak",
 			perintah: "Rect",
-			message0: 'Draw Rect x1 %1 y1 %2 x2 %3 y2 %4',
+			message0: 'Kotak x1 %1 y1 %2 x2 %3 y2 %4',
 			inputsInline: true,
 			args: {
 				x1: 0,
@@ -144,7 +87,7 @@ class BlitzData {
 				y2: 100
 			},
 			tooltip: `
-				Draw Rectangle
+				Menggambar kotak
 			`
 		});
 
@@ -153,7 +96,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Kotak_opt",
 			perintah: "Rect",
-			message0: 'Draw Rect x1 %1 y1 %2 x2 %3 y2 %4 fill %5 stroke %6',
+			message0: 'Menggambar kotak x1 %1 y1 %2 x2 %3 y2 %4 fill %5 stroke %6',
 			inputsInline: true,
 			args: {
 				x1: 0,
@@ -164,15 +107,17 @@ class BlitzData {
 				stroke: true,
 			},
 			tooltip: `
-				Draw Rectangle with additional parameters
+				Menggambar kotak dengan pilihan
 			`
 		});
+
+		//TODO: oval yang lebih sederhana
 
 		// const Oval = ha.be.Be.Oval;
 		this.list.push({
 			type: "ha.be.Be.Oval",
 			perintah: "Oval",
-			message0: 'Draw Oval %1 x %2 y %3 radius %4 scaleX %5 scaleY %6 rotation %7',
+			message0: 'Oval %1 x %2 y %3 radius %4 skala X %5 skala Y %6 rotasi %7',
 			args: {
 				dummy: '',
 				x1: 0,
@@ -183,7 +128,7 @@ class BlitzData {
 				rotation: 0,
 			},
 			tooltip: `
-				Draw Oval 
+				Menggambar Oval
 			`
 		});
 
@@ -191,7 +136,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Img.AmbilPiksel",
 			perintah: "GetPixel",
-			message0: 'Get Pixel at x %1 y %2',
+			message0: 'Ambil Pixel x %1 y %2',
 			inputsInline: true,
 			args: {
 				x: 0,
@@ -200,18 +145,16 @@ class BlitzData {
 			tooltip: `
 				Get Pixel Color at x, y position.
 				You can get the red, green, and blue result by calling the Red, Green, Blue command respectively.
-				If you load images from external domain, then this function will failed.
-				This is normal because of CORS Policy. 
-			`
+				If you load images from external domain, then this function will failed due to CORS policy			`
 		});
 
 		// const Red = ha.be.Be.Merah;
 		this.list.push({
 			type: "ha.be.Be.Merah",
 			perintah: "Red",
-			message0: 'Red',
+			message0: 'Merah',
 			tooltip: `
-				Return the red color from the GetPixel command
+				Return the red color from the last GetPixel command
 			`,
 			output: EOutput.Number
 		});
@@ -220,9 +163,9 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Hijau",
 			perintah: "Green",
-			message0: 'Green',
+			message0: 'Hijau',
 			tooltip: `
-				Return the Green color from the GetPixel command
+				Return the Green color from the last GetPixel command
 			`,
 			output: EOutput.Number
 
@@ -232,9 +175,9 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Biru",
 			perintah: "Blue",
-			message0: 'Blue',
+			message0: 'Biru',
 			tooltip: `
-				Return the blue blue from the GetPixel command
+				Return the blue blue from the last GetPixel command
 			`,
 			output: EOutput.Number
 
@@ -246,7 +189,7 @@ class BlitzData {
 			perintah: "Alpha",
 			message0: 'Alpha',
 			tooltip: `
-				Return the transparent color from the GetPixel command
+				Return the transparent color from the last GetPixel command
 			`,
 			output: EOutput.Number
 
