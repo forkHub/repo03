@@ -3,11 +3,19 @@ exit/pause
 highlight error
 snapshot
 about page
-bblok enggine
 sub
 klamp
 image di klik 
 konfigurasi grafis
+defer
+reserved words
+try catch di player
+highlight saat error
+
+
+bblok enggine 
+	namespce bblok
+	wrapper blitz
 
 validasi
 	error saat init dan update

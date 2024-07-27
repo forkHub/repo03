@@ -87,8 +87,6 @@ class ImageBlockData2 {
         `
 		})
 
-		//width (setter)
-
 		// ImageHeight getter
 		// ha.be.Spr.Lebar;
 		// Height
