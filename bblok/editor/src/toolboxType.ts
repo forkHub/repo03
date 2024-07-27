@@ -48,7 +48,7 @@ export type TToolBoxBlockDef = {
 	output?: EOutput;
 	hat?: boolean;
 	perintah?: string;
-	f?: (arg: string[]) => string;	//generate code pakai callback
+	f?: (arg: string[], stmt: string[]) => string;	//generate code pakai callback
 
 	//auto fill
 	args0?: TArgDef[]

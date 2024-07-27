@@ -1,3 +1,4 @@
+import { Val } from "../Validasi";
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class MathBlockData {
@@ -14,14 +15,14 @@ class MathBlockData {
 		this.list.push({
 			type: "ha.be.Transform.degDistMin",
 			perintah: "DistMin",
-			message0: "Minimum anggular distance from %1 to %2",
+			message0: "Jarak sudut minimum dari %1 ke %2",
 			args: {
 				fw: 0,
 				fh: 0
 			},
 			output: EOutput.Number,
 			inputsInline: true,
-			tooltip: 'return minimum distance between two angles'
+			tooltip: 'menghitung jarak minimum dari dua sudut'
 		})
 
 		this.list.push(this.setVar());
@@ -36,19 +37,25 @@ class MathBlockData {
 		return {
 			type: "set var",
 			perintah: "",
-			message0: " %1 = %2",
+			message0: " %1 = %2 ",
 			args: {
 				var1: {},
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				return `${arg[0]} = ${arg[1]}`;
+				console.log("check parameter");
+				console.log(arg);
+				Val.paramEmpty(arg[0], "Semua parameter wajib diisi");
+				Val.param(arg, 2, 'Semua parameter wajib diisi');
+				return `
+					/* %1 = %2 */
+					${arg[0]} = ${arg[1]}
+				`;
 			},
 			inputsInline: true,
 			tooltip: 'Mengisi variable dengan value'
 		}
 	}
-
 
 	private mulBy(): TToolBoxBlockDef {
 		return {
@@ -60,7 +67,10 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				return `${arg[0]} *= ${arg[1]}`;
+				return `
+					/* Kalikan %1 dengan %2 */
+					${arg[0]} *= ${arg[1]}
+				`;
 			},
 			inputsInline: true,
 			tooltip: 'Kalikan variable dengan value'
@@ -77,7 +87,9 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				return `${arg[0]} /= ${arg[1]}`;
+				return `
+				/* Bagi %1 dengan %2 */
+				${arg[0]} /= ${arg[1]}`;
 			},
 			inputsInline: true,
 			tooltip: 'Bagi variable dengan value'
@@ -96,7 +108,9 @@ class MathBlockData {
 			f: (arg: string[]): string => {
 				// let l = arg[0].replace("(", "").replace(")", "");
 				let l = arg[0];
-				return `${l} += ${arg[1]}`;
+				return `
+				/* Tambahkan %1 dengan %2 */
+				${l} += ${arg[1]}`;
 			},
 			inputsInline: true,
 			tooltip: 'Tambahkan variable dengan value'
@@ -113,10 +127,12 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				return `${arg[0]} -= ${arg[1]}`;
+				return `
+				/* Kurangi %1 dengan %2 */
+				${arg[0]} -= ${arg[1]}`;
 			},
 			inputsInline: true,
-			tooltip: 'Kurangi variable dengan valu'
+			tooltip: 'Kurangi variable dengan value'
 		}
 	}
 
@@ -129,7 +145,9 @@ class MathBlockData {
 				var1: {},
 			},
 			f: (arg: string[]): string => {
-				return `${arg[0]} *= -1`;
+				return `
+				/* Balik %1 */
+				${arg[0]} *= -1`;
 			},
 			inputsInline: true,
 			tooltip: 'Membuat variable negatif menjadi positif dan sebaliknya'

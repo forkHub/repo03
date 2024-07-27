@@ -8,27 +8,27 @@ class HiddenData {
 
 	// ha.be.Be.Grafis
 	// depecrated
-	readonly Grafis: TToolBoxBlockDef = {
-		type: "ha.be.Be.Grafis",
-		perintah: "Graphics",
-		message0: "Graphics %1 width: %2 height: %3",
-		inputsInline: true,
-		args: {
-			dummy: '',
-			width: 320,
-			height: 240
-		},
-		hidden: 'hidden',
-		tooltip: `
-            Initialize graphics.
-            Use this block as the first block in your appp.
-            width: prefered canvas width
-            height: prefered canvas height
-        `
-	};
+	// readonly Grafis: TToolBoxBlockDef = {
+	// 	type: "ha.be.Be.Grafis",
+	// 	perintah: "Graphics",
+	// 	message0: "Graphics %1 width: %2 height: %3",
+	// 	inputsInline: true,
+	// 	args: {
+	// 		dummy: '',
+	// 		width: 320,
+	// 		height: 240
+	// 	},
+	// 	hidden: 'hidden',
+	// 	tooltip: `
+	//         Initialize graphics.
+	//         Use this block as the first block in your appp.
+	//         width: prefered canvas width
+	//         height: prefered canvas height
+	//     `
+	// };
 
 	constructor() {
-		this.list.push(this.Grafis);
+		// this.list.push(this.Grafis);
 
 		// ImagesCollideXY
 		// ha.be.Spr.TabrakanXY;
@@ -70,6 +70,7 @@ class HiddenData {
 			output: EOutput.Boolean,
 		})
 
+		//Drag Mode
 		this.list.push({
 			type: "ha.be.Spr.DragMode",
 			perintah: "ha.be.Spr.DragMode",
@@ -91,11 +92,11 @@ class HiddenData {
         `
 		})
 
-
+		//Grafis
 		this.list.push({
 			type: "ha.be.Be.Start",
 			perintah: "Graphics",
-			message0: "🛩️ Start %1 width: %2 height: %3 %4",
+			message0: "🛩️ Mulai %1 panjang: %2 lebar: %3 %4",
 			inputsInline: true,
 			args: {
 				dummy: '',
@@ -104,14 +105,32 @@ class HiddenData {
 				statement: ""
 			},
 			stmt: false,
+			f: (arg: string[], stmt: string[]): string => {
+				let hasil = '';
+				hasil += `try {\n`;
+				hasil += `Graphics(${arg[0]}, ${arg[1]});\n`;
+				stmt.forEach((item) => {
+					hasil += item + ";";
+				});
+				hasil += `\n} catch (e) {
+					console.log("grup mulai error");
+					console.log(e);\n
+					e.message = 'Ada kesalahan di grup Mulai: ' + e.message;\n
+					handleError(e);\n
+					error=true;
+					//TODO: dialog
+					//throw e;
+				}`;
+				return hasil;
+			},
+
 			tooltip: `
-				Start Application.
-				Use this block as the first block in your app.
+				Grup Start.
+				Blok-blok yang ditaruh disini akan dipanggil sekali saat applikasi dimulai.
 	
-	
-				Parameters:
-				width: prefered canvas width
-				height: prefered canvas height
+				Parameter:
+				panjang: panjang kanvas
+				lebar: lebar kanvas
 			`
 		});
 
@@ -119,7 +138,7 @@ class HiddenData {
 		this.list.push({
 			type: "ha.be.Be.Update",
 			perintah: "function #update",
-			message0: "⏱️ update %1 %2 %3",
+			message0: "⏱️ Update %1 %2 %3",
 			inputsInline: false,
 			args: {
 				dummy: "",
@@ -129,9 +148,7 @@ class HiddenData {
 			stmt: true,
 			hat: true,
 			tooltip: `
-				Update Application.
-				Will be called up to 60x per second.
-				Put all block to update app here
+				Semua blok di grup ini akan dipanggil berulang kali selama applikasi berjalan.
 			`
 		});
 

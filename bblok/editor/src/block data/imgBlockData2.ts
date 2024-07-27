@@ -71,7 +71,7 @@ class ImageBlockData2 {
 		// Width
 		this.list.push({
 			type: "ha.be.Spr.Panjang",
-			message0: "Image %2 width %1",
+			message0: "Image %2 panjang %1",
 			inputsInline: true,
 			args: {
 				dummy: '',
@@ -93,7 +93,7 @@ class ImageBlockData2 {
 		this.list.push({
 			type: "ha.be.Spr.Lebar",
 			perintah: "Height",
-			message0: "Image %2 height %1",
+			message0: "Image %2 lebar %1",
 			args: {
 				dummy: '',
 				sprite: {},

@@ -110,13 +110,16 @@ function js(blockData: TToolBoxBlockDef[]) {
 		if (typeof itemBlockData.f === 'function') {
 			javascriptGenerator.forBlock[itemBlockData.type] = (block: Blockly.Block, generator: JavascriptGenerator): any => {
 				let arg: string[] = [];
+				let stmt: string[] = [];
 
 				console.group("");
 				console.groupEnd();
 				itemBlockData.args0.forEach((item) => {
 					if (item.type == EArgType.inputDummy) { }
 					else if (item.type == EArgType.input_end_row) { }
-					else if (item.type == EArgType.statementValue) { }
+					else if (item.type == EArgType.statementValue) {
+						stmt.push(generator.statementToCode(block, item.name));
+					}
 					else {
 						let value = generator.valueToCode(block, item.name, Order.ATOMIC);
 						arg.push(value);
@@ -124,10 +127,10 @@ function js(blockData: TToolBoxBlockDef[]) {
 				});
 
 				if (itemBlockData.output != null) {
-					return [itemBlockData.f(arg), Order.NONE]
+					return [itemBlockData.f(arg, stmt), Order.NONE]
 				}
 				else {
-					return itemBlockData.f(arg) + ';\n';
+					return itemBlockData.f(arg, stmt) + ';\n';
 				}
 			};
 		}

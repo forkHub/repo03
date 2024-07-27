@@ -5,7 +5,6 @@ import { Store } from "./Store";
 import { DialogPublish, DialogExport, DialogImport } from "./Dialogs";
 import { Id } from "./Id";
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator } from 'blockly/javascript';
 import { Export } from "./exporter";
 import { Dialog } from "./Dialog";
 // import { Iframe } from "./iframe";
@@ -52,7 +51,7 @@ export class Op {
 
 		(document.body.querySelector("div.menu-cont button.run") as HTMLDivElement).onclick =
 			() => {
-				let codeHtml = Export.export(javascriptGenerator.workspaceToCode(Index2.workspace));
+				let codeHtml = Export.exportHtml(Export.exportJs());
 				window.localStorage.setItem("blocklycode", codeHtml);
 				window.open('./play.html', "_blank");
 				// Iframe.play();
@@ -113,7 +112,7 @@ export class Op {
 	}
 
 	static publish() {
-		let codeHtml = Export.export(javascriptGenerator.workspaceToCode(Index2.workspace));
+		let codeHtml = Export.exportHtml(Export.exportJs());
 		DialogPublish.open(`
                     <h1>Html Code</h1>
                     <p>
