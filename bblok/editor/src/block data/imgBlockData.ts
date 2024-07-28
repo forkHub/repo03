@@ -9,7 +9,7 @@ class ImageBlockData {
 	// ha.be.Spr.Muat
 	readonly blitz_Muat: TToolBoxBlockDef = {
 		type: "ha.be.Spr.Muat",
-		message0: 'Muat Image URL: %2 %1',
+		message0: 'Muat Image dari URL: %2 %1',
 		perintah: "LoadImage",
 		args: {
 			dummy: '',
@@ -29,7 +29,7 @@ class ImageBlockData {
 		// ha.be.Spr.MuatAnimasi
 		this.list.push({
 			type: "ha.be.Spr.MuatAnimasi",
-			message0: "LoadAnimImage %1 from url: %2 frame width: %3 frame height: %4",
+			message0: "Muat Image animasi %1 dari url: %2 panjang frame: %3 lebar frame: %4",
 			perintah: "LoadAnimImage",
 			args: {
 				dummy: '',
@@ -40,12 +40,12 @@ class ImageBlockData {
 			inputsInline: true,
 			output: EOutput.Any,
 			tooltip: `
-        Load image that contains multiple frames (spritesheet)
+        Memuat image yang berbentuk spritesheet
            
         Params:
-        url: the url of image, can be local or absolute
-        fw: frame wdith
-        fh: frame height 
+        url: url gambar, bisa local atau absolute
+        fw: panjang frame
+        fh: lebar frame
         `
 		})
 
@@ -54,10 +54,10 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Dimuat",
 			perintah: "ImageLoaded",
-			message0: "Image %1 loaded",
+			message0: "Image %1 sudah diload",
 			inputsInline: true,
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			tooltip: `Return true is image is already loaded`,
 			output: EOutput.Boolean
@@ -67,7 +67,7 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.StatusMuat",
 			perintah: "AllImageLoaded",
-			message0: "All Images Loaded",
+			message0: "Semua image sudah diload",
 			output: EOutput.Boolean,
 			tooltip: 'Return true if All Images have been loaded'
 		})
@@ -79,10 +79,10 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Posisi",
 			perintah: "PositionImageXY",
-			message0: "Image %1 position x %2 y %3",
+			message0: "Image %1 Posisi x %2 y %3",
 			inputsInline: true,
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 				x: 0,
 				y: 0
 			},
@@ -98,7 +98,7 @@ class ImageBlockData {
 			inputsInline: true,
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 				x: 0,
 				y: 0,
 			},
@@ -118,7 +118,7 @@ class ImageBlockData {
 			inputsInline: true,
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 				width: 0,
 				height: 0,
 			},
@@ -132,10 +132,10 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Tabrakan",
 			perintah: "Collide",
-			message0: "check Image %1 is collided with Image %2",
+			message0: "check Image %1 tabrakan dengan Image %2",
 			args: {
-				sprite1: {},
-				sprite2: {},
+				sprite1: EOutput.Image,
+				sprite2: EOutput.Image,
 			},
 			output: EOutput.Boolean,
 			inputsInline: true,
@@ -159,7 +159,7 @@ class ImageBlockData {
 			message0: "Draw Image %1",
 			inputsInline: true,
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			tooltip: "Draw image to screen"
 		})
@@ -173,7 +173,7 @@ class ImageBlockData {
 			perintah: "DrawImageXY",
 			inputsInline: true,
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 				x: 0,
 				y: 0,
 				dummy: ""
@@ -188,11 +188,11 @@ class ImageBlockData {
 		//ha.be.Spr.Ubin;
 		this.list.push({
 			type: "ha.be.Spr.Ubin",
-			message0: "TileImage: %5 image %1 x: %2 y: %3 frame: %4",
+			message0: "image %1 gambar ubin %5 posisi x %2 y %3 frame %4",
 			perintah: "Tile",
 			inputsInline: true,
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 				x: 0,
 				y: 0,
 				frame: 0,
@@ -209,12 +209,12 @@ class ImageBlockData {
 		// ha.be.Spr.Gambar animasi
 		this.list.push({
 			type: "ha.be.Spr.Gambar_animasi",
-			message0: "image %2 %1 draw at frame: %3",
+			message0: "image %2 %1 gambar dengan frame: %3",
 			perintah: "DrawImage",
 			inputsInline: true,
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 				frame: 0,
 			},
 			tooltip: `
@@ -227,7 +227,7 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.GambarSemua",
 			perintah: "DrawAllImage",
-			message0: "DrawAllImage",
+			message0: "Gambar semua",
 			tooltip: 'Draw All Images, ordered by created time'
 		})
 

@@ -127,6 +127,9 @@ function createShadow(t: TArgDef): any {
 	else if (t.check == undefined) {
 		return null
 	}
+	else if (EOutput.Image == t.check) {
+		return null;
+	}
 
 	throw Error('not supported: ' + t.check);
 }

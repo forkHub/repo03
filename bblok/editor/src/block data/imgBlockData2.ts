@@ -1,4 +1,5 @@
 // import { Order } from "blockly/javascript";
+import { Val } from "../Validasi";
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class ImageBlockData2 {
@@ -17,12 +18,13 @@ class ImageBlockData2 {
 			perintah: "ImageXPosition",
 			message0: "Image %1 X",
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			inputsInline: true,
 			output: EOutput.Number,
 			tooltip: 'Posisi X Image',
 			f: (arg: string[]): string => {
+				Val.paramEmpty(arg[0]);
 				let res = arg[0] + ".x"
 				return res;
 			}
@@ -36,7 +38,7 @@ class ImageBlockData2 {
 			perintah: "ImageYPosition",
 			message0: "Image %1 Y",
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			inputsInline: true,
 			output: EOutput.Number,
@@ -54,7 +56,7 @@ class ImageBlockData2 {
 			perintah: "Rotation",
 			message0: "Image %1 rotasi",
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			inputsInline: true,
 			output: EOutput.Number,
@@ -75,7 +77,7 @@ class ImageBlockData2 {
 			inputsInline: true,
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			output: EOutput.Number,
 			f: (arg: string[]): string => {
@@ -96,7 +98,7 @@ class ImageBlockData2 {
 			message0: "Image %2 lebar %1",
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			inputsInline: true,
 			output: EOutput.Number,
@@ -120,7 +122,7 @@ class ImageBlockData2 {
 			message0: "Image %2 pusat X %1",
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			f: (arg: string[]): string => {
 				return arg[0] + ".buff.handleX";
@@ -136,7 +138,7 @@ class ImageBlockData2 {
 			message0: "image %2 Pusat Y %1",
 			args: {
 				dummy: '',
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			f: (arg: string[]): string => {
 				return arg[0] + ".buff.handleY";
@@ -152,7 +154,7 @@ class ImageBlockData2 {
 			perintah: "ImageIsDragged",
 			message0: "Image %1 status drag",
 			args: {
-				sprite: {},
+				sprite: EOutput.Image,
 			},
 			inputsInline: true,
 			output: EOutput.Boolean,

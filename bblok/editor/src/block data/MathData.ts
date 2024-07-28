@@ -43,10 +43,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				console.log("check parameter");
-				console.log(arg);
-				Val.paramEmpty(arg[0], "Semua parameter wajib diisi");
-				Val.param(arg, 2, 'Semua parameter wajib diisi');
+				Val.paramEmpty(arg[0]);
 				return `
 					/* %1 = %2 */
 					${arg[0]} = ${arg[1]}
@@ -67,6 +64,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
+				Val.paramEmpty(arg[0]);
 				return `
 					/* Kalikan %1 dengan %2 */
 					${arg[0]} *= ${arg[1]}
@@ -87,6 +85,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
+				Val.paramEmpty(arg[0]);
 				return `
 				/* Bagi %1 dengan %2 */
 				${arg[0]} /= ${arg[1]}`;
@@ -106,7 +105,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				// let l = arg[0].replace("(", "").replace(")", "");
+				Val.paramEmpty(arg[0]);
 				let l = arg[0];
 				return `
 				/* Tambahkan %1 dengan %2 */
@@ -127,6 +126,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
+				Val.paramEmpty(arg[0]);
 				return `
 				/* Kurangi %1 dengan %2 */
 				${arg[0]} -= ${arg[1]}`;
@@ -145,6 +145,7 @@ class MathBlockData {
 				var1: {},
 			},
 			f: (arg: string[]): string => {
+				Val.paramEmpty(arg[0]);
 				return `
 				/* Balik %1 */
 				${arg[0]} *= -1`;
