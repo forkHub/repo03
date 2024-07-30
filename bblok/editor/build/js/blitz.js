@@ -2328,6 +2328,12 @@ var ha;
             }
             set tipeDrag(value) {
                 this._tipeDrag = value;
+                if (value > 0) {
+                    this._dragable = true;
+                }
+                else {
+                    this._dragable = false;
+                }
             }
             get url() {
                 return this._url;
@@ -2416,6 +2422,7 @@ var ha;
                         if (item.tipeDrag == TypeDrag.drag || (item.tipeDrag == 3)) {
                             item.x = pos.x - item.drgStartX;
                             item.y = pos.y - item.drgStartY;
+                            console.debug('item drag move');
                         }
                         else if (item.tipeDrag == TypeDrag.rotasi || (item.tipeDrag == 4)) {
                             let sudut2 = be.Transform.sudut(pos.x - item.x, pos.y - item.y);

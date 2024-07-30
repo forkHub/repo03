@@ -67,6 +67,19 @@ class ImageBlockData2 {
 		})
 
 		// ImageAlpha (getter)
+		this.list.push({
+			type: "alpha prop",
+			message0: "Image %1 alpha",
+			args: {
+				sprite: EOutput.Image,
+			},
+			inputsInline: true,
+			output: EOutput.Number,
+			tooltip: 'Alpha property 0 - 100',
+			f: (arg: string[]): string => {
+				return arg[0] + ".buff.alpha";
+			}
+		})
 
 		// ImageWidth getter
 		// ha.be.Spr.Panjang;
@@ -114,6 +127,28 @@ class ImageBlockData2 {
 
 		// ha.be.Spr.DragMode(); (setter)
 		//set drag mode
+		//tipe drag
+		this.list.push({
+			type: "ha.be.Spr.DragMode2",
+			message0: "Image %2 tipe drag %1",
+			args: {
+				dummy: '',
+				sprite: EOutput.Image,
+			},
+			f: (arg: string[]): string => {
+				// debugger;
+				return arg[0] + ".tipeDrag";
+			},
+			tooltip: `
+				Drag type:
+				1. geser
+				2. putar
+				3. geser remote, geser tanpa menyentuh blok terlebih dahulu
+				4. putar remote, putar tanpa menyentuh blok terlebih dahulu
+			`,
+			output: EOutput.Number,
+			inputsInline: true
+		})
 
 		// ImageXHandle (getter)
 		// ha.be.Spr.HandleX

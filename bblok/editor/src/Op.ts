@@ -7,6 +7,7 @@ import { Id } from "./Id";
 import * as Blockly from 'blockly/core';
 import { Export } from "./exporter";
 import { Dialog } from "./Dialog";
+import { Val } from "./Validasi";
 // import { Iframe } from "./iframe";
 
 
@@ -51,12 +52,19 @@ export class Op {
 
 		(document.body.querySelector("div.menu-cont button.run") as HTMLDivElement).onclick =
 			() => {
-				let codeHtml = Export.exportHtml(Export.exportJs());
-				window.localStorage.setItem("blocklycode", codeHtml);
-				window.open('./play.html', "_blank");
-				// Iframe.play();
-				if (Store.devMode) {
-					Op.simpan();
+				try {
+					Val.checkAllBlock();
+					let codeHtml = Export.exportHtml(Export.exportJs());
+					window.localStorage.setItem("blocklycode", codeHtml);
+					window.open('./play.html', "_blank");
+					// Iframe.play();
+					if (Store.devMode) {
+						Op.simpan();
+					}
+				}
+				catch (e) {
+					console.log(e);
+					Dialog.show(typeof e == "string" ? e : e.message);
 				}
 			}
 

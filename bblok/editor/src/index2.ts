@@ -11,6 +11,7 @@ import * as Blockly from 'blockly';
 import { EArgType, EOutput } from "./toolboxType";
 import { normalizeItem } from "./blitzDefValue";
 import { javascriptGenerator, JavascriptGenerator, Order } from "blockly/javascript";
+import { Event } from "./Event";
 
 declare var pData: any;
 
@@ -253,7 +254,6 @@ export class Index2 {
 	}
 
 	static init() {
-
 		this.checkQuery();
 
 		HalListProject.init();
@@ -265,6 +265,7 @@ export class Index2 {
 		Op.resize();
 		Op.op();
 		API2.init();
+		Event.init();
 
 		this.updateProjectName();
 
