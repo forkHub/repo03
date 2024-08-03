@@ -7,11 +7,7 @@ sub
 klamp
 image di klik 
 konfigurasi grafis
-defer
-reserved words
-try catch di player
 highlight saat error
-
 
 bblok enggine 
 	namespce bblok

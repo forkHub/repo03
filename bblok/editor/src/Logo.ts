@@ -17,7 +17,7 @@ export class Logo {
 		dlg.innerHTML = `
             <div>
                 <h1>BASIK BLOK</h1>
-				<h3>rev: #07 2024</h3>
+				<h3>dibuat dengan Blockly</h3>
                 <div class='block-cont'>
                     
                 </div>
@@ -54,15 +54,16 @@ export class Logo {
 			}
 			cont.appendChild(tbl);
 
-			tbl = document.createElement('button');
-			tbl.innerText = 'Download';
-			tbl.classList.add('button');
-			tbl.style.margin = '4px';
-			tbl.onclick = () => {
-				dlg.close();
-				window.open("https://drive.google.com/file/d/1iev3amQ2m7pp6u8l-gmGZ4mGL97dGzgO/view?usp=sharing", "_blank");
-			}
-			cont.appendChild(tbl);
+			//TODO: temporary
+			// tbl = document.createElement('button');
+			// tbl.innerText = 'Download';
+			// tbl.classList.add('button');
+			// tbl.style.margin = '4px';
+			// tbl.onclick = () => {
+			// 	dlg.close();
+			// 	window.open("https://drive.google.com/file/d/1iev3amQ2m7pp6u8l-gmGZ4mGL97dGzgO/view?usp=sharing", "_blank");
+			// }
+			// cont.appendChild(tbl);
 		}
 	}
 }

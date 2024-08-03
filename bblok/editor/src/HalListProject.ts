@@ -334,7 +334,7 @@ export class HalListDemo {
 		console.group("open project");
 		console.log("selectedId:", Store.selectedId);
 
-		window.location.href = "./?pid=" + Store.selectedId;
+		window.location.href = "./index.html?pid=" + Store.selectedId;
 
 		// f = demoData.find((item) => {
 		// 	console.log(item);

@@ -52,19 +52,28 @@ export class Op {
 
 		(document.body.querySelector("div.menu-cont button.run") as HTMLDivElement).onclick =
 			() => {
-				try {
-					Val.checkAllBlock();
+
+				let run = (): void => {
 					let codeHtml = Export.exportHtml(Export.exportJs());
 					window.localStorage.setItem("blocklycode", codeHtml);
 					window.open('./play.html', "_blank");
-					// Iframe.play();
-					if (Store.devMode) {
-						Op.simpan();
-					}
+				};
+
+				try {
+					Val.checkAllBlock();
+					run();
 				}
 				catch (e) {
 					console.log(e);
-					Dialog.show(typeof e == "string" ? e : e.message);
+					let msg = typeof e == "string" ? e : e.message;
+					msg += 'Blok yang bermasalah sudah sudah di highlight'
+					msg += 'Tekan Ok untuk melanjutkan, cancel untuk membatalkan';
+
+					// Dialog.show(typeof e == "string" ? e : e.message);
+					let ok = confirm(msg);
+					if (ok) {
+						run();
+					}
 				}
 			}
 

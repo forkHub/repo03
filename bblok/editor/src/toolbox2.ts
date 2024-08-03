@@ -112,8 +112,6 @@ function js(blockData: TToolBoxBlockDef[]) {
 				let arg: string[] = [];
 				let stmt: string[] = [];
 
-				console.group("");
-				console.groupEnd();
 				itemBlockData.args0.forEach((item) => {
 					if (item.type == EArgType.inputDummy) { }
 					else if (item.type == EArgType.input_end_row) { }
@@ -139,7 +137,7 @@ function js(blockData: TToolBoxBlockDef[]) {
 				let code = '';
 				let statement = '';
 
-				console.group("js: /" + itemBlockData.type + ' /' + itemBlockData.type);
+				console.groupCollapsed("js: /" + itemBlockData.type + ' /' + itemBlockData.type);
 
 				console.log("output");
 				console.log(itemBlockData.output);

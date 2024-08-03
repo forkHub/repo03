@@ -83,7 +83,7 @@ export class Export {
 	}
 
 	static exportHtml(code: string): string {
-		console.group("export:");
+		console.groupCollapsed("export:");
 		console.log(code);
 		console.groupEnd();
 

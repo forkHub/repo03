@@ -8,21 +8,35 @@ export class Val {
 	}
 
 	static checkAllBlock() {
+		// console.group("check all block");
+
+		function checkValid(str: string): boolean {
+			if (str == "procedures_defnoreturn") return false;
+			if (str == "procedures_defreturn") return false;
+			if (str == 'ha.be.Be.Start') return false;
+			if (str == 'ha.be.Be.Update') return false;
+			return true;
+		}
+
 		Index2.workspace.getAllBlocks().forEach((item) => {
-			// item.inputList.forEach((input2) => {
-			// 	input2.connection.
-			// })
 
 			//check parent null
 			if (item.getParent() == null) {
-				if (item.type != 'ha.be.Be.Start') {
-					if (item.type != 'ha.be.Be.Update') {
-						Index2.workspace.highlightBlock(item.id);
-						// throw "ada block yang tidak punya parent";
-					}
+
+				console.log(item.type + "/" + item.id);
+
+				if (checkValid(item.type)) {
+					Index2.workspace.highlightBlock(item.id);
+
+					let msg = 'Ada block yang tidak punya parent.\n';
+					msg += 'Semua blok harus diletakkan di dalam grup Start/Update.\n';
+
+					throw msg;
 				}
 			}
 		})
+
+		// console.groupEnd();
 	}
 
 	static paramEmpty(str: string) {
