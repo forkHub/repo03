@@ -143,9 +143,11 @@ class BlitzData {
 				y: 0,
 			},
 			tooltip: `
-				Get Pixel Color at x, y position.
-				You can get the red, green, and blue result by calling the Red, Green, Blue command respectively.
-				If you load images from external domain, then this function will failed due to CORS policy			`
+				Mengambil warna pixel pada posisi x, y
+				Hasilnya bisa dibaca dari blok perintah merah, hijau dan biru.
+				Perintah ini akan gagal bila ada Image yang dimuat dari luar
+				selain yang ada di galery
+			`
 		});
 
 		// const Red = ha.be.Be.Merah;
@@ -154,7 +156,7 @@ class BlitzData {
 			perintah: "Red",
 			message0: 'Merah',
 			tooltip: `
-				Return the red color from the last GetPixel command
+				Warna merah yang didapat dari blok perintah Ambil pixel
 			`,
 			output: EOutput.Number
 		});
@@ -165,7 +167,7 @@ class BlitzData {
 			perintah: "Green",
 			message0: 'Hijau',
 			tooltip: `
-				Return the Green color from the last GetPixel command
+				Warna hijau yang didapat dari blok perintah Ambil pixel
 			`,
 			output: EOutput.Number
 
@@ -177,7 +179,7 @@ class BlitzData {
 			perintah: "Blue",
 			message0: 'Biru',
 			tooltip: `
-				Return the blue blue from the last GetPixel command
+				Warna biru yang didapat dari blok perintah Ambil pixel
 			`,
 			output: EOutput.Number
 
@@ -189,7 +191,7 @@ class BlitzData {
 			perintah: "Alpha",
 			message0: 'Alpha',
 			tooltip: `
-				Return the transparent color from the last GetPixel command
+				Warna transparant yang didapat dari blok perintah Ambil pixel
 			`,
 			output: EOutput.Number
 
