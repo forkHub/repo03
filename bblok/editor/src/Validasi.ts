@@ -18,7 +18,13 @@ export class Val {
 			return true;
 		}
 
+		//check read only
 		Index2.workspace.getAllBlocks().forEach((item) => {
+			console.log("data:", item.data);
+		});
+
+		Index2.workspace.getAllBlocks().forEach((item) => {
+			// console.log("data:", item.data);
 
 			//check parent null
 			if (item.getParent() == null) {

@@ -1,4 +1,3 @@
-
 export enum EOutput {
 	Boolean = "Boolean",
 	Number = "Number",
@@ -48,6 +47,7 @@ export type TToolBoxBlockDef = {
 	output?: EOutput;
 	hat?: boolean;
 	perintah?: string;
+	extensions?: string[];
 	f?: (arg: string[], stmt: string[]) => string;	//generate code pakai callback
 
 	//auto fill

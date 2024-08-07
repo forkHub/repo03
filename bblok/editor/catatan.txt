@@ -8,6 +8,8 @@ klamp
 image di klik 
 konfigurasi grafis
 highlight saat error
+metadata
+readonly blok
 
 bblok enggine 
 	namespce bblok

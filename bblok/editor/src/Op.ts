@@ -66,7 +66,7 @@ export class Op {
 				catch (e) {
 					console.log(e);
 					let msg = typeof e == "string" ? e : e.message;
-					msg += 'Blok yang bermasalah sudah sudah di highlight'
+					msg += 'Blok yang bermasalah sudah sudah di highlight\n'
 					msg += 'Tekan Ok untuk melanjutkan, cancel untuk membatalkan';
 
 					// Dialog.show(typeof e == "string" ? e : e.message);

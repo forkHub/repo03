@@ -98,6 +98,7 @@ class HiddenData {
 			perintah: "Graphics",
 			message0: "🛩️ Mulai %1 panjang: %2 lebar: %3 %4",
 			inputsInline: true,
+			extensions: ["noDelete"],
 			args: {
 				dummy: '',
 				width: 320,

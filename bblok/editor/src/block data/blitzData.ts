@@ -155,6 +155,7 @@ class BlitzData {
 			type: "ha.be.Be.Merah",
 			perintah: "Red",
 			message0: 'Merah',
+			extensions: ["readonly"],
 			tooltip: `
 				Warna merah yang didapat dari blok perintah Ambil pixel
 			`,
@@ -166,6 +167,7 @@ class BlitzData {
 			type: "ha.be.Be.Hijau",
 			perintah: "Green",
 			message0: 'Hijau',
+			extensions: ["readonly"],
 			tooltip: `
 				Warna hijau yang didapat dari blok perintah Ambil pixel
 			`,
@@ -178,6 +180,7 @@ class BlitzData {
 			type: "ha.be.Be.Biru",
 			perintah: "Blue",
 			message0: 'Biru',
+			extensions: ["readonly"],
 			tooltip: `
 				Warna biru yang didapat dari blok perintah Ambil pixel
 			`,
@@ -190,6 +193,7 @@ class BlitzData {
 			type: "ha.be.Be.Transparan",
 			perintah: "Alpha",
 			message0: 'Alpha',
+			extensions: ["readonly"],
 			tooltip: `
 				Warna transparant yang didapat dari blok perintah Ambil pixel
 			`,

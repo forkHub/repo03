@@ -11,6 +11,7 @@ import { mathBlockData } from "./block data/MathData";
 import { TBlockRawData, TToolBoxBlockDef, TToolbokContentDef, ToolBoxKind, EArgType, TToolbokDef } from "./toolboxType";
 import * as Blockly from 'blockly/core';
 import { JavascriptGenerator, Order, javascriptGenerator } from 'blockly/javascript';
+import { TMetadata } from "./type";
 
 export function toolBoxInit() {
 	const blockRawData: TBlockRawData[] = [
@@ -1486,5 +1487,23 @@ export const toolboxDef2: TToolbokDef = {
 	],
 };
 
+// This extension sets the block's tooltip to be a function which displays
+// the parent block's tooltip (if it exists).
+console.log('register extensions');
+Blockly.Extensions.register(
+	'readonly',
+	function () { // this refers to the block that the extension is being run on
+		let meta: TMetadata = {
+			readonly: true
+		};
+		(this as any).data = JSON.stringify(meta);
+		console.log(this);
+	});
 
-
+Blockly.Extensions.register(
+	'noDelete',
+	function () { // this refers to the block that the extension is being run on
+		console.log(this);
+		(this as any).setDeletable(false);
+		console.log(this);
+	});

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core';
 
+
 export type TBlockly = {
 	svgResize(workspace: Blockly.WorkspaceSvg): unknown;
 	Msg: any;
@@ -104,3 +105,7 @@ export enum TBlockType {
 declare var javascript: TJS;
 
 // var b: TBlock;
+
+export type TMetadata = {
+	readonly: boolean
+}
