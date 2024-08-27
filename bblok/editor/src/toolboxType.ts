@@ -30,11 +30,11 @@ export type TArgDef = {
 	align?: string
 }
 
-export type TBlockRawData = {
+export type TToolboxGroupData = {
 	list: TToolBoxBlockDef[]
 	group: string
 	hidden: "true" | "false"
-	toolbox: boolean //apakah bikin kategory sendiri (fale) ataukah integrasi dengan yang sudah ada (true)
+	toolbox: boolean //check apakah bikin kategory sendiri (fale) ataukah integrasi dengan yang sudah ada (true)
 }
 
 /**
@@ -48,7 +48,9 @@ export type TToolBoxBlockDef = {
 	hat?: boolean;
 	perintah?: string;
 	extensions?: string[];
-	f?: (arg: string[], stmt: string[]) => string;	//generate code pakai callback
+	f?: (arg: string[], stmt: string[]) => string;	//untuk generate code pakai callback
+	metadata?: TMetadata
+	val?: (item: TToolBoxBlockDef) => void;
 
 	//auto fill
 	args0?: TArgDef[]
@@ -89,3 +91,28 @@ export type TToolbokContentDef = {
 	inputs?: any
 	hidden?: string
 }
+
+export type TMetadata = {
+	readonly?: boolean,
+	property?: boolean
+}
+
+export type TInput = {
+	type: string;	//variables_get, 
+	data?: string;
+}
+
+// "block": {
+// "type": "variables_get",
+// "id": "b;qMrpQd|XQpqwn+XW@4",
+// "fields": {
+// 	"VAR": {
+// 		"id": "99*3xs_.J9FLSB`sp](v"
+// 	}
+// }
+// }
+
+// "block": {
+// "type": "ha.be.Spr.Rotasi_get",
+// "id": "6lEGu:geSG;~ZlSO_-x{"
+// }

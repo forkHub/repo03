@@ -1,3 +1,4 @@
+import { TToolBoxBlockDef } from "./toolboxType";
 
 export class Store {
 	private static _idFile: string = '';
@@ -6,11 +7,20 @@ export class Store {
 	private static _demo: any[] = [];
 	private static _selectedId: string = '';
 	private static _snapshot: string = '';
+	private static _semuBlok: TToolBoxBlockDef[] = [];		//semua statik blok
 
 	//TODO: dijadikan satu variable state
 	private static _devMode: boolean = false;
 	private static _tutMode: boolean = false;
 	private static _pMode: boolean = false;
+
+	public static get semuBlok(): TToolBoxBlockDef[] {
+		return Store._semuBlok;
+	}
+	public static set semuBlok(value: TToolBoxBlockDef[]) {
+		Store._semuBlok = value;
+	}
+
 
 	public static get snapshot(): string {
 		return Store._snapshot;

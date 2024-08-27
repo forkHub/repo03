@@ -1,0 +1,120 @@
+{
+	"blocks": {
+		"languageVersion": 0,
+		"blocks": [
+			{
+				"type": "ha.be.Be.Start",
+				"id": "ttDi6Y1piNqKi!GKH=;f",
+				"x": 124,
+				"y": 137,
+				"deletable": false,
+				"inputs": {
+					"width": {
+						"shadow": {
+							"type": "math_number",
+							"id": "!n`U},x?W~b8S2S9fc;-",
+							"fields": {
+								"NUM": 320
+							}
+						}
+					},
+					"height": {
+						"shadow": {
+							"type": "math_number",
+							"id": "(i=R@FswM^]Ps$?-8bzQ",
+							"fields": {
+								"NUM": 240
+							}
+						}
+					},
+					"statementst": {
+						"block": {
+							"type": "set var",
+							"id": "7.Y0mzuWNOz-1ww5A-;H",
+							"inputs": {
+								"var1": {
+									"block": {
+										"type": "variables_get",
+										"id": "H_J]$xXnvA5KercS;S2,",
+										"fields": {
+											"VAR": {
+												"id": "99*3xs_.J9FLSB`sp](v"
+											}
+										}
+									}
+								},
+								"value": {
+									"shadow": {
+										"type": "math_number",
+										"id": "khXUsrivc6mT58,?_?WL",
+										"fields": {
+											"NUM": 0
+										}
+									},
+									"block": {
+										"type": "ha.be.Spr.Muat",
+										"id": "-Wwr3nwkx~$;z$;b1tzu",
+										"inputs": {
+											"url": {
+												"shadow": {
+													"type": "text",
+													"id": "tjz/~)*VQIRK@:47=aoI",
+													"fields": {
+														"TEXT": "./imgs/box.png"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"next": {
+								"block": {
+									"type": "set var",
+									"id": ",73J|OvH7-i=R3c8g5;F",
+									"inputs": {
+										"value": {
+											"shadow": {
+												"type": "math_number",
+												"id": "hWzgnDh#SS|Q.^wJ}Ie$",
+												"fields": {
+													"NUM": 0
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "ha.be.Be.Update",
+				"id": "D!_p@;(TK|!Jb;q9U}?k",
+				"x": 389,
+				"y": 333,
+				"inputs": {
+					"statementst": {
+						"block": {
+							"type": "ha.be.Be.Bersih",
+							"id": "(7d4VY9ISHI3=xQXw=c0",
+							"next": {
+								"block": {
+									"type": "ha.be.Spr.GambarSemua",
+									"id": "+XeMS]7,od#~cp`HK;+Y"
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"variables": [
+		{
+			"name": "image",
+			"id": "99*3xs_.J9FLSB`sp](v"
+		}
+	]
+}

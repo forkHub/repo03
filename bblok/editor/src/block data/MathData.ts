@@ -38,10 +38,15 @@ class MathBlockData {
 			type: "set var",
 			perintah: "",
 			message0: " %1 = %2 ",
+			metadata: {
+				readonly: false,
+				property: false
+			},
 			args: {
 				var1: {},
-				value: 0
+				value: {}
 			},
+			extensions: ["metadata"],
 			f: (arg: string[]): string => {
 				Val.paramEmpty(arg[0]);
 				return `
@@ -50,7 +55,14 @@ class MathBlockData {
 				`;
 			},
 			inputsInline: true,
-			tooltip: 'Mengisi variable dengan value'
+			val: (item: TToolBoxBlockDef) => {
+				let f = item.inputs["var1"];
+				let g = item.inputs["value"];
+
+				console.log("f", f);
+				console.log("g", g);
+			},
+			tooltip: 'Mengisi variable/property dengan value'
 		}
 	}
 

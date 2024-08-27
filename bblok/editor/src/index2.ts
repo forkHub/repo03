@@ -25,7 +25,8 @@ export class Index2 {
 		let spanNama = document.body.querySelector("span.judul_file");
 		try {
 			if (Store.projectId) {
-				spanNama.innerHTML = (Entity.getById(Store.projectId) as IProject).nama
+				let p: IProject = (Entity.getById(Store.projectId) as IProject);
+				spanNama.innerHTML = p ? p.nama : '';
 			}
 			else {
 				spanNama.innerHTML = "untitled";

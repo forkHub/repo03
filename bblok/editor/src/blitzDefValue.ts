@@ -3,12 +3,12 @@
  * blitz toolbox definition
  */
 
-import { EArgType, EOutput, TArgDef, TBlockRawData, TToolBoxBlockDef } from "./toolboxType";
+import { EArgType, EOutput, TArgDef, TToolboxGroupData, TToolBoxBlockDef } from "./toolboxType";
 
 /**
  * normalize all block
  */
-export function normalizeAllBlock(list: TBlockRawData[]) {
+export function normalizeAllBlock(list: TToolboxGroupData[]) {
 	// hiddenData.list.forEach((item) => { normal(item); });
 	// BlitzData.list.forEach((item) => { normal(item); });
 	// ImageBlockData.list.forEach((item) => { normal(item) });
@@ -21,7 +21,7 @@ export function normalizeAllBlock(list: TBlockRawData[]) {
 	normalizeAllBlock2(list);
 }
 
-export function normalizeAllBlock2(list: TBlockRawData[]) {
+export function normalizeAllBlock2(list: TToolboxGroupData[]) {
 	list.forEach((item) => {
 		item.list.forEach((item2) => {
 			normalizeItem(item2);

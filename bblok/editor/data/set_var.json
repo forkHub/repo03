@@ -1,0 +1,192 @@
+{
+	"blocks": {
+		"languageVersion": 0,
+		"blocks": [
+			{
+				"type": "set var",
+				"id": "7.Y0mzuWNOz-1ww5A-;H",
+				"x": 556,
+				"y": 131,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"var1": {
+						"block": {
+							"type": "variables_get",
+							"id": "b;qMrpQd|XQpqwn+XW@4",
+							"fields": {
+								"VAR": {
+									"id": "99*3xs_.J9FLSB`sp](v"
+								}
+							}
+						}
+					},
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "khXUsrivc6mT58,?_?WL",
+							"fields": {
+								"NUM": 0
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "set var",
+				"id": "Tg?69G|hNn2Mes!y()Gh",
+				"x": 584,
+				"y": 187,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"var1": {
+						"block": {
+							"type": "ha.be.Spr.Rotasi_get",
+							"id": "6lEGu:geSG;~ZlSO_-x{"
+						}
+					},
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "5B5$I,VXTvdRZ=hIT=g-",
+							"fields": {
+								"NUM": 0
+							}
+						},
+						"block": {
+							"type": "math_number",
+							"id": "6?bU)N{|SSQ#!PPyaj:4",
+							"fields": {
+								"NUM": 123
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "set var",
+				"id": "|+2%@USSMqv{zZx-8ng2",
+				"x": 617,
+				"y": 268,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"var1": {
+						"block": {
+							"type": "logic_boolean",
+							"id": "pot?F~v!3l9vS!:8sgNz",
+							"fields": {
+								"BOOL": "TRUE"
+							}
+						}
+					},
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "mu7dZ5oX6IHiZ^DKP=.7",
+							"fields": {
+								"NUM": 0
+							}
+						},
+						"block": {
+							"type": "logic_null",
+							"id": "#yZEkl+I,kAmF*1Q==%$"
+						}
+					}
+				}
+			},
+			{
+				"type": "set var",
+				"id": "u*4CutH2O4lHk:iJo~KB",
+				"x": 617,
+				"y": 363,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"var1": {
+						"block": {
+							"type": "text",
+							"id": "Tk~1e!SK*E=NKNaWu.qh",
+							"fields": {
+								"TEXT": ""
+							}
+						}
+					},
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "7tbo!Wj?8A@c7wFNU$Tj",
+							"fields": {
+								"NUM": 0
+							}
+						},
+						"block": {
+							"type": "math_constant",
+							"id": "MdwuztCq4=WOY5C?EYyM",
+							"fields": {
+								"CONSTANT": "PI"
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "set var",
+				"id": "A^[3kCb(oT]C|CnV+|Mb",
+				"x": 616,
+				"y": 468,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"var1": {
+						"block": {
+							"type": "math_on_list",
+							"id": "N_(ba9J:{(+hgN~`f!m1",
+							"extraState": "<mutation op=\"SUM\"></mutation>",
+							"fields": {
+								"OP": "SUM"
+							}
+						}
+					},
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "Xf@Qny+#D1XQ@7}2Z.gU",
+							"fields": {
+								"NUM": 0
+							}
+						},
+						"block": {
+							"type": "math_on_list",
+							"id": "37k!om.C(6limL[em6AY",
+							"extraState": "<mutation op=\"SUM\"></mutation>",
+							"fields": {
+								"OP": "SUM"
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "set var",
+				"id": "kxsM83a2fGmjrZ!Z%LP_",
+				"x": 828,
+				"y": 260,
+				"data": "{\"readonly\":false,\"property\":false}",
+				"inputs": {
+					"value": {
+						"shadow": {
+							"type": "math_number",
+							"id": "mu7dZ5oX6IHiZ^DKP=.7",
+							"fields": {
+								"NUM": 0
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"variables": [
+		{
+			"name": "image",
+			"id": "99*3xs_.J9FLSB`sp](v"
+		}
+	]
+}

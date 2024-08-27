@@ -8,13 +8,13 @@ import { listDef } from "./block data/List";
 import { debugData } from "./block data/Misc01";
 import { textData } from "./block data/TextData";
 import { mathBlockData } from "./block data/MathData";
-import { TBlockRawData, TToolBoxBlockDef, TToolbokContentDef, ToolBoxKind, EArgType, TToolbokDef } from "./toolboxType";
+import { TToolboxGroupData, TToolBoxBlockDef, TToolbokContentDef, ToolBoxKind, EArgType, TToolbokDef } from "./toolboxType";
 import * as Blockly from 'blockly/core';
 import { JavascriptGenerator, Order, javascriptGenerator } from 'blockly/javascript';
-import { TMetadata } from "./type";
+import { Store } from "./Store";
 
 export function toolBoxInit() {
-	const blockRawData: TBlockRawData[] = [
+	const blockRawData: TToolboxGroupData[] = [
 		hiddenData,
 		blitzData,
 		imageBlockData,
@@ -27,7 +27,9 @@ export function toolBoxInit() {
 	]
 
 	normalizeAllBlock(blockRawData);
-	let allToolBoxDef = populateToolBox(blockRawData);
+	let allToolBoxDef: TToolBoxBlockDef[] = populateToolBox(blockRawData);
+
+	//TODO: validate double
 
 	allToolBoxDef.forEach((item) => {
 		let blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
@@ -58,7 +60,26 @@ export function toolBoxInit() {
 	js(allToolBoxDef);
 
 	//dynaic category
+	Store.semuBlok = allToolBoxDef;
+}
 
+export function cariBlokDef(type: string): TToolBoxBlockDef[] {
+	return Store.semuBlok.filter((item) => {
+		return item.type == type
+	});
+}
+
+export function inputList(blokType: string): any[] {
+	let blok = cariBlokDef(blokType);
+	let h: string[] = [];
+
+	if (blok.length > 0) {
+		for (let key in blok[0].args) {
+			h.push(key);
+		}
+	}
+
+	return h;
 }
 
 function buaCategory(nama: string, l: TToolBoxBlockDef[], hidden: string = "false"): TToolbokContentDef {
@@ -92,7 +113,7 @@ function getToolBoxContentDef(l: TToolBoxBlockDef[]): any[] {
 	return h;
 }
 
-function populateToolBox(l: TBlockRawData[]): TToolBoxBlockDef[] {
+function populateToolBox(l: TToolboxGroupData[]): TToolBoxBlockDef[] {
 	let blockData: TToolBoxBlockDef[] = [];
 
 	l.forEach((item) => {
@@ -1493,17 +1514,60 @@ console.log('register extensions');
 Blockly.Extensions.register(
 	'readonly',
 	function () { // this refers to the block that the extension is being run on
-		let meta: TMetadata = {
-			readonly: true
-		};
-		(this as any).data = JSON.stringify(meta);
-		console.log(this);
+		//TODO: dihapus
+		// let meta: TMetadata = {
+		// 	readonly: true
+		// };
+		// (this as any).data = JSON.stringify(meta);
+		// console.log('read only extension');
+		// console.log(this);
 	});
 
 Blockly.Extensions.register(
 	'noDelete',
 	function () { // this refers to the block that the extension is being run on
-		console.log(this);
 		(this as any).setDeletable(false);
+		console.log('no delete');
 		console.log(this);
+		console.log(this.inputList.length);
 	});
+
+Blockly.Extensions.register(
+	'metadata',
+
+	function () {
+		console.group("metadata");
+		metaData(this);
+		console.groupEnd();
+	}
+);
+
+function metaData(blokThis: Blockly.BlockSvg) {
+	// this refers to the block that the extension is being run on
+
+	let blok: TToolBoxBlockDef[] = Store.semuBlok.filter((item) => {
+		return item.type == blokThis.type;
+	});
+
+	if (!blok) {
+		console.log("tidak ada blok dengan type: " + blokThis.type)
+		return;
+	}
+
+	if (blok.length < 1) {
+		console.log("tidak ada blok dengan type: " + blokThis.type)
+		return;
+	}
+
+	if (blok[0].metadata == null) {
+		console.log("blok tidak punya metadata ", blok[0]);
+		return;
+	}
+
+	let item = blok[0];
+	//this.metadata = JSON.stringify(item.metadata);
+	blokThis.data = JSON.stringify(item.metadata);
+
+	console.log('metadata', item.metadata);
+	console.log('blok this', blokThis);
+}
