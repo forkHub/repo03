@@ -1,18 +1,21 @@
-bug: boolean dan string gak bisa dipasang di blok sama dengan
-validasi blok sama dengan bisa nerima variable dan propert saja
-tambahan metadata pada property
-
-simpan pakai deskripsi
-exit/pause
-highlight error
+auto metadata extension
+auto metadata output
 snapshot
 about page
+terjemahans
+
+feature:
+========
+simpan pakai deskripsi
+list data pakai deskripsi
+demo pakai deskripsi
+exit/pause
+return buat blok update dan mulai
 sub
 klamp
 image di klik 
 konfigurasi grafis
 konfigurasi teks
-metadata
 
 bblok enggine 
 	namespce bblok

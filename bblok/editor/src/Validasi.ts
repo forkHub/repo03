@@ -71,9 +71,9 @@ export class Val {
 	}
 
 	//TODO: depecrated
-	static paramEmpty(str: string) {
-		if (str == null || str == "") throw Val.PARAM_ISI;
-	}
+	// static paramEmpty(str: string) {
+	// 	if (str == null || str == "") throw Val.PARAM_ISI;
+	// }
 
 	private static parameterLengkap() {
 		let err: string = '';
@@ -85,13 +85,16 @@ export class Val {
 				if (itemWP["inputList"] == null) return;
 				if (itemWP.type == "ha.be.Be.Start") return;
 				if (itemWP.type == "ha.be.Be.Update") return;
+				if (itemWP.type == "procedures_defreturn") return;
+				if (itemWP.type == "procedures_defnoreturn") return;
+				if (itemWP.type == "procedures_callnoreturn") return;
 
 				let obj = Blockly.serialization.workspaces.save(Index2.workspace);
 				let hasil: any[] = [];
 
 				ha.Obj.cariFunc(obj, (objP: any): boolean => {
 					if (objP["id"] == itemWP.id) {
-						console.log('object id sama, id ' + itemWP.id);
+						// console.log('object id sama, id ' + itemWP.id);
 						let jmlInputWP = itemWP.inputList.length;
 						let jmlInputJson = objP.inputs ? Object.entries(objP.inputs).length : 0;
 
@@ -99,14 +102,15 @@ export class Val {
 							if (item.name == "") {
 								jmlInputWP--;
 							}
-							else if (item.name == "TOPROW") {
-								jmlInputWP--;
-							}
+							// else if (item.name == "TOPROW") {
+							// 	jmlInputWP--;
+							// }
 						})
 
 						if (jmlInputWP > jmlInputJson) {
 							console.group();
 							console.log("obj id " + itemWP.id);
+							console.log("obj type " + itemWP.type);
 							console.log("highlight " + itemWP.id);
 							console.log("object wp json", objP);
 							console.log("object wp ori", itemWP);
@@ -132,4 +136,6 @@ export class Val {
 
 		if (err.length > 0) throw err;
 	}
+
+	//TODO: check
 }

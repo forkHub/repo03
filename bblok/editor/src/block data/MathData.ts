@@ -1,4 +1,4 @@
-import { Val } from "../Validasi";
+// import { Val } from "../Validasi";
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class MathBlockData {
@@ -48,7 +48,7 @@ class MathBlockData {
 			},
 			extensions: ["metadata"],
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				return `
 					/* %1 = %2 */
 					${arg[0]} = ${arg[1]}
@@ -76,7 +76,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				return `
 					/* Kalikan %1 dengan %2 */
 					${arg[0]} *= ${arg[1]}
@@ -97,7 +97,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				return `
 				/* Bagi %1 dengan %2 */
 				${arg[0]} /= ${arg[1]}`;
@@ -117,7 +117,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				let l = arg[0];
 				return `
 				/* Tambahkan %1 dengan %2 */
@@ -138,7 +138,7 @@ class MathBlockData {
 				value: 0
 			},
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				return `
 				/* Kurangi %1 dengan %2 */
 				${arg[0]} -= ${arg[1]}`;
@@ -157,7 +157,7 @@ class MathBlockData {
 				var1: {},
 			},
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				return `
 				/* Balik %1 */
 				${arg[0]} *= -1`;

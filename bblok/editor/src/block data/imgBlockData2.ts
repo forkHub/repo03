@@ -1,5 +1,5 @@
 // import { Order } from "blockly/javascript";
-import { Val } from "../Validasi";
+// import { Val } from "../Validasi";
 import { TToolBoxBlockDef, EOutput } from "../toolboxType";
 
 class ImageBlockData2 {
@@ -24,7 +24,7 @@ class ImageBlockData2 {
 			output: EOutput.Number,
 			tooltip: 'Posisi X Image',
 			f: (arg: string[]): string => {
-				Val.paramEmpty(arg[0]);
+				// Val.paramEmpty(arg[0]);
 				let res = arg[0] + ".x"
 				return res;
 			}
