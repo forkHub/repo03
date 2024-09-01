@@ -20,7 +20,6 @@ export class Index2 {
 	public static blocklyArea: HTMLDivElement;
 	public static blocklyDiv: HTMLDivElement;
 
-	//TODO: bug: saat load dari demo tidak ada judul
 	static updateProjectName() {
 		let spanNama = document.body.querySelector("span.judul_file");
 		try {
@@ -276,5 +275,6 @@ export class Index2 {
 		}
 
 		this.loadWorkSpace();
+		(document.querySelector("div.menu-cont") as HTMLElement).style.visibility = 'visible';
 	}
 }

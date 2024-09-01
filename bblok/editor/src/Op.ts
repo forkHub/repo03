@@ -10,7 +10,6 @@ import { Dialog } from "./Dialog";
 import { Val } from "./Validasi";
 // import { Iframe } from "./iframe";
 
-
 export class Op {
 	static op() {
 
@@ -105,9 +104,9 @@ export class Op {
 
 		(document.body.querySelector("div.menu-cont button.about") as HTMLDivElement).onclick =
 			() => {
-				window.location.href = "./about.html";
+				//window.location.href = "./about.html";
+				window.open('./about.html', "_blank");
 			}
-
 	}
 
 	static loadKlik() {
