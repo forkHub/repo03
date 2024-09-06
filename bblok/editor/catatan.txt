@@ -1,9 +1,9 @@
-
+highlight
 auto metadata extension
 auto metadata output
 snapshot
 about page
-terjemahans
+terjemahan
 
 feature:
 ========

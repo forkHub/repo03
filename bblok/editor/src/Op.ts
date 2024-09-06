@@ -4,11 +4,9 @@ import { HalListDemo, HalListProject } from "./HalListProject";
 import { Store } from "./Store";
 import { DialogPublish, DialogExport, DialogImport } from "./Dialogs";
 import { Id } from "./Id";
-import * as Blockly from 'blockly/core';
 import { Export } from "./exporter";
 import { Dialog } from "./Dialog";
 import { Val } from "./Validasi";
-// import { Iframe } from "./iframe";
 
 export class Op {
 	static op() {
@@ -140,7 +138,7 @@ export class Op {
 	}
 
 	static export() {
-		let simpan = Blockly.serialization.workspaces.save(Index2.workspace);
+		let simpan = Index2.simpan();
 		DialogExport.open(`
                     <h1>Export to JSON</h1>
                     <p>
@@ -156,7 +154,8 @@ export class Op {
 				console.log(DialogImport.dlg);
 				console.log(value);
 				let code = JSON.parse(value);
-				Blockly.serialization.workspaces.load(code, Index2.workspace);
+				//Blockly.serialization.workspaces.load(code, Index2.workspace);
+				Index2.load(code);
 				Store.snapshot = code;
 				//TODO: dialog confirm simpan
 			}
@@ -191,7 +190,7 @@ export class Op {
 			Index2.blocklyDiv.style.width = Index2.blocklyArea.offsetWidth + 'px';
 			Index2.blocklyDiv.style.height = Index2.blocklyArea.offsetHeight + 'px';
 
-			Blockly.svgResize(Index2.workspace);
+			Index2.resize();
 		};
 
 		window.onresize = () => {
@@ -233,7 +232,7 @@ export class Op {
 			type: EEntity.FILE,
 			nama: Store.idFile,
 			parentId: p.id,
-			wspace: JSON.stringify(Blockly.serialization.workspaces.save(Index2.workspace))
+			wspace: JSON.stringify(Index2.simpan())
 		}
 
 		//TODO: save file yang lain
@@ -263,7 +262,7 @@ export class Op {
 			}
 			else {
 				let file = Entity.getById(Store.idFile) as IFile;
-				file.wspace = JSON.stringify(Blockly.serialization.workspaces.save(Index2.workspace));
+				file.wspace = JSON.stringify(Index2.simpan());
 				Entity.commit();
 			}
 		}
@@ -276,11 +275,11 @@ export class Op {
 	}
 
 	//tampilkan code dan json code
-	static code() {
-		// let code = javascript.javascriptGenerator.workspaceToCode(Index.workspace);
-		console.log(Blockly.serialization.workspaces.save(Index2.workspace));
-		console.log(JSON.stringify(Blockly.serialization.workspaces.save(Index2.workspace)));
-	}
+	// static code() {
+	// 	// let code = javascript.javascriptGenerator.workspaceToCode(Index.workspace);
+	// 	console.log(Blockly.serialization.workspaces.save(Index2.workspace));
+	// 	console.log(JSON.stringify(Blockly.serialization.workspaces.save(Index2.workspace)));
+	// }
 
 	static doc() {
 		window.open('./about.html', "_blank");
@@ -335,10 +334,10 @@ export class Op {
 
 	static saveTutData() {
 		try {
-			const body = JSON.stringify(Blockly.serialization.workspaces.save(Index2.workspace));
+			const body = JSON.stringify(Index2.simpan());
 
 			console.log("body");
-			console.log(Blockly.serialization.workspaces.save(Index2.workspace));
+			console.log(Index2.simpan());
 
 			let fd = new FormData();
 			fd.append("data", "window.pData = " + body);

@@ -1,3 +1,5 @@
+import { Index2 } from "./index2";
+
 export class API2 {
 	private static _blockId: string;
 	public static get blockId(): string {
@@ -22,4 +24,7 @@ export class API2 {
 	}
 
 	// static high
+	static highlight(n: string) {
+		Index2.workspace.highlightBlock(n);
+	}
 }

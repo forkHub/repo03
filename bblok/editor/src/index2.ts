@@ -277,4 +277,16 @@ export class Index2 {
 		this.loadWorkSpace();
 		(document.querySelector("div.menu-cont") as HTMLElement).style.visibility = 'visible';
 	}
+
+	static simpan(): any {
+		return Blockly.serialization.workspaces.save(Index2.workspace);
+	}
+
+	static load(code: any) {
+		Blockly.serialization.workspaces.load(code, Index2.workspace);
+	}
+
+	static resize() {
+		Blockly.svgResize(Index2.workspace);
+	}
 }

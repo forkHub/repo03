@@ -53,6 +53,7 @@ export class Export {
 		<style>
 			canvas {
 				image-rendering: pixelated;
+				background-color: black;
 			}
 		</style>
 	</head>
@@ -60,7 +61,6 @@ export class Export {
 	<body>
 		<canvas></canvas>
 	
-		<!-- copy be.js script to your local to help save bandwith, thanks -->
 		<script src="./js/blitz.js" defer></script>
 		<script src="./js/bblok.js" defer></script>
 		<script src="./js/js.js" defer></script>
@@ -72,7 +72,7 @@ export class Export {
 	</body>
 	
 	</html>
-	        `;
+		        `;
 
 	static exportJs(): string {
 		javascriptGenerator.addReservedWords('__update');
