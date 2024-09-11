@@ -218,7 +218,9 @@ function js(blockData: TToolBoxBlockDef[]) {
 					}
 				}
 				else {
-
+					if (itemBlockData.stmt) {
+						code += '{}\n';
+					}
 				}
 
 				console.log("code", code);

@@ -4,6 +4,7 @@ import { Index2 } from "./index2";
 export class Export {
 	static readonly dataTemplate = `
 
+	let bbId = "";
 	window.onload = () => {
 		console.log('start');
 		let error = false;
@@ -31,13 +32,30 @@ export class Export {
 		requestAnimationFrame(__updater);
 	};
 	/* fungsi tambhan */
+	function setId(n) {
+		bbId = n;
+	}
+	function highlight() {
+		if (bbId == "") {
+			console.log("bbid null");
+			return;
+		}
+		if (!window.parent) {
+			console.log("parent tidak ada");
+			return;
+		}
+		if ((!window.parent).api) {
+			console.log("api tidak ada");
+			return;
+		}
+		window.parent.api.highlight(bbId);
+	}
 	function handleError(e) {
 		console.log(e.message);
 		alert(e.message);
-		//dialog
-		//pesan
-		//highlight
-	}	
+		highlight();
+	}
+	
 		
 `;
 
@@ -78,6 +96,8 @@ export class Export {
 		javascriptGenerator.addReservedWords('__update');
 		javascriptGenerator.addReservedWords('__updater');
 		javascriptGenerator.addReservedWords('_update');
+		javascriptGenerator.addReservedWords('error');
+		javascriptGenerator.addReservedWords('bbId');
 		let codeHtml = javascriptGenerator.workspaceToCode(Index2.workspace);
 		return codeHtml;
 	}
@@ -93,4 +113,5 @@ export class Export {
 
 		return dataHtml;
 	}
+
 }

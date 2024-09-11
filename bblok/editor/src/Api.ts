@@ -10,7 +10,7 @@ export class API2 {
 	}
 
 	static init() {
-		(window as any).API = API2;
+		(window as any).api = API2;
 	}
 
 	static injectScript(src: string, f: () => void) {

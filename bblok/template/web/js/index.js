@@ -1,3 +1,4 @@
+let bbId = "";
 window.onload = () => {
     console.log('start');
     let error = false;
@@ -25,10 +26,26 @@ window.onload = () => {
     requestAnimationFrame(__updater);
 };
 /* fungsi tambhan */
+function setId(n) {
+    bbId = n;
+}
+function highlight() {
+    if (bbId == "") {
+        console.log("bbid null");
+        return;
+    }
+    if (!window.parent) {
+        console.log("parent tidak ada");
+        return;
+    }
+    if ((!window.parent).api) {
+        console.log("api tidak ada");
+        return;
+    }
+    window.parent.api.highlight(bbId);
+}
 function handleError(e) {
     console.log(e.message);
     alert(e.message);
-    //dialog
-    //pesan
-    //highlight
+    highlight();
 }
