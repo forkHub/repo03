@@ -92,12 +92,17 @@ export class Export {
 	</html>
 		        `;
 
-	static exportJs(): string {
+	static exportJs(debug: boolean): string {
 		javascriptGenerator.addReservedWords('__update');
 		javascriptGenerator.addReservedWords('__updater');
 		javascriptGenerator.addReservedWords('_update');
 		javascriptGenerator.addReservedWords('error');
 		javascriptGenerator.addReservedWords('bbId');
+
+		if (debug) {
+			javascriptGenerator.STATEMENT_PREFIX = "setId(%1);\n";
+		}
+
 		let codeHtml = javascriptGenerator.workspaceToCode(Index2.workspace);
 		return codeHtml;
 	}

@@ -48,7 +48,7 @@ function highlight() {
 		console.log("parent tidak ada");
 		return;
 	}
-	if ((!window.parent as any).api) {
+	if ((window.parent as any).api == null) {
 		console.log("api tidak ada");
 		return;
 	}
