@@ -156,12 +156,12 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Gambar_no_frame",
 			perintah: "DrawImage",
-			message0: "Draw Image %1",
+			message0: "Image %1 Gambar",
 			inputsInline: true,
 			args: {
 				sprite: EOutput.Image,
 			},
-			tooltip: "Draw image to screen"
+			tooltip: `Menggambar image ke layar`
 		})
 
 		// DrawImage
@@ -169,7 +169,7 @@ class ImageBlockData {
 		// DrawImageXY
 		this.list.push({
 			type: "ha.be.Spr.Gambar",
-			message0: "DrawImage: %4 image %1 x: %2 y: %3",
+			message0: "Image %1 gambar pada posisi x: %2 y: %3 %4",
 			perintah: "DrawImageXY",
 			inputsInline: true,
 			args: {
@@ -179,8 +179,7 @@ class ImageBlockData {
 				dummy: ""
 			},
 			tooltip: `
-            Draw image at x, y location.
-            When the image is not yet fully loaded, then it will not draw anything.
+            Menggambar image pada posisi x, y.
         `
 		})
 
@@ -199,8 +198,7 @@ class ImageBlockData {
 				dummy: ''
 			},
 			tooltip: `
-            Draw image with tiling effect
-            When the image is not yet fully loaded, then it will not draw anything.
+            Menggambar image dengan efek ubin yang memenuhi layar
         `
 		})
 
@@ -218,8 +216,7 @@ class ImageBlockData {
 				frame: 0,
 			},
 			tooltip: `
-            Draw image at specific frame.
-			Use the last position 
+			Menggambar Image pada frame tertentu
         `
 		})
 
@@ -228,7 +225,7 @@ class ImageBlockData {
 			type: "ha.be.Spr.GambarSemua",
 			perintah: "DrawAllImage",
 			message0: "Gambar semua",
-			tooltip: 'Draw All Images, ordered by created time'
+			tooltip: 'Menggambar semua image, di urutkan berdasarkan urutan gambar di buat'
 		})
 
 	}

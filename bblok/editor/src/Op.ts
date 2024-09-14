@@ -2,10 +2,10 @@ import { Index2 } from "./index2";
 import { IProject, EEntity, Entity, IFile } from "./Entity";
 import { HalListDemo, HalListProject } from "./HalListProject";
 import { Store } from "./Store";
-import { DialogPublish, DialogExport, DialogImport } from "./Dialogs";
+import { DialogPublish, DialogExport, DialogImport } from "./HalDialogs";
 import { Id } from "./Id";
 import { Export } from "./exporter";
-import { Dialog } from "./Dialog";
+import { Dialog } from "./HalDialog";
 import { Val } from "./Validasi";
 
 export class Op {
@@ -51,7 +51,7 @@ export class Op {
 			() => {
 
 				let run = (): void => {
-					let codeHtml = Export.exportHtml(Export.exportJs());
+					let codeHtml = Export.exportHtml(Export.exportJs(true));
 					window.localStorage.setItem("blocklycode", codeHtml);
 					window.open('./play.html', "_blank");
 				};
@@ -126,7 +126,7 @@ export class Op {
 	}
 
 	static publish() {
-		let codeHtml = Export.exportHtml(Export.exportJs());
+		let codeHtml = Export.exportHtml(Export.exportJs(false));
 		DialogPublish.open(`
                     <h1>Html Code</h1>
                     <p>
@@ -140,9 +140,9 @@ export class Op {
 	static export() {
 		let simpan = Index2.simpan();
 		DialogExport.open(`
-                    <h1>Export to JSON</h1>
+                    <h1>Export ke JSON</h1>
                     <p>
-                        Copy content of textarea below. You can save to afile, share to friend, or import them later.
+						Anda bisa menyimpan isi di textarea berikut untuk disimpan dan di import lagi nanti.
                     </p>
             `, JSON.stringify(simpan).toString());
 	}
@@ -167,7 +167,7 @@ export class Op {
 		DialogImport.open(`
                     <h1>Import from JSON</h1>
                     <p>
-                        Fill the text area below with content you have exported before.
+                        Isi text area ini dengan isi yang sudah di export sebelumnya.
                     </p>
             `, "");
 	}

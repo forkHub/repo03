@@ -1,12 +1,13 @@
-highlight
-auto metadata extension
-auto metadata output
-snapshot
-about page
-terjemahan
+finishing:
+==========
+ubah demo dengan komentar
 
 feature:
 ========
+frame
+auto metadata extension
+auto metadata output
+snapshot
 simpan pakai deskripsi
 list data pakai deskripsi
 demo pakai deskripsi
@@ -17,6 +18,10 @@ klamp
 image di klik 
 konfigurasi grafis
 konfigurasi teks
+konfigurasi UI
+iamge property buat physic
+image property buat pointer
+dynamic prop
 
 bblok enggine 
 	namespce bblok
@@ -31,11 +36,16 @@ doc API
 	best practice
 
 demo:
+	animasi
+	drag rotasi - video
+	drag rotasi remote - video
+	drag - video
+	drag remote - video
+	gambar dari unsplash
 	flappy bird
 	flappy bird helicopter
 	dino lompat
 	meteor avoid
-	doodle (brush)
 	geser tangkap
 	pukul nyamuk
 	tombol
@@ -67,4 +77,3 @@ Image:
 	aktif
 	hapus()
 
-dynamic prop

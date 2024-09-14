@@ -1,13 +1,10 @@
 import { IFile, Entity, IProject, EEntity } from "./Entity";
 import { Store } from "./Store";
-import { Dialog } from "./Dialog";
+import { Dialog } from "./HalDialog";
 import { Index2 } from "./index2";
 import * as Blockly from 'blockly/core';
 import { demoList } from "./List";
 import { Op } from "./Op";
-
-//TODO: dep
-// declare var demoData: IEntity[];
 
 export class HalListProject {
 	private static cont: HTMLDialogElement;
@@ -16,16 +13,14 @@ export class HalListProject {
 
 	static openKlik() {
 		if (Store.selectedId == '') {
-			//no selected
 			console.log('no selected');
-			Dialog.show("no item selected");
+			Dialog.show("Tidak ada item yang dipilih");
 			return;
 		}
 
 		if (Store.projectId == Store.selectedId) {
-			//already opened
 			console.log('already open');
-			Dialog.show("You are currently editing this project");
+			Dialog.show("Anda sedang mengedit file ini");
 
 			return;
 		}
@@ -60,7 +55,7 @@ export class HalListProject {
 			//TODO: dialog
 			console.log('no item selected');
 			console.groupEnd();
-			Dialog.show("no item selected");
+			Dialog.show("Tidak ada item dipilih");
 			return;
 		}
 
@@ -68,11 +63,11 @@ export class HalListProject {
 			//already opened
 			console.log("already opened");
 			console.groupEnd();
-			Dialog.show("You are currently editing this project");
+			Dialog.show("Anda sedang mengedit file ini");
 			return;
 		}
 
-		let confirm = window.confirm("are you sure you ?");
+		let confirm = window.confirm("Apa Anda yakin?");
 
 		if (confirm) {
 			console.log('delete by id ' + Store.selectedId);
@@ -111,22 +106,15 @@ export class HalListProject {
 	static closeKlik() {
 		(this.cont as HTMLDialogElement as any).close();
 		Store.selectedId = '';
-		// this.project = null;
 	}
 
 	static renameKlik() {
 		if (Store.selectedId == '') {
-			Dialog.show("no item selected");
+			Dialog.show("Tidak ada item dipilih");
 			return;
 		}
 
-		// if (this.isDemo) {
-		//     Dialog.show("the project is read only")
-		//     return;
-		// }
-
-		let w = window.prompt("renae", (Entity.getById(Store.selectedId) as IProject).nama);
-		//todo: validate 
+		let w = window.prompt("rename", (Entity.getById(Store.selectedId) as IProject).nama);
 
 		if (w) {
 
@@ -136,36 +124,21 @@ export class HalListProject {
 				this.listCont.querySelector(`div[data-id='${Store.selectedId}']`), Entity.getById(Store.selectedId) as IProject)
 		}
 		else {
-			Dialog.show("invalid name");
+			Dialog.show("Nama tidak valid");
 		}
 	}
 
 	static show() {
-		// this.isDemo = false;
 		(this.cont as any).showModal();
 		this.render()
 	}
-
-	// private static updateTombol() {
-	//     let cont = this.cont.querySelector('.button-cont');
-	//     cont.querySelectorAll('button').forEach((item) => {
-	//         item.classList.remove('outline');
-	//     })
-
-	//     if (this.isDemo) {
-	//         cont.querySelector('button.demo').classList.add('outline');
-	//     }
-	//     else {
-	//         cont.querySelector('button.project').classList.add('outline');
-	//     }
-	// }
 
 	static init() {
 		this.cont = document.createElement('dialog');
 		this.cont.classList.add('project-list');
 		this.cont.innerHTML = `
                 <div class="hal-list-projek" style="display:flex; flex-direction:column; height:100%">
-                    <h4>Project List:</h4>
+                    <h4>Daftar Proyek:</h4>
                     <div class='list-cont' style="flex-grow:1; overflow-y:auto"></div>
                     <div>
                         <button class="open" klik="ha.blockly.HalListProject.openKlik()">open</button>
@@ -235,10 +208,6 @@ class ProjectList {
 	render(cont: HTMLDivElement) {
 		let list: IProject[] = Entity.getByType(EEntity.PROJECT) as IProject[];
 
-		// if (Store.tutMode) {
-		// 	list = demoList;
-		// }
-
 		list = list.sort((item, item2) => {
 			if (item.nama < item2.nama) return -1;
 			if (item.nama > item2.nama) return 1;
@@ -282,9 +251,6 @@ class ListDemoEl {
 	}
 
 	render(cont: HTMLDivElement): void {
-		// let list: IProject[] = (demoData as IProject[]).filter((item) => {
-		// 	return item.type == "project";
-		// });
 
 		let list: IProject[] = demoList;
 
@@ -295,9 +261,6 @@ class ListDemoEl {
 		})
 
 		list.forEach((item) => {
-			// console.group('buat item view: ' + item.id);
-			// console.log(item);
-			// console.groupEnd();
 			cont.appendChild(this.buatItemView(item, cont));
 		})
 	}
@@ -316,47 +279,28 @@ export class HalListDemo {
 		if (Store.selectedId == '') {
 			//no selected
 			console.log('no selected');
-			Dialog.show("no item selected");
+			Dialog.show("Tidak ada item dipilih");
 			return;
 		}
 
 		if (Store.projectId == Store.selectedId) {
 			//already opened
 			console.log('already open');
-			Dialog.show("You are currently editing this project");
+			Dialog.show("Anda sedang mengedit file ini");
 
 			return;
 		}
-
-		// let f: IFile;
-		// let code;
 
 		console.group("open project");
 		console.log("selectedId:", Store.selectedId);
 
 		window.location.href = "./index.html?pid=" + Store.selectedId;
 
-		// f = demoData.find((item) => {
-		// 	console.log(item);
-		// 	return (item as IEntity).parentId == Store.selectedId;
-		// }) as IFile;
-		// console.log(f);
-		// console.groupEnd();
-
-		// code = JSON.parse(f.wspace);
-
-		// Store.idFile = f.id;
-		// Store.projectId = '';
-
-		// Blockly.serialization.workspaces.load(code, Index2.workspace);
-		// this.closeKlik();
-		// Index2.updateProjectName();
 	}
 
 	static closeKlik() {
 		(this.cont as HTMLDialogElement as any).close();
 		Store.selectedId = '';
-		// this.project = null;
 	}
 
 	static show() {
@@ -401,5 +345,3 @@ export class HalListDemo {
 	}
 
 }
-
-

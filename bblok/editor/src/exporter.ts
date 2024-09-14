@@ -44,19 +44,23 @@ export class Export {
 			console.log("parent tidak ada");
 			return;
 		}
-		if ((!window.parent).api) {
+		if (!window.parent.parent) {
+			console.log("parent-parent tidak ada");
+			return;
+		}
+		if (window.parent.opener.api == null) {
 			console.log("api tidak ada");
 			return;
 		}
-		window.parent.api.highlight(bbId);
+		window.parent.opener.api.highlight(bbId);
 	}
 	function handleError(e) {
 		console.log(e.message);
+		console.log(window.parent.opener.api);
 		alert(e.message);
 		highlight();
 	}
-	
-		
+					
 `;
 
 	static readonly dataHtml = `

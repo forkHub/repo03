@@ -1,7 +1,7 @@
 import { API2 } from "./Api";
 import { Entity, IProject } from "./Entity";
 import { HalListProject, HalListDemo } from "./HalListProject";
-import { Logo } from "./Logo";
+import { Logo } from "./HalLogo";
 import { Op } from "./Op";
 import { Store } from "./Store";
 import { Iframe } from "./iframe";
@@ -63,6 +63,7 @@ export class Index2 {
 		Index2.workspace = Blockly.inject("blocklyDiv", options);
 		Index2.blocklyArea = document.body.querySelector('#blocklyArea') as HTMLDivElement;
 		Index2.blocklyDiv = document.body.querySelector('#blocklyDiv') as HTMLDivElement;
+		Blockly.ContextMenuItems.registerCommentOptions();
 
 		//dynamic category
 		Index2.workspace.registerToolboxCategoryCallback("CUSTOM_VARIABLE", () => {
@@ -276,6 +277,8 @@ export class Index2 {
 
 		this.loadWorkSpace();
 		(document.querySelector("div.menu-cont") as HTMLElement).style.visibility = 'visible';
+
+		console.log((window as any).api);
 	}
 
 	static simpan(): any {
