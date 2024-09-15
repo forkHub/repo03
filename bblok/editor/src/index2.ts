@@ -52,7 +52,7 @@ export class Index2 {
 			// horizontalLayout: true,
 			toolboxPosition: 'start',
 			css: true,
-			// media: 'https://blockly-demo.appspot.com/static/media/',
+			// media: 'n',
 			media: './media',
 			rtl: false,
 			scrollbars: true,

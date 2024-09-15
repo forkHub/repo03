@@ -1,5 +1,7 @@
 declare var _update: any;
 let bbId: string = "";
+let errorPopup = true;
+/** override errorPopup **/
 
 window.onload = () => {
 	console.log('start');
@@ -48,16 +50,25 @@ function highlight() {
 		console.log("parent tidak ada");
 		return;
 	}
-	if ((window.parent as any).api == null) {
+
+	if (!window.parent.parent) {
+		console.log("parent-parent tidak ada");
+		return;
+	}
+
+	if ((window.parent.opener as any).api == null) {
 		console.log("api tidak ada");
 		return;
 	}
 
-	(window.parent as any).api.highlight(bbId);
+	(window.parent.opener as any).api.highlight(bbId);
 }
 
 function handleError(e: Error) {
 	console.log(e.message);
+	console.log(window.parent.opener.api);
+
+	if (!errorPopup) return;
 	alert(e.message);
 	highlight();
 }
