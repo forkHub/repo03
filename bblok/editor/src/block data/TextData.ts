@@ -62,12 +62,17 @@ class TextData {
 		})
 
 		// ha.be.Teks.stroke;
+		// ha.be.Teks.stroke
 		this.list.push({
 			type: "ha.be.Teks.stroke",
 			perintah: "ha.be.Teks.stroke",
 			message0: "Use Font Color stroke is %1",
 			args: {
 				stroke: false
+			},
+			f: (arg: string[]): string => {
+				let res = `ha.be.Teks.stroke = ${arg[0]};`;
+				return res;
 			}
 		})
 
