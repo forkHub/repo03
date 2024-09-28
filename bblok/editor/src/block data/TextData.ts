@@ -12,7 +12,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.Font",
 			perintah: "FontName",
-			message0: "Set Font Name to %1",
+			message0: "nama font %1",
 			args: {
 				name: "cursive"
 			}
@@ -23,7 +23,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.FontSize",
 			perintah: "FontSize",
-			message0: "Set Font Size to %1",
+			message0: "ukuran font %1",
 			args: {
 				size: 14
 			}
@@ -33,7 +33,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.Rata",
 			perintah: "Align",
-			message0: "Set Font Alignment to %1",
+			message0: "alignment %1",
 			args: {
 				align: "left"
 			}
@@ -43,7 +43,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.Goto",
 			perintah: "ha.be.Teks.Goto",
-			message0: "Set Text position to x %1 y %2",
+			message0: "posisi teks x %1 y %2",
 			inputsInline: true,
 			args: {
 				x: 0,
@@ -55,7 +55,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.fill",
 			perintah: "ha.be.Teks.fill",
-			message0: "Use Font Color Fill is %1",
+			message0: "warna fill %1",
 			args: {
 				fill: true
 			}
@@ -66,7 +66,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.stroke",
 			perintah: "ha.be.Teks.stroke",
-			message0: "Use Font Color stroke is %1",
+			message0: "Pakai stroke %1",
 			args: {
 				stroke: false
 			},
@@ -80,7 +80,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.jarak",
 			perintah: "ha.be.Teks.jarak",
-			message0: "Set line-height to %1",
+			message0: "tinggi baris %1",
 			args: {
 				height: 40
 			}
@@ -90,7 +90,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.Write",
 			perintah: "ha.be.Teks.Write",
-			message0: "Write %1",
+			message0: "tulis %1",
 			args: {
 				text: ""
 			}
@@ -100,18 +100,18 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.WriteLn",
 			perintah: "ha.be.Teks.WriteLn",
-			message0: "WriteLn %1",
+			message0: "tulis br %1",
 			args: {
 				text: ""
 			},
-			tooltip: "Write text and move position to next line"
+			tooltip: "tulis teks dan otomatis pindah ke baris berikutnya"
 		})
 
 		// const Print = ha.be.Teks.Tulis;
 		this.list.push({
 			type: "ha.be.Teks.Tulis",
 			perintah: "Print",
-			message0: "Write %1 text %2 x: %3 y: %4 use fill: %5 use stroke: %6",
+			message0: "tulis %1 teks %2 x: %3 y: %4 pakai fill: %5 pakai stroke: %6",
 			args: {
 				dummy: "",
 				text: "",
