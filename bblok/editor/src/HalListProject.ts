@@ -141,10 +141,10 @@ export class HalListProject {
                     <h4>Daftar Proyek:</h4>
                     <div class='list-cont' style="flex-grow:1; overflow-y:auto"></div>
                     <div>
-                        <button class="open" klik="ha.blockly.HalListProject.openKlik()">open</button>
+                        <button class="open" klik="ha.blockly.HalListProject.openKlik()">buka</button>
                         <button class="rename" klik="ha.blockly.HalListProject.renameKlik()">rename</button>
-                        <button class="delete" klik="ha.blockly.HalListProject.deleteKlik()">delete</button>
-                        <button class="close" klik="ha.blockly.HalListProject.closeKlik()">close</button>
+                        <button class="delete" klik="ha.blockly.HalListProject.deleteKlik()">hapus</button>
+                        <button class="close" klik="ha.blockly.HalListProject.closeKlik()">tutup</button>
                     </div>
                 </div>
             `;
@@ -317,8 +317,8 @@ export class HalListDemo {
                     <div class='list-cont' style="flex-grow:1; overflow-y:auto">
                     </div>
                     <div>
-                        <button class="open" klik="ha.blockly.HalListDemo.openKlik();">open</button>
-                        <button class="close" klik="ha.blockly.HalListDemo.closeKlik();">close</button>
+                        <button class="open" klik="ha.blockly.HalListDemo.openKlik();">buka</button>
+                        <button class="close" klik="ha.blockly.HalListDemo.closeKlik();">tutup</button>
                     </div>
                 </div>
             `;

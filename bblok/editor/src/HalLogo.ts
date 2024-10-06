@@ -34,7 +34,7 @@ export class Logo {
 
 
 			tbl = document.createElement('button');
-			tbl.innerText = 'Start coding';
+			tbl.innerText = 'Mulai';
 			tbl.style.margin = '4px';
 			tbl.onclick = () => {
 				dlg.close();
@@ -43,7 +43,7 @@ export class Logo {
 			cont.appendChild(tbl);
 
 			tbl = document.createElement('button');
-			tbl.innerText = 'Tutorial (Indonesia)';
+			tbl.innerText = 'Tutorial';
 			tbl.classList.add('button');
 			tbl.style.margin = '4px';
 			tbl.onclick = () => {
@@ -54,7 +54,7 @@ export class Logo {
 
 			//TODO: temporary
 			tbl = document.createElement('button');
-			tbl.innerText = 'Download';
+			tbl.innerText = 'Unduh';
 			tbl.classList.add('button');
 			tbl.style.margin = '4px';
 			tbl.onclick = () => {

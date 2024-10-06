@@ -7,4 +7,6 @@ export const demoList: any[] = [
 	{ "id": "drag", "type": "project", "nama": "drag", "parentId": "-1" },
 	{ "id": "drag2", "type": "project", "nama": "drag rotasi", "parentId": "-1" },
 	{ "id": "brush", "type": "project", "nama": "doodle", "parentId": "-1" },
+	{ "id": "dragremote", "type": "project", "nama": "drag remote", "parentId": "-1" },
+	{ "id": "putarremote", "type": "project", "nama": "putar remote", "parentId": "-1" },
 ]
