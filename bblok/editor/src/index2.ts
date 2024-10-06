@@ -270,7 +270,14 @@ export class Index2 {
 
 		this.updateProjectName();
 
-		//update view
+		window.onmessage = (e) => {
+			if (!e.data.type) return;
+			console.group("on message");
+			console.log(e);
+			console.groupEnd();
+		}
+
+		//dev-mode
 		if (Store.devMode || Store.tutMode) {
 			(document.querySelector("span#span_dev_mode") as HTMLSpanElement).style.display = 'inline';
 		}

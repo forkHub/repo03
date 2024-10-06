@@ -102,6 +102,11 @@ export class Val {
 							if (item.name == "") {
 								jmlInputWP--;
 							}
+
+							if (item.type != 1) {
+								jmlInputWP--;
+							}
+
 							// else if (item.name == "TOPROW") {
 							// 	jmlInputWP--;
 							// }

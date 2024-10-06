@@ -1,10 +1,7 @@
-finishing:
-==========
-ubah demo dengan komentar
-
 feature:
 ========
-frame
+perintah yang besar dan banyak buat configure image
+frame prop
 auto metadata extension
 auto metadata output
 snapshot
@@ -23,17 +20,9 @@ iamge property buat physic
 image property buat pointer
 dynamic prop
 
-bblok enggine 
-	namespce bblok
-	wrapper blitz
-
 validasi
 	validasi Image
 	validasi depecrated block
-
-doc API
-	parameter
-	best practice
 
 demo:
 	animasi
@@ -76,4 +65,4 @@ timer:
 Image:
 	aktif
 	hapus()
-
+	visible

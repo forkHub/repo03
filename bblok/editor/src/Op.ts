@@ -34,19 +34,6 @@ export class Op {
 				HalListDemo.show();
 			}
 
-		// w.tambahVar = () => {
-		// 	let var1 = prompt('variable baru');
-		// 	let simpan: any = Blockly.serialization.workspaces.save(Index2.workspace);
-		// 	if (!simpan.variables) {
-		// 		simpan.variables = [];
-		// 	}
-		// 	simpan.variables.push({
-		// 		id: 'random_id' + Math.floor(Math.random() * 1000),
-		// 		name: var1
-		// 	});
-		// 	Blockly.serialization.workspaces.load(simpan, Index2.workspace);
-		// }
-
 		(document.body.querySelector("div.menu-cont button.run") as HTMLDivElement).onclick =
 			() => {
 
@@ -104,6 +91,23 @@ export class Op {
 			() => {
 				//window.location.href = "./about.html";
 				window.open('./about.html', "_blank");
+			}
+
+		(document.body.querySelector("div.menu-cont button.prefab") as HTMLDivElement).onclick =
+			() => {
+				//buka iframe
+				let dialog = document.createElement('dialog');
+				let iframe = document.createElement('iframe');
+				iframe.src = './prefab/index.html';
+				iframe.style.position = 'absolute';
+				dialog.appendChild(iframe);
+				dialog.style.width = '80%';
+				dialog.style.maxWidth = '640px';
+				dialog.style.height = '80%';
+				dialog.classList.add('prefab');
+				document.body.appendChild(dialog);
+				dialog.showModal();
+				console.log("prefab dialog");
 			}
 	}
 
