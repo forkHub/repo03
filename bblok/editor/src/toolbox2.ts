@@ -60,11 +60,16 @@ export function toolBoxInit() {
 	js(allToolBoxDef);
 
 	//dynaic category
-	Store.semuBlok = allToolBoxDef;
+	Store.semuaBlok = allToolBoxDef;
+	toolboxDef2.contents.push({
+		"kind": "category",
+		"name": "Colours",
+		"custom": "COLOUR_PALETTE"
+	})
 }
 
 export function cariBlokDef(type: string): TToolBoxBlockDef[] {
-	return Store.semuBlok.filter((item) => {
+	return Store.semuaBlok.filter((item) => {
 		return item.type == type
 	});
 }
@@ -1547,7 +1552,7 @@ Blockly.Extensions.register(
 function metaData(blokThis: Blockly.BlockSvg) {
 	// this refers to the block that the extension is being run on
 
-	let blok: TToolBoxBlockDef[] = Store.semuBlok.filter((item) => {
+	let blok: TToolBoxBlockDef[] = Store.semuaBlok.filter((item) => {
 		return item.type == blokThis.type;
 	});
 

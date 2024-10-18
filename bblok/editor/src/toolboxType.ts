@@ -14,7 +14,8 @@ export enum EArgType {
 	inputDummy = "input_dummy",
 	statementValue = "input_statement",
 	input_end_row = "input_end_row",
-	field_variable = "field_variable"
+	field_variable = "field_variable",
+	drop_down = "field_dropdown"
 }
 
 export type TArgDef = {
@@ -25,6 +26,7 @@ export type TArgDef = {
 	name?: string                //input
 	default?: string | boolean | number
 	variable?: string
+	options?: any[][]
 
 	output?: EOutput | null
 	align?: string

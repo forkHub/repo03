@@ -14,10 +14,10 @@ export class Store {
 	private static _tutMode: boolean = false;
 	private static _pMode: boolean = false;
 
-	public static get semuBlok(): TToolBoxBlockDef[] {
+	public static get semuaBlok(): TToolBoxBlockDef[] {
 		return Store._semuBlok;
 	}
-	public static set semuBlok(value: TToolBoxBlockDef[]) {
+	public static set semuaBlok(value: TToolBoxBlockDef[]) {
 		Store._semuBlok = value;
 	}
 

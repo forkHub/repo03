@@ -9,7 +9,6 @@ class MathBlockData {
 
 	constructor() {
 
-
 		// DistMin
 		// ha.be.Transform.degDistMin
 		this.list.push({

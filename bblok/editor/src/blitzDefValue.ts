@@ -236,8 +236,9 @@ export function normalizeItem(t: TToolBoxBlockDef) {
 	if (t.type == "ha.be.Be.Update") {
 		console.log(t);
 	}
-	// console.log(t);
-	// console.log("");
+	console.group("")
+	console.log(t);
+	console.groupEnd();
 }
 
 

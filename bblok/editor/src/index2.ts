@@ -8,10 +8,8 @@ import { Iframe } from "./iframe";
 import './index.css';
 import { toolBoxInit, toolboxDef2 } from "./toolbox2";
 import * as Blockly from 'blockly';
-import { EArgType, EOutput } from "./toolboxType";
-import { normalizeItem } from "./blitzDefValue";
-import { javascriptGenerator, JavascriptGenerator, Order } from "blockly/javascript";
 import { Event } from "./Event";
+import { javascriptGenerator, JavascriptGenerator, Order } from "blockly/javascript";
 
 declare var pData: any;
 
@@ -65,8 +63,7 @@ export class Index2 {
 		Index2.blocklyDiv = document.body.querySelector('#blocklyDiv') as HTMLDivElement;
 		Blockly.ContextMenuItems.registerCommentOptions();
 
-		//dynamic category
-		Index2.workspace.registerToolboxCategoryCallback("CUSTOM_VARIABLE", () => {
+		Index2.workspace.registerToolboxCategoryCallback("COLOUR_PALETTE", () => {
 			let list: any[] = [];
 
 			list.push(
@@ -77,78 +74,35 @@ export class Index2 {
 				},
 			);
 
-			Index2.workspace.getAllVariables().forEach((item) => {
-
-				console.log("var ", item);
-
+			// Returns an array of hex colours, e.g. ['#4286f4', '#ef0447']
+			var colourList: any[] = ['test'];
+			for (var i = 0; i < colourList.length; i++) {
 				let blockN = {
-					"kind": 'block',
-					"type": "var_" + item.name,
-					"tooltip": "",
-					"helpUrl": "",
-					"message0": "%1 %2",
-					"args0": [
-						{
-							"type": EArgType.field_variable,
-							"name": "NAME1",
-							"variable": item.name
-						},
-						{
-							"type": EArgType.inputDummy,
-							"name": "NAME2"
-						}
-					],
-					"output": EOutput.Any,
-					"colour": 225,
-					"inputsInline": true
+					'kind': 'block',
+					'type': 'colour_picker2',
+					'fields': {
+						'COLOUR': colourList[i]
+					}
 				}
-
-				normalizeItem(blockN);
-
 				list.push(blockN);
-
-				console.log("block N ", blockN);
 
 				Blockly.common.createBlockDefinitionsFromJsonArray([blockN]);
 				Blockly.common.defineBlocks(blockN);
+			}
 
-				javascriptGenerator.forBlock["var_" + item.name] = (block: Blockly.Block, generator: JavascriptGenerator): any => {
-					let arg: string[] = [];
+			javascriptGenerator.forBlock["colour_picker2"] = (block: Blockly.Block, generator: JavascriptGenerator): any => {
+				block;
+				generator;
 
-					console.group("");
-					console.log("js for " + item.name);
-					console.groupEnd();
-
-					blockN.args0.forEach((item2) => {
-						if (item2.type == EArgType.inputDummy) { }
-						else if (item2.type == EArgType.input_end_row) { }
-						else if (item2.type == EArgType.statementValue) { }
-						else {
-							let value = generator.valueToCode(block, item2.name, Order.ATOMIC);
-							arg.push(value);
-						}
-					});
-
-					return [arg[0], Order.NONE]
-				};
-
-			});
+				return ["", Order.NONE]
+			};
 
 			return list;
 		});
 
 		Index2.workspace.registerButtonCallback("yourCallbackKey", (button) => {
-			Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace(), null);
+			button; //TODO: complete this function
 		});
-
-		// Index2.workspace.getAllVariables().forEach((item) => {
-		// 	javascriptGenerator.forBlock[item.name] = (block: Blockly.Block, generator: JavascriptGenerator): any => {
-		// 		block; generator;
-
-		// 		return item.name;
-		// 	};
-		// });
-
 	}
 
 	private static getQuery(key: string): string {

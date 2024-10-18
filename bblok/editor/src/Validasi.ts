@@ -31,8 +31,8 @@ export class Val {
 		console.groupEnd();
 
 		function checkSetVar(obj: any) {
-			for (let i = 0; i < Store.semuBlok.length; i++) {
-				let blok = Store.semuBlok[i];
+			for (let i = 0; i < Store.semuaBlok.length; i++) {
+				let blok = Store.semuaBlok[i];
 				if (blok.type == 'set var') {
 					blok.val(obj);
 				}
