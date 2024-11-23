@@ -1,35 +1,7 @@
-feature:
-========
-perintah yang besar dan banyak buat configure image
-frame prop
-auto metadata extension
-auto metadata output
-snapshot
-simpan pakai deskripsi
-list data pakai deskripsi
-demo pakai deskripsi
-exit/pause
-return buat blok update dan mulai
-sub
-klamp
-image di klik 
-konfigurasi grafis
-konfigurasi teks
-konfigurasi UI
-iamge property buat physic
-image property buat pointer
-dynamic prop
+error fungsi gak jalan
 
-validasi
-	validasi Image
-	validasi depecrated block
-
-demo:
-	animasi
-	drag rotasi - video
-	drag rotasi remote - video
-	drag - video
-	drag remote - video
+DEMO:
+=====
 	gambar dari unsplash
 	flappy bird
 	flappy bird helicopter
@@ -47,6 +19,33 @@ demo:
 	interaksi segitiga sama sisi
 	interaksi sudut
 	
+FEATURE:
+========
+perintah yang besar dan banyak buat configure image (prefab)
+frame prop
+auto metadata extension
+auto metadata output
+snapshot
+simpan pakai deskripsi
+list data pakai deskripsi
+demo pakai deskripsi
+exit/pause
+return buat blok update dan mulai
+sub
+klamp
+image di klik 
+konfigurasi grafis
+konfigurasi teks
+konfigurasi UI
+image property buat physic
+image property buat pointer
+dynamic prop
+
+validasi
+	validasi Image
+	validasi depecrated block
+	validasi empty per blok
+
 motion:
 	image [] move [] horizontally
 	image [] move [] vertically

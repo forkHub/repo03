@@ -4,7 +4,7 @@ import { Dialog } from "./HalDialog";
 import { Index2 } from "./index2";
 import * as Blockly from 'blockly/core';
 import { demoList } from "./List";
-import { Op } from "./Op";
+// import { Op } from "./Op";
 
 export class HalListProject {
 	private static cont: HTMLDialogElement;
@@ -29,23 +29,23 @@ export class HalListProject {
 		let project
 		let code;
 
-		if (Store.tutMode) {
-			window.location.href = './?tut=true&tid=' + Store.selectedId;
-			return;
-		}
-		else {
-			f = Entity.getByParentId(Store.selectedId) as IFile;
-			code = JSON.parse(f.wspace);
-			project = Entity.getById(Store.selectedId) as IProject;
+		// if (Store.tutMode) {
+		// 	window.location.href = './?tut=true&tid=' + Store.selectedId;
+		// 	return;
+		// }
+		// else {
+		f = Entity.getByParentId(Store.selectedId) as IFile;
+		code = JSON.parse(f.wspace);
+		project = Entity.getById(Store.selectedId) as IProject;
 
-			Store.idFile = f.id;
-			Store.projectId = project.id;
+		Store.idFile = f.id;
+		Store.projectId = project.id;
 
-			Blockly.serialization.workspaces.load(code, Index2.workspace);
-			Store.snapshot = code;
-			this.closeKlik();
-			Index2.updateProjectName();
-		}
+		Blockly.serialization.workspaces.load(code, Index2.workspace);
+		Store.snapshot = code;
+		this.closeKlik();
+		Index2.updateProjectName();
+		// }
 	}
 
 	static deleteKlik() {
@@ -75,10 +75,10 @@ export class HalListProject {
 			Entity.commit();
 
 			//delete file
-			if (Store.tutMode == false) {
-				console.log("delete file");
-				Entity.delete(Entity.getByParentId(Store.selectedId).id);
-			}
+			// if (Store.tutMode == false) {
+			// 	console.log("delete file");
+			// 	Entity.delete(Entity.getByParentId(Store.selectedId).id);
+			// }
 
 			console.log("get view to delete");
 			this.listCont.querySelectorAll('.project').forEach((item) => {
@@ -91,10 +91,10 @@ export class HalListProject {
 
 			Store.selectedId = '';
 
-			if (Store.tutMode) {
-				Op.saveTutList();
-				Op.saveTutData();
-			}
+			// if (Store.tutMode) {
+			// Op.saveTutList();
+			// Op.saveTutData();
+			// }
 		}
 		else {
 			console.log('cancel');

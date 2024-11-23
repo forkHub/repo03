@@ -7,6 +7,7 @@ import { Id } from "./Id";
 import { Export } from "./exporter";
 import { Dialog } from "./HalDialog";
 import { Val } from "./Validasi";
+// import { wsToScreenCoordinates } from "blockly/core/utils/svg_math";
 
 export class Op {
 	static op() {
@@ -92,23 +93,6 @@ export class Op {
 				//window.location.href = "./about.html";
 				window.open('./about.html', "_blank");
 			}
-
-		(document.body.querySelector("div.menu-cont button.prefab") as HTMLDivElement).onclick =
-			() => {
-				//buka iframe
-				let dialog = document.createElement('dialog');
-				let iframe = document.createElement('iframe');
-				iframe.src = './prefab/index.html';
-				iframe.style.position = 'absolute';
-				dialog.appendChild(iframe);
-				dialog.style.width = '80%';
-				dialog.style.maxWidth = '640px';
-				dialog.style.height = '80%';
-				dialog.classList.add('prefab');
-				document.body.appendChild(dialog);
-				dialog.showModal();
-				console.log("prefab dialog");
-			}
 	}
 
 	static loadKlik() {
@@ -142,13 +126,12 @@ export class Op {
 	}
 
 	static export() {
-		let simpan = Index2.simpan();
 		DialogExport.open(`
                     <h1>Export ke JSON</h1>
                     <p>
 						Anda bisa menyimpan isi di textarea berikut untuk disimpan dan di import lagi nanti.
                     </p>
-            `, JSON.stringify(simpan).toString());
+            `, Index2.wspace2String());
 	}
 
 	static import() {
@@ -236,7 +219,7 @@ export class Op {
 			type: EEntity.FILE,
 			nama: Store.idFile,
 			parentId: p.id,
-			wspace: JSON.stringify(Index2.simpan())
+			wspace: Index2.wspace2String()
 		}
 
 		//TODO: save file yang lain
@@ -248,34 +231,35 @@ export class Op {
 		Entity.commit();
 		Index2.updateProjectName();
 
-		if (Store.tutMode) {
-			this.saveTutData();
-			this.saveTutList();
-			return;
-		}
+		// if (Store.tutMode) {
+		// this.saveTutData();
+		// this.saveTutList();
+		// return;
+		// }
 	}
 
+
 	static simpan() {
+		console.group("simpan");
 		if (Store.projectId == "") {
 			this.simpanBaru();
 		}
 		else {
-			if (Store.tutMode) {
-				this.saveTutData();
-				this.saveTutList();
+			let file = Entity.getById(Store.idFile) as IFile;
+			if (!file) {
+				this.simpanBaru();
 			}
 			else {
-				let file = Entity.getById(Store.idFile) as IFile;
-				file.wspace = JSON.stringify(Index2.simpan());
+				if (file.wspace == undefined) file.wspace = ''
+
+				file.wspace = Index2.wspace2String();
 				Entity.commit();
 			}
 		}
 
 		Index2.updateProjectName();
 
-		if (Store.devMode) {
-			Op.demo();
-		}
+		console.groupEnd();
 	}
 
 	//tampilkan code dan json code
@@ -290,6 +274,7 @@ export class Op {
 	}
 
 	//simpan demo dan tutorial
+	/*
 	static demo() {
 
 		if (Store.tutMode) {
@@ -335,13 +320,15 @@ export class Op {
 			console.error(e);
 		}
 	}
+	*/
 
+	/*
 	static saveTutData() {
 		try {
-			const body = JSON.stringify(Index2.simpan());
+			const body = JSON.stringify(Index2.wspace2String());
 
 			console.log("body");
-			console.log(Index2.simpan());
+			console.log(Index2.wspace2String());
 
 			let fd = new FormData();
 			fd.append("data", "window.pData = " + body);
@@ -415,4 +402,5 @@ export class Op {
 			console.error(e);
 		}
 	}
+	*/
 }

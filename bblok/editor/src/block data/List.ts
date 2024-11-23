@@ -4,7 +4,7 @@ class ListDef {
 	readonly list: TToolBoxBlockDef[] = [];
 	readonly group = "List 2";
 	readonly hidden = "false";
-	readonly toolbox = true;
+	readonly toolbox = true;	//tidak dimasukkan di custom toolbox
 
 	constructor() {
 		// ha.js.List.push

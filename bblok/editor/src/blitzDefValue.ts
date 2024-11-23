@@ -58,7 +58,7 @@ function defValue(t: TToolBoxBlockDef): void {
 	}
 
 	if (!(Object as any).hasOwn(t, "inputsInline")) {
-		t.inputsInline = false;
+		t.inputsInline = true;
 	}
 
 	if (t.kurung == undefined) {

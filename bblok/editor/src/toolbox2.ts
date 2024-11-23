@@ -12,6 +12,7 @@ import { TToolboxGroupData, TToolBoxBlockDef, TToolbokContentDef, ToolBoxKind, E
 import * as Blockly from 'blockly/core';
 import { JavascriptGenerator, Order, javascriptGenerator } from 'blockly/javascript';
 import { Store } from "./Store";
+import { mathBlockData3 } from "./block data/MathData3";
 
 export function toolBoxInit() {
 	const blockRawData: TToolboxGroupData[] = [
@@ -23,7 +24,8 @@ export function toolBoxInit() {
 		inputBlockData,
 		textData,
 		mathBlockData,
-		listDef
+		listDef,
+		mathBlockData3
 	]
 
 	normalizeAllBlock(blockRawData);
@@ -61,11 +63,11 @@ export function toolBoxInit() {
 
 	//dynaic category
 	Store.semuaBlok = allToolBoxDef;
-	toolboxDef2.contents.push({
-		"kind": "category",
-		"name": "Colours",
-		"custom": "COLOUR_PALETTE"
-	})
+	// toolboxDef2.contents.push({
+	// 	"kind": "category",
+	// 	"name": "Colours",
+	// 	"custom": "COLOUR_PALETTE"
+	// })
 }
 
 export function cariBlokDef(type: string): TToolBoxBlockDef[] {
@@ -1175,10 +1177,10 @@ export const toolboxDef2: TToolbokDef = {
 						},
 					},
 				},
-				// {
-				// 	kind: 'block',
-				// 	type: 'ha.be.Transform.degDistMin'
-				// },
+				{
+					kind: 'block',
+					type: 'Distance'
+				},
 				// {
 				// 	kind: 'block',
 				// 	type: '*='
@@ -1486,14 +1488,14 @@ export const toolboxDef2: TToolbokDef = {
 					kind: 'block',
 					type: 'lists_reverse',
 				},
-				{
-					kind: 'block',
-					type: 'ha.js.List.push'
-				},
-				{
-					kind: 'block',
-					type: 'ha.js.List.pop'
-				},
+				// {
+				// 	kind: 'block',
+				// 	type: 'ha.js.List.push'
+				// },
+				// {
+				// 	kind: 'block',
+				// 	type: 'ha.js.List.pop'
+				// },
 			],
 		},
 		{

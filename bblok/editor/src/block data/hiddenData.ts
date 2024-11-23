@@ -9,6 +9,8 @@ class HiddenData {
 	constructor() {
 		// this.list.push(this.Grafis);
 
+		this.list.push(this.setVar());
+
 		// ImagesCollideXY
 		// ha.be.Spr.TabrakanXY;
 		this.list.push({
@@ -147,5 +149,39 @@ class HiddenData {
 		})
 
 	}
+
+	private setVar(): TToolBoxBlockDef {
+		return {
+			type: "set var",
+			perintah: "",
+			message0: " %1 = %2 ",
+			metadata: {
+				readonly: false,
+				property: false
+			},
+			args: {
+				var1: {},
+				value: {}
+			},
+			extensions: ["metadata"],
+			f: (arg: string[]): string => {
+				// Val.paramEmpty(arg[0]);
+				return `
+					/* %1 = %2 */
+					${arg[0]} = ${arg[1]}
+				`;
+			},
+			inputsInline: true,
+			val: (item: TToolBoxBlockDef) => {
+				let f = item.inputs["var1"];
+				let g = item.inputs["value"];
+
+				console.log("f", f);
+				console.log("g", g);
+			},
+			tooltip: 'Mengisi variable/property dengan value'
+		}
+	}
+
 }
 export const hiddenData = new HiddenData();

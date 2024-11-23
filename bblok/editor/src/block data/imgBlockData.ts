@@ -294,6 +294,8 @@ class ImageBlockData {
 			`
 		})
 
+		//TODO: jarak antar image
+
 	}
 
 	posisi() {

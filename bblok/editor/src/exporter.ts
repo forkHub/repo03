@@ -59,6 +59,7 @@ function highlight() {
 }
 function handleError(e) {
     console.log(e.message);
+	console.error(e);
     console.log(window.parent.opener.api);
     if (!errorPopup)
         return;
@@ -90,8 +91,6 @@ function handleError(e) {
 		<canvas></canvas>
 	
 		<script src="./js/blitz.js" defer></script>
-		<script src="./js/bblok.js" defer></script>
-		<script src="./js/js.js" defer></script>
 	
 		<!-- main  -->
 		<script defer>
@@ -102,6 +101,7 @@ function handleError(e) {
 	</html>
 		        `;
 
+	//TODO: move to index2.js 
 	static exportJs(debug: boolean): string {
 		javascriptGenerator.addReservedWords('__update');
 		javascriptGenerator.addReservedWords('__updater');
@@ -109,6 +109,8 @@ function handleError(e) {
 		javascriptGenerator.addReservedWords('error');
 		javascriptGenerator.addReservedWords('bbId');
 		javascriptGenerator.addReservedWords('errorPopup');
+
+		// if (Index2.checkBacktick()) debug = false;
 
 		if (debug) {
 			javascriptGenerator.STATEMENT_PREFIX = "setId(%1);\n";
@@ -123,13 +125,41 @@ function handleError(e) {
 
 	static exportHtml(code: string): string {
 		console.groupCollapsed("export:");
+
+		code = "\n/** code start **/ \n" + code + "\n/** code end **/\n";
+
+		console.groupCollapsed('code')
 		console.log(code);
 		console.groupEnd();
 
 		let dataHtml = this.dataHtml;
-		dataHtml = dataHtml.replace('/** template **/', this.dataTemplate);
-		dataHtml = dataHtml.replace('/** script here **/', code);
+		let dataTemplate = this.dataTemplate;
 
+		console.groupCollapsed('data html');
+		console.log(dataHtml);
+		console.groupEnd();
+
+		console.groupCollapsed('data template');
+		console.log(dataTemplate);
+		console.groupEnd();
+
+		let dataTemplateAr = dataTemplate.split('/** script here **/');
+
+		dataTemplate = dataTemplateAr[0] + code + dataTemplateAr[1];
+
+		console.groupCollapsed('data template 2');
+		console.log(dataTemplate);
+		console.groupEnd();
+
+		let dataHtml2 = dataHtml.split('/** template **/');
+		// dataHtml = dataHtml.replace('/** template **/', dataTemplate);
+		dataHtml = dataHtml2[0] + dataTemplate + dataHtml2[1];
+		console.groupCollapsed('data html');
+		console.log(dataHtml);
+		console.groupEnd();
+
+		// dataHtml = dataHtml.replace('/** script here **/', code);
+		console.groupEnd();
 		return dataHtml;
 	}
 

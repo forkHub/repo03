@@ -1,4 +1,4 @@
-import { demoList } from "./List";
+// import { demoList } from "./List";
 import { Store } from "./Store";
 
 declare var demoData: IEntity[];
@@ -43,6 +43,7 @@ export class Entity {
 
 	private static loadListProjek() {
 		try {
+			/*
 			if (Store.tutMode) {
 				while (Entity.list.length > 0) {
 					Entity.list.pop();
@@ -53,13 +54,16 @@ export class Entity {
 				});
 				return;
 			}
+			*/
 
+			/*
 			if (Store.devMode) {
 				this.loadDemoData();
 				//TODO:
 				// this.loadDataFromUrl("./tut/demo.json");
 				return;
 			}
+			*/
 
 			if (Store.pMode) {
 

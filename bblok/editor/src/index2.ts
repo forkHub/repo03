@@ -133,7 +133,7 @@ export class Index2 {
 		return h;
 	}
 
-	private static logo() {
+	private static tampilkanLogo() {
 		// Logo.show
 		Logo.init();
 		Logo.onOk = () => {
@@ -163,22 +163,22 @@ export class Index2 {
 
 		//load tutorial mode 
 		//TODO: deprecated
-		else if (Store.tutMode) {
-			if (Store.projectId && Store.projectId.length > 0) {
-				console.log("load data tutorial:");
-				API2.injectScript("./tut/p" + Store.projectId + '.js', () => {
-					console.log("script loaded");
-					Blockly.serialization.workspaces.load(pData, Index2.workspace);
-					Store.snapshot = pData;
-				});
-			}
-			else {
-				this.logo();
-			}
-		}
+		// else if (Store.tutMode) {
+		// 	if (Store.projectId && Store.projectId.length > 0) {
+		// 		console.log("load data tutorial:");
+		// 		API2.injectScript("./tut/p" + Store.projectId + '.js', () => {
+		// 			console.log("script loaded");
+		// 			Blockly.serialization.workspaces.load(pData, Index2.workspace);
+		// 			Store.snapshot = pData;
+		// 		});
+		// 	}
+		// 	else {
+		// 		this.tampilkanLogo();
+		// 	}
+		// }
 
 		else {
-			this.logo();
+			this.tampilkanLogo();
 		}
 	}
 
@@ -186,10 +186,10 @@ export class Index2 {
 		//read query
 		if (this.getQuery("dev") == "true") {
 			console.log('dev mode');
-			Store.devMode = true;
+			// Store.devMode = true;
 		}
 		else if (this.getQuery("tut") == "true") {
-			Store.tutMode = true;
+			// Store.tutMode = true;
 			if (this.getQuery("tid") && this.getQuery("tid").length > 0) {
 				Store.projectId = this.getQuery("tid");
 			}
@@ -232,9 +232,9 @@ export class Index2 {
 		}
 
 		//dev-mode
-		if (Store.devMode || Store.tutMode) {
-			(document.querySelector("span#span_dev_mode") as HTMLSpanElement).style.display = 'inline';
-		}
+		// if (Store.devMode || Store.tutMode) {
+		// 	(document.querySelector("span#span_dev_mode") as HTMLSpanElement).style.display = 'inline';
+		// }
 
 		this.loadWorkSpace();
 		(document.querySelector("div.menu-cont") as HTMLElement).style.visibility = 'visible';
@@ -242,8 +242,46 @@ export class Index2 {
 		console.log((window as any).api);
 	}
 
-	static simpan(): any {
-		return Blockly.serialization.workspaces.save(Index2.workspace);
+	// private static removeBacktick(wspace: string): string {
+	// 	let ctr = 0;
+
+	// 	while (wspace.indexOf('`')) {
+	// 		ctr++;
+	// 		wspace = wspace.replace('`', "bt");
+	// 		if (ctr > 1000) break;
+	// 	}
+	// 	return wspace;
+	// }
+
+	// static checkBacktick(): boolean {
+	// 	let hasil: string;
+	// 	let obj: any;
+	// 	let ada: number = 0;
+
+	// 	obj = Blockly.serialization.workspaces.save(Index2.workspace);
+	// 	hasil = JSON.stringify(obj);
+	// 	ada = hasil.indexOf('`');
+
+	// 	console.group("check backtick");
+	// 	console.log('ada:', ada, 'hasil:', hasil);
+	// 	console.groupEnd();
+
+	// 	if (hasil.indexOf('`') >= 0) {
+	// 		return true;
+	// 	}
+
+	// 	return false;
+	// }
+
+	static wspace2String(): string {
+		let hasil: string;
+		let obj: any;
+
+		obj = Blockly.serialization.workspaces.save(Index2.workspace);
+		hasil = JSON.stringify(obj);
+		// hasil = this.removeBacktick(hasil);
+
+		return hasil
 	}
 
 	static load(code: any) {
@@ -253,4 +291,5 @@ export class Index2 {
 	static resize() {
 		Blockly.svgResize(Index2.workspace);
 	}
+
 }
