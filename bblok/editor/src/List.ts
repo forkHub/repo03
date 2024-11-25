@@ -3,7 +3,7 @@ export interface List {
 	type: string,
 	nama: string,
 	parentId: string,
-	kategori?: string
+	kategori?: string	//dasar, menengah
 }
 
 export const demoList: List[] = [
@@ -51,5 +51,14 @@ demoList.push({
 	id: 'interaksi_radius',
 	type: 'project',
 	nama: "interaksi radius",
-	parentId: "-1"
+	parentId: "-1",
+	kategori: "menengah"
 });
+
+demoList.push({
+	id: 'tata_surya',
+	type: 'project',
+	nama: "tata surya",
+	parentId: "-1",
+	kategori: "menengah"
+})

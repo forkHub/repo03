@@ -11,7 +11,7 @@ class Iframe {
 		}
 		catch (e) {
 			console.log('fatal error');
-			alert("Ada kesalahan fatal.\n Silahkan check kodenya kembali.\nApakah ada blok yang belum terisi?");
+			alert("Ada kesalahan fatal.\n Silahkan check kodenya kembali?");
 		}
 	}
 }
