@@ -45,7 +45,7 @@ export function toolBoxInit() {
 			toolboxDef2.contents.push(buaCategory(item.group, item.list, item.hidden));
 		}
 		else {
-			console.group("auto input ke group: " + item.group);
+			console.groupCollapsed("auto input ke group: " + item.group);
 			toolboxDef2.contents.forEach((item2) => {
 				// console.log(item2.name)l
 				if (item2.name == item.group) {
@@ -1392,10 +1392,6 @@ export const toolboxDef2: TToolbokDef = {
 			name: 'Lists',
 			categorystyle: 'list_category',
 			contents: [
-				{
-					kind: 'block',
-					type: 'lists_create_with',
-				},
 				{
 					kind: 'block',
 					type: 'lists_create_with',

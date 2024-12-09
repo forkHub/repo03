@@ -1,9 +1,10 @@
 import { TToolBoxBlockDef } from "./toolboxType";
 
 export class Store {
-	private static _idFile: string = '';
+	private static _fileId: string = '';
 	private static _projectId: string = '';
 	private static _defWSpace: any = '';
+
 	public static get defWSpace(): any {
 		return Store._defWSpace;
 	}
@@ -56,10 +57,10 @@ export class Store {
 	// 	Store._devMode = value;
 	// }
 
-	public static get selectedId(): string {
+	public static get selectedProjectId(): string {
 		return Store._selectedId;
 	}
-	public static set selectedId(value: string) {
+	public static set selectedProjectId(value: string) {
 		Store._selectedId = value;
 	}
 
@@ -77,11 +78,11 @@ export class Store {
 		Store._projectId = value;
 	}
 
-	public static get idFile(): string {
-		return Store._idFile;
+	public static get fileId(): string {
+		return Store._fileId;
 	}
-	public static set idFile(value: string) {
-		Store._idFile = value;
+	public static set fileId(value: string) {
+		Store._fileId = value;
 	}
 }
 

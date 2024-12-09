@@ -1,7 +1,7 @@
 import { API2 } from "./Api";
 import { Entity, IProject } from "./Entity";
-import { HalListProject, HalListDemo } from "./HalListProject";
-import { Logo } from "./HalLogo";
+import { HalListProject, HalListDemo } from "./hal/HalListProject";
+import { Logo } from "./hal/HalLogo";
 import { Op } from "./Op";
 import { Store } from "./Store";
 import { Iframe } from "./iframe";

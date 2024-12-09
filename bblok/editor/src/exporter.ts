@@ -90,7 +90,7 @@ function handleError(e) {
 	<body>
 		<canvas></canvas>
 	
-		<script src="./js/blitz.js" defer></script>
+		<script src="./js/basik.js" defer></script>
 	
 		<!-- main  -->
 		<script defer>
@@ -103,6 +103,7 @@ function handleError(e) {
 
 	//TODO: move to index2.js 
 	static exportJs(debug: boolean): string {
+		console.log("export js:", debug);
 		javascriptGenerator.addReservedWords('__update');
 		javascriptGenerator.addReservedWords('__updater');
 		javascriptGenerator.addReservedWords('_update');
@@ -114,6 +115,9 @@ function handleError(e) {
 
 		if (debug) {
 			javascriptGenerator.STATEMENT_PREFIX = "setId(%1);\n";
+		}
+		else {
+			javascriptGenerator.STATEMENT_PREFIX = "";
 		}
 
 		let codeJs = javascriptGenerator.workspaceToCode(Index2.workspace);

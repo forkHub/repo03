@@ -1,11 +1,11 @@
 import { Index2 } from "./index2";
 import { IProject, EEntity, Entity, IFile } from "./Entity";
-import { HalListDemo, HalListProject } from "./HalListProject";
+import { HalListDemo, HalListProject } from "./hal/HalListProject";
 import { Store } from "./Store";
-import { DialogPublish, DialogExport, DialogImport } from "./HalDialogs";
+import { DialogPublish, DialogExport, DialogImport } from "./hal/HalDialogs";
 import { Id } from "./Id";
 import { Export } from "./exporter";
-import { Dialog } from "./HalDialog";
+import { Dialog } from "./hal/HalDialog";
 import { Val } from "./Validasi";
 // import { wsToScreenCoordinates } from "blockly/core/utils/svg_math";
 
@@ -217,14 +217,14 @@ export class Op {
 		let f: IFile = {
 			id: Id.id,
 			type: EEntity.FILE,
-			nama: Store.idFile,
+			nama: Store.fileId,
 			parentId: p.id,
 			wspace: Index2.wspace2String()
 		}
 
 		//TODO: save file yang lain
 
-		Store.idFile = f.id;
+		Store.fileId = f.id;
 		Store.projectId = p.id;
 
 		Entity.tambah(f);
@@ -245,7 +245,7 @@ export class Op {
 			this.simpanBaru();
 		}
 		else {
-			let file = Entity.getById(Store.idFile) as IFile;
+			let file = Entity.getById(Store.fileId) as IFile;
 			if (!file) {
 				this.simpanBaru();
 			}

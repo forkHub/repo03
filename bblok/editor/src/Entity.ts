@@ -10,17 +10,17 @@ export enum EEntity {
 
 export class Entity {
 	private static readonly dbName = 'ha.blockly.data2';
-	private static readonly dbDemoName = 'ha.blockly.dataDemo';
+	// private static readonly dbDemoName = 'ha.blockly.dataDemo';
 	private static dbAktif = '';
 	static readonly list: IEntity[] = [];
 
-	static loadDemoData() {
-		this.dbAktif = this.dbDemoName;
-		demoData.forEach((item) => {
-			this.list.push(item);
-		})
-		this.commit();
-	}
+	// static loadDemoData() {
+	// 	this.dbAktif = this.dbDemoName;
+	// 	demoData.forEach((item) => {
+	// 		this.list.push(item);
+	// 	})
+	// 	this.commit();
+	// }
 
 	static loadLocalData() {
 		this.dbAktif = this.dbName;
