@@ -315,15 +315,15 @@ export class HalListDemo {
                 <div style="display:flex; flex-direction:column; height:100%">
                     <h4>Demo::</h4>
                     <div class='list-cont' style="flex-grow:1; overflow-y:auto">
-						<detail>
+						<details>
 							<summary class="dasar"><b>Dasar:</b></summary>
 							<div class="isi dasar"></div>
-						</detail>
+						</details>
 						<hr/>
-						<detail>
+						<details>
 							<summary class="mahir"><b>Menengah:</b></summary>
 							<div class="isi mahir"></div>
-						</detail>
+						</details>
                     </div>
                     <div>
                         <button class="open" klik="ha.blockly.HalListDemo.openKlik();">buka</button>
