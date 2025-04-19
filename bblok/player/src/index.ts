@@ -11,7 +11,7 @@ class Iframe {
 		}
 		catch (e) {
 			console.log('fatal error');
-			alert("Ada kesalahan fatal.\n Silahkan check kodenya kembali?");
+			alert("Ada kesalahan fatal.\n Silahkan check kodenya kembali? \n Untuk bantuan lebih lanjut silahkan email ke rokhman.fajar@gmail.com");
 		}
 	}
 }

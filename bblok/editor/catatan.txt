@@ -9,7 +9,6 @@ DEMO:
 	meteor avoid
 	geser tangkap
 	pukul nyamuk
-	tombol
 	kurva yang bisa di edit
 	shape yang bisa di edit (segitiga, kotak)
 	matahari

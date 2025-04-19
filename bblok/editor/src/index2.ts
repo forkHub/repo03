@@ -209,7 +209,9 @@ export class Index2 {
 	}
 
 	static init() {
+		console.group("check query");
 		this.checkQuery();
+		console.groupEnd();
 
 		HalListProject.init();
 		HalListDemo.init();

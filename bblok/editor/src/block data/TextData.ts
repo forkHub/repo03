@@ -42,7 +42,7 @@ class TextData {
 		// ha.be.Teks.Goto;
 		this.list.push({
 			type: "ha.be.Teks.Goto",
-			perintah: "ha.be.Teks.Goto",
+			perintah: "Basik.Teks.Goto",
 			message0: "posisi teks x %1 y %2",
 			inputsInline: true,
 			args: {
@@ -54,7 +54,7 @@ class TextData {
 		// ha.be.Teks.fill
 		this.list.push({
 			type: "ha.be.Teks.fill",
-			perintah: "ha.be.Teks.fill",
+			perintah: "Basik.Teks.fill",
 			message0: "warna fill %1",
 			args: {
 				fill: true
@@ -65,7 +65,7 @@ class TextData {
 		// ha.be.Teks.stroke
 		this.list.push({
 			type: "ha.be.Teks.stroke",
-			perintah: "ha.be.Teks.stroke",
+			perintah: "Basik.Teks.stroke",
 			message0: "Pakai stroke %1",
 			args: {
 				stroke: false
@@ -79,7 +79,7 @@ class TextData {
 		// ha.be.Teks.jarak
 		this.list.push({
 			type: "ha.be.Teks.jarak",
-			perintah: "ha.be.Teks.jarak",
+			perintah: "Basik.Teks.jarak",
 			message0: "tinggi baris %1",
 			args: {
 				height: 40
@@ -89,7 +89,7 @@ class TextData {
 		// ha.be.Teks.Write;
 		this.list.push({
 			type: "ha.be.Teks.Write",
-			perintah: "ha.be.Teks.Write",
+			perintah: "Basik.Teks.Write",
 			message0: "tulis %1",
 			args: {
 				text: ""
@@ -99,7 +99,7 @@ class TextData {
 		// ha.be.Teks.WriteLn;
 		this.list.push({
 			type: "ha.be.Teks.WriteLn",
-			perintah: "ha.be.Teks.WriteLn",
+			perintah: "Basik.Teks.WriteLn",
 			message0: "tulis br %1",
 			args: {
 				text: ""
@@ -111,7 +111,7 @@ class TextData {
 		this.list.push({
 			type: "ha.be.Teks.Tulis",
 			perintah: "Print",
-			message0: "tulis %1 teks %2 x: %3 y: %4 pakai fill: %5 pakai stroke: %6",
+			message0: "Tulis %1 teks %2 x: %3 y: %4 pakai fill: %5 pakai stroke: %6",
 			args: {
 				dummy: "",
 				text: "",

@@ -34,7 +34,7 @@ window.onload = () => {
 	requestAnimationFrame(__updater);
 }
 
-/* fungsi tambhan */
+/* fungsi tambahan */
 
 function setId(n: string): void {
 	bbId = n;
@@ -69,6 +69,6 @@ function handleError(e: Error) {
 	console.log(window.parent.opener.api);
 
 	if (!errorPopup) return;
-	alert(e.message);
+	alert(e.message + "\n Untuk bantuan lebih lanjut, silahkan hubungi email: rokhman.fajar@gmail.com");
 	highlight();
 }

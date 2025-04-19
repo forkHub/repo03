@@ -16,7 +16,7 @@ class HiddenData {
 		this.list.push({
 			type: "ha.be.Spr.TabrakanXY",
 			message0: "image1 %2 at x1 %3 y1 %4 %1 collide with image2 %5 at x2 %6 y2 %7",
-			perintah: "ha.be.Spr.TabrakanXY",
+			perintah: "Basik.Spr.TabrakanXY",
 			args: {
 				dummy: '',
 				sprite: {},
@@ -36,7 +36,7 @@ class HiddenData {
 		this.list.push({
 			type: "ha.be.Spr.TabrakanXY",
 			message0: "image1 %2 at x1 %3 y1 %4 %1 collide with image2 %5 at x2 %6 y2 %7",
-			perintah: "ha.be.Spr.TabrakanXY",
+			perintah: "Basik.Spr.TabrakanXY",
 			args: {
 				dummy: '',
 				sprite: {},
@@ -54,7 +54,7 @@ class HiddenData {
 		//Drag Mode
 		this.list.push({
 			type: "ha.be.Spr.DragMode",
-			perintah: "ha.be.Spr.DragMode",
+			perintah: "Basik.Spr.DragMode",
 			message0: "Image %1 set drag mode to %2",
 			inputsInline: true,
 			args: {
