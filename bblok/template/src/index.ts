@@ -69,6 +69,6 @@ function handleError(e: Error) {
 	console.log(window.parent.opener.api);
 
 	if (!errorPopup) return;
-	alert(e.message + "\n Untuk bantuan lebih lanjut, silahkan hubungi email: rokhman.fajar@gmail.com");
+	alert(e.message + ". Untuk bantuan lebih lanjut, silahkan hubungi email: rokhman.fajar@gmail.com");
 	highlight();
 }
