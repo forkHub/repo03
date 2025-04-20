@@ -3,7 +3,7 @@ namespace tambah {
 	let b: string = 's';
 	let c: string = '';
 	let rangeMin = 1;
-	let rangeMax = 5;
+	let rangeMax = 9;
 	let awal = true;
 	let opr = true; //true = +, false = -
 
@@ -46,6 +46,11 @@ namespace tambah {
 		let a1 = random();
 		let a2 = random();
 		let akhir = randomBoolean();
+
+		//override
+		awal = false;
+		akhir = true;
+		opr = true;
 
 		if (akhir) {
 			if (opr) {
