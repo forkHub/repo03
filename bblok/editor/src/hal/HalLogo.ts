@@ -22,10 +22,17 @@ export class Logo {
 				<div class="link-cont">
 
 				</div>
+				<div class="contact-cont">
+					rokhman.fajar@gmail.com - 081285382224
+				</div>
             </div>
         	`;
 
 		tombol(dlg.querySelector('div.block-cont'));
+
+		// (dlg.querySelector('div.contact-cont') as HTMLDivElement).innerHTML = `
+
+		// `;
 
 		//TODO: daftar wlink 
 
