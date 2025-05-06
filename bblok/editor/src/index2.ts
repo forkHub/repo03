@@ -18,6 +18,32 @@ export class Index2 {
 	public static blocklyArea: HTMLDivElement;
 	public static blocklyDiv: HTMLDivElement;
 
+	//TODO: move to index2.js 
+	static exportJs(debug: boolean): string {
+		console.log("export js:", debug);
+		javascriptGenerator.addReservedWords('__update');
+		javascriptGenerator.addReservedWords('__updater');
+		javascriptGenerator.addReservedWords('_update');
+		javascriptGenerator.addReservedWords('error');
+		javascriptGenerator.addReservedWords('bbId');
+		javascriptGenerator.addReservedWords('errorPopup');
+
+		// if (Index2.checkBacktick()) debug = false;
+
+		if (debug) {
+			javascriptGenerator.STATEMENT_PREFIX = "setId(%1);\n";
+		}
+		else {
+			javascriptGenerator.STATEMENT_PREFIX = "";
+		}
+
+		let codeJs = javascriptGenerator.workspaceToCode(Index2.workspace);
+		if (!debug) {
+			codeJs = codeJs.replace("/** override errorPopup **/", "errorPopup = false;");
+		}
+		return codeJs;
+	}
+
 	static updateProjectName() {
 		let spanNama = document.body.querySelector("span.judul_file");
 		try {

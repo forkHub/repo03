@@ -7,7 +7,9 @@ window.onload = () => {
 	console.log('start');
 	let error = false;
 
+	/** script start */
 	/** script here **/
+	/** script end */
 
 	if (error) return;
 
@@ -70,5 +72,12 @@ function handleError(e: Error) {
 
 	if (!errorPopup) return;
 	alert(e.message + ". Untuk bantuan lebih lanjut, silahkan hubungi email: rokhman.fajar@gmail.com");
-	highlight();
+
+	try {
+		highlight();
+	}
+	catch (e) {
+		console.error(e);
+	}
+
 }

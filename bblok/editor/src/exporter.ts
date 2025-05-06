@@ -1,6 +1,3 @@
-import { javascriptGenerator } from "blockly/javascript";
-import { Index2 } from "./index2";
-
 export class Export {
 	static readonly dataTemplate = `
 
@@ -10,7 +7,9 @@ export class Export {
 	window.onload = () => {
 		console.log('start');
 		let error = false;
+		/** script start */
 		/** script here **/
+		/** script end */
 		if (error)
 			return;
 		let __update; // = update || Update || UPDATE as any;
@@ -62,7 +61,12 @@ export class Export {
 		if (!errorPopup)
 			return;
 		alert(e.message + ". Untuk bantuan lebih lanjut, silahkan hubungi email: rokhman.fajar@gmail.com");
-		highlight();
+		try {
+			highlight();
+		}
+		catch (e) {
+			console.error(e);
+		}
 	}	
 
 `;
@@ -97,32 +101,6 @@ export class Export {
 	
 	</html>
 		        `;
-
-	//TODO: move to index2.js 
-	static exportJs(debug: boolean): string {
-		console.log("export js:", debug);
-		javascriptGenerator.addReservedWords('__update');
-		javascriptGenerator.addReservedWords('__updater');
-		javascriptGenerator.addReservedWords('_update');
-		javascriptGenerator.addReservedWords('error');
-		javascriptGenerator.addReservedWords('bbId');
-		javascriptGenerator.addReservedWords('errorPopup');
-
-		// if (Index2.checkBacktick()) debug = false;
-
-		if (debug) {
-			javascriptGenerator.STATEMENT_PREFIX = "setId(%1);\n";
-		}
-		else {
-			javascriptGenerator.STATEMENT_PREFIX = "";
-		}
-
-		let codeJs = javascriptGenerator.workspaceToCode(Index2.workspace);
-		if (!debug) {
-			codeJs = codeJs.replace("/** override errorPopup **/", "errorPopup = false;");
-		}
-		return codeJs;
-	}
 
 	static exportHtml(code: string): string {
 		console.groupCollapsed("export:");

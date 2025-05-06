@@ -39,7 +39,7 @@ export class Op {
 			() => {
 
 				let run = (): void => {
-					let codeHtml = Export.exportHtml(Export.exportJs(true));
+					let codeHtml = Export.exportHtml(Index2.exportJs(true));
 					window.localStorage.setItem("blocklycode", codeHtml);
 					window.open('./play.html', "_blank");
 				};
@@ -114,7 +114,7 @@ export class Op {
 	}
 
 	static publish() {
-		let codeHtml = Export.exportHtml(Export.exportJs(false));
+		let codeHtml = Export.exportHtml(Index2.exportJs(false));
 		DialogPublish.open(`
                     <h1>Html Code</h1>
                     <p>
