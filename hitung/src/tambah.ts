@@ -50,7 +50,8 @@ namespace tambah {
 		//override
 		awal = false;
 		akhir = true;
-		opr = true;
+		opr = false;
+		a1 = Math.floor(Math.random() * 15) + 1;
 
 		if (akhir) {
 			if (opr) {
