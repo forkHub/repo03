@@ -11,6 +11,44 @@ class HiddenData {
 
 		this.list.push(this.setVar());
 
+		// const InputDragEndCount = ha.be.Input.JmlDragSelesai;
+		this.list.push({
+			type: "ha.be.Input.JmlDragSelesai",
+			perintah: "InputDragEndCount",
+			message0: "Jumlah Drag Selesai",
+			tooltip: `
+					Jumlah drag selesai, dihitung sejak pemanggilan terakhir.
+					Letakkan blok ini di bagian Update
+				`,
+			output: EOutput.Number
+		})
+
+		// const InputDragStartCount = ha.be.Input.JmlDragMulai;
+		this.list.push({
+			type: "ha.be.Input.JmlDragMulai",
+			perintah: "InputDragStartCount",
+			message0: "Drag telah Dimulai",
+			tooltip: `
+					Jumlah drag dimulai dihitung sejak pemanggilan terakhir.
+					Taruh blok ini di bagian Update
+				`,
+			output: EOutput.Number
+		})
+
+		// ha.be.Input.InputHit;
+		// InputHit
+		//depecrated
+		this.list.push({
+			type: "ha.be.Input.InputHit",
+			perintah: "InputHit",
+			message0: "Jumlah Ditekan",
+			tooltip: `
+            Berapa banyak pointer di tekan, dihitung sejak pemanggilan terakhir.
+			Fungsi ini cocok dipanggil di bagian Update
+        `,
+			output: EOutput.Number
+		})
+
 		// ImagesCollideXY
 		// ha.be.Spr.TabrakanXY;
 		this.list.push({

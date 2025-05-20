@@ -2,33 +2,33 @@ import { EOutput, TToolBoxBlockDef } from "../toolboxType";
 
 class InputBlockData {
 	readonly list: TToolBoxBlockDef[] = [];
-	readonly group = "Pointer";
+	readonly group = "Mouse";
 	readonly hidden = "false";
 	readonly toolbox = false;
 
 	constructor() {
+
 		// ha.be.Input.InputHit;
 		// InputHit
 		this.list.push({
-			type: "ha.be.Input.InputHit",
+			type: "ha.be.Input.InputHit_V2",
 			perintah: "InputHit",
-			message0: "Jumlah Ditekan",
+			message0: "Mouse telah Ditekan",
 			tooltip: `
-            Berapa banyak pointer di tekan, dihitung sejak pemanggilan terakhir.
-			Fungsi ini cocok dipanggil di bagian Update
+			Check apakah mouse telah ditekan.
+			Blok ini hanya boleh ditaruh sekali di workspace.
+			Taruh blok ini dalam bagian Update.
         `,
-			output: EOutput.Number
+			output: EOutput.Boolean
 		})
 
-		//TODO:
-		//InputHit
 
 		// ha.be.Input.InputX;
 		this.list.push({
 			type: "ha.be.Input.InputX",
 			perintah: "InputX",
-			message0: "Pointer X",
-			tooltip: "posisi X dari pointer",
+			message0: "Mouse X",
+			tooltip: "posisi X dari mouse",
 			output: EOutput.Number
 		})
 
@@ -36,8 +36,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.InputY",
 			perintah: "InputY",
-			message0: "Pointer Y",
-			tooltip: "Posisi Y dari pointer",
+			message0: "Mouse Y",
+			tooltip: "Posisi Y dari mouse",
 			output: EOutput.Number
 		})
 
@@ -48,8 +48,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.Pencet",
 			perintah: "InputIsDown",
-			message0: "Pointer Ditekan",
-			tooltip: "Mebgecek apakah pointer sedang di tekan",
+			message0: "Mouse sedang Ditekan",
+			tooltip: "Mengecek apakah mouse sedang di tekan",
 			output: EOutput.Boolean
 		})
 
@@ -75,8 +75,8 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.Geser",
 			perintah: "InputIsDragged",
-			message0: "Pointer di drag",
-			tooltip: "Mengecek apakah pointer sedang di drag",
+			message0: "Mouse di drag",
+			tooltip: "Mengecek apakah mouse sedang di drag",
 			output: EOutput.Boolean
 		})
 
@@ -102,40 +102,17 @@ class InputBlockData {
 		this.list.push({
 			type: "ha.be.Input.JmlTap",
 			perintah: "InputTapCount",
-			message0: "Jumlah tap",
+			message0: "Mouse Click",
 			tooltip: `
-            Jumlah tap terhitung sejak pemanggilan terakhir.
-			Panggil blok ini di bagian Update
+            Mengecek apakah Mouse telah di klik.
+			Panggil blok ini di bagian Update.
+			Blok ini hanya boleh ditaruh sekali di workspace.
         `,
-			output: EOutput.Number
+			output: EOutput.Boolean
 		})
 
-		// const InputDragStartCount = ha.be.Input.JmlDragMulai;
-		this.list.push({
-			type: "ha.be.Input.JmlDragMulai",
-			perintah: "InputDragStartCount",
-			message0: "Jumlah Drag Dimulai",
-			tooltip: `
-            Jumlah drag dimulai dihitung sejak pemanggilan terakhir.
-			Taruh blok ini di bagian Update
-        `,
-			output: EOutput.Number
-		})
 
-		// const InputDragEndCount = ha.be.Input.JmlDragSelesai;
-		this.list.push({
-			type: "ha.be.Input.JmlDragSelesai",
-			perintah: "InputDragEndCount",
-			message0: "Jumlah Drag Selesai",
-			tooltip: `
-			Jumlah drag selesai, dihitung sejak pemanggilan terakhir.
-			Letakkan blok ini di bagian Update
-        `,
-			output: EOutput.Number
-		})
 	}
-
-
 
 }
 
