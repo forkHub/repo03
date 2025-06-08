@@ -14,7 +14,7 @@ class BlitzData {
 			type: "ha.be.Be.Bersih",
 			perintah: "Cls",
 			message0: 'Cls',
-			tooltip: "Bersihkan layar"
+			tooltip: "Clear screen"
 		});
 
 		// Color
@@ -22,7 +22,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Warna",
 			perintah: "Color",
-			message0: 'Warna fill: merah %1 hijau %2 biru %3 alpha %4',
+			message0: 'Fill color: red %1 green %2 blue %3 alpha %4',
 			inputsInline: true,
 			args: {
 				red: 0,
@@ -31,17 +31,17 @@ class BlitzData {
 				alpha: 100
 			},
 			tooltip: `
-				Mengeset default warna fill untuk font, shape, dll.
-				nilai untuk merah, hijau, biru adalah dari 0 - 255
-				alpa dari 0 - 100
-			`
+                Set default fill color for fonts, shapes, etc.
+                Values for red, green, blue range from 0 - 255
+                Alpha ranges from 0 - 100
+            `
 		});
 
 		// const Stroke = ha.be.Be.StrokeColor;    
 		this.list.push({
 			type: " ha.be.Be.StrokeColor",
 			perintah: "Stroke",
-			message0: 'Warna Stroke: merah %1 hijau %2 biru %3 alpha %4',
+			message0: 'Stroke color: red %1 green %2 blue %3 alpha %4',
 			inputsInline: true,
 			args: {
 				red: 0,
@@ -50,17 +50,17 @@ class BlitzData {
 				alpha: 100
 			},
 			tooltip: `
-				Mengest warna stroke untuk font, shape, dll
-				warna merah, hijau dan biru dari 0 - 255
-				alpha dari 0 - 100
-			`
+                Set stroke color for fonts, shapes, etc.
+                Red, green, and blue range from 0 - 255
+                Alpha ranges from 0 - 100
+            `
 		});
 
 		// const Line = ha.be.Be.Garis;
 		this.list.push({
 			type: "ha.be.Be.Garis",
 			perintah: "Line",
-			message0: 'Garis x1 %1 y1 %2 x2 %3 y2 %4',
+			message0: 'Line x1 %1 y1 %2 x2 %3 y2 %4',
 			inputsInline: true,
 			args: {
 				x1: 0,
@@ -69,8 +69,8 @@ class BlitzData {
 				y2: 100
 			},
 			tooltip: `
-				Menggambar garis
-			`
+                Draw a line
+            `
 		});
 
 		// const Rect = ha.be.Be.Kotak;
@@ -78,7 +78,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Kotak",
 			perintah: "Rect",
-			message0: 'Kotak x1 %1 y1 %2 x2 %3 y2 %4',
+			message0: 'Rectangle x1 %1 y1 %2 x2 %3 y2 %4',
 			inputsInline: true,
 			args: {
 				x1: 0,
@@ -87,8 +87,8 @@ class BlitzData {
 				y2: 100
 			},
 			tooltip: `
-				Menggambar kotak
-			`
+                Draw a rectangle
+            `
 		});
 
 		// const Rect = ha.be.Be.Kotak_opt;
@@ -117,7 +117,7 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Oval",
 			perintah: "Oval",
-			message0: 'Oval %1 x %2 y %3 radius %4 skala X %5 skala Y %6 rotasi %7',
+			message0: 'Oval %1 x %2 y %3 radius %4 scale X %5 scale Y %6 rotation %7',
 			args: {
 				dummy: '',
 				x1: 0,
@@ -128,37 +128,37 @@ class BlitzData {
 				rotation: 0,
 			},
 			tooltip: `
-				Menggambar Oval
-			`
+                Draw an oval
+            `
 		});
 
 		// const GetPixel = ha.be.Img.AmbilPiksel;
 		this.list.push({
 			type: "ha.be.Img.AmbilPiksel",
 			perintah: "GetPixel",
-			message0: 'Ambil Pixel x %1 y %2',
+			message0: 'Get Pixel x %1 y %2',
 			inputsInline: true,
 			args: {
 				x: 0,
 				y: 0,
 			},
 			tooltip: `
-				Mengambil warna pixel pada posisi x, y
-				Hasilnya bisa dibaca dari blok perintah merah, hijau dan biru.
-				Perintah ini akan gagal bila ada Image yang dimuat dari luar
-				selain yang ada di galery
-			`
+                Get pixel color at position x, y
+                The result can be read from the red, green, and blue commands.
+                This command will fail if an image is loaded from outside sources
+                except those in the gallery.
+            `
 		});
 
 		// const Red = ha.be.Be.Merah;
 		this.list.push({
 			type: "ha.be.Be.Merah",
 			perintah: "Red",
-			message0: 'Merah',
+			message0: 'Red',
 			extensions: ["readonly"],
 			tooltip: `
-				Warna merah yang didapat dari blok perintah Ambil pixel
-			`,
+                Red color obtained from the Get Pixel command
+            `,
 			output: EOutput.Number
 		});
 
@@ -166,11 +166,11 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Hijau",
 			perintah: "Green",
-			message0: 'Hijau',
+			message0: 'Green',
 			extensions: ["readonly"],
 			tooltip: `
-				Warna hijau yang didapat dari blok perintah Ambil pixel
-			`,
+                Green color obtained from the Get Pixel command
+            `,
 			output: EOutput.Number
 
 		});
@@ -179,11 +179,11 @@ class BlitzData {
 		this.list.push({
 			type: "ha.be.Be.Biru",
 			perintah: "Blue",
-			message0: 'Biru',
+			message0: 'Blue',
 			extensions: ["readonly"],
 			tooltip: `
-				Warna biru yang didapat dari blok perintah Ambil pixel
-			`,
+                Blue color obtained from the Get Pixel command
+            `,
 			output: EOutput.Number
 
 		});
@@ -195,8 +195,8 @@ class BlitzData {
 			message0: 'Alpha',
 			extensions: ["readonly"],
 			tooltip: `
-				Warna transparant yang didapat dari blok perintah Ambil pixel
-			`,
+                Transparency value obtained from the Get Pixel command
+            `,
 			output: EOutput.Number
 
 		});
