@@ -1,10 +1,17 @@
-error fungsi gak jalan
+next:
+	english UI
+	share google drive
+	
+tester as demo 
+	(input)
+	tile
+	animasi
 
 DEMO:
 =====
 	gambar dari unsplash
 	flappy bird
-	flappy bird helicopter
+	flappy bird helicopter/rocket
 	dino lompat
 	meteor avoid
 	geser tangkap
@@ -17,6 +24,7 @@ DEMO:
 	interaksi segitiga siku2
 	interaksi segitiga sama sisi
 	interaksi sudut
+	
 	
 FEATURE:
 ========

@@ -1,6 +1,3 @@
-@echo off
-echo off
-rem npm run build
 echo staging:
 =============
 call staging.bat
