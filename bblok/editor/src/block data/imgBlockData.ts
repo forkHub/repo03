@@ -9,7 +9,7 @@ class ImageBlockData {
 	// ha.be.Spr.Muat
 	readonly blitz_Muat: TToolBoxBlockDef = {
 		type: "ha.be.Spr.Muat",
-		message0: 'Muat Image dari URL: %2 %1',
+		message0: 'Load Image from URL: %2 %1',
 		perintah: "LoadImage",
 		args: {
 			dummy: '',
@@ -18,8 +18,8 @@ class ImageBlockData {
 		inputsInline: true,
 		output: EOutput.Any,
 		tooltip: `
-            Memuat Image dari url.
-            Url bisa local atau absolute.
+            Loads an image from a URL.
+            URL can be local or absolute.
         `
 	}
 
@@ -29,7 +29,7 @@ class ImageBlockData {
 		// ha.be.Spr.MuatAnimasi
 		this.list.push({
 			type: "ha.be.Spr.MuatAnimasi",
-			message0: "Muat Image animasi %1 dari url: %2 panjang frame: %3 lebar frame: %4",
+			message0: "Load Animated Image %1 from URL: %2 frame width: %3 frame height: %4",
 			perintah: "LoadAnimImage",
 			args: {
 				dummy: '',
@@ -40,13 +40,13 @@ class ImageBlockData {
 			inputsInline: true,
 			output: EOutput.Any,
 			tooltip: `
-        Memuat image yang berbentuk spritesheet
-           
-        Params:
-        url: url gambar, bisa local atau absolute
-        fw: panjang frame
-        fh: lebar frame
-        `
+            Load an image in the form of a sprite sheet
+            
+            Params:
+            url: image URL, can be local or absolute
+            fw: frame width
+            fh: frame height
+            `
 		})
 
 		// const ImageLoaded = ha.be.Spr.Dimuat;
@@ -54,12 +54,12 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Dimuat",
 			perintah: "ImageLoaded",
-			message0: "Image %1 sudah diload",
+			message0: "Image %1 has been loaded",
 			inputsInline: true,
 			args: {
 				sprite: EOutput.Image,
 			},
-			tooltip: `Return true is image is already loaded`,
+			tooltip: `Return true if the image is already loaded`,
 			output: EOutput.Boolean
 		})
 
@@ -67,7 +67,7 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.StatusMuat",
 			perintah: "AllImageLoaded",
-			message0: "Semua image sudah diload",
+			message0: "All images have been loaded",
 			output: EOutput.Boolean,
 			tooltip: 'Return true if All Images have been loaded'
 		})
@@ -79,21 +79,21 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Posisi",
 			perintah: "PositionImageXY",
-			message0: "Image %1 Posisi x %2 y %3",
+			message0: "Image %1 Position x %2 y %3",
 			inputsInline: true,
 			args: {
 				sprite: EOutput.Image,
 				x: 0,
 				y: 0
 			},
-			tooltip: `Mengatur posisi Image`
+			tooltip: `Set Image Position`
 		})
 
 		// HandleImage
 		// ha.be.Spr.Handle
 		this.list.push({
 			type: "ha.be.Spr.Handle",
-			message0: "Image %2 pusat x %3 y %4 %1 ",
+			message0: "Image %2 center x %3 y %4 %1",
 			perintah: "Handle",
 			inputsInline: true,
 			args: {
@@ -103,10 +103,10 @@ class ImageBlockData {
 				y: 0,
 			},
 			tooltip: `
-			Mengatur posisi pusat dari sebuah Image. 
-			Posisi pusat dipakai sebagai acuan saat menggambar, rotasi, dll
-			Posisi pusat dihitung pojok kiri atas. 
-        `
+            Set the center position of an Image.
+            The center position is used as a reference for rendering, rotation, etc.
+            The center position is calculated from the top-left corner.
+            `
 		})
 
 		// ResizeImage
@@ -132,14 +132,14 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Tabrakan",
 			perintah: "Collide",
-			message0: "check Image %1 tabrakan dengan Image %2",
+			message0: "Check if Image %1 collides with Image %2",
 			args: {
 				sprite1: EOutput.Image,
 				sprite2: EOutput.Image,
 			},
 			output: EOutput.Boolean,
 			inputsInline: true,
-			tooltip: 'return true if two images is collided'
+			tooltip: 'Return true if two images collide'
 		})
 
 		//TODO
@@ -156,7 +156,7 @@ class ImageBlockData {
 		this.list.push({
 			type: "ha.be.Spr.Gambar_no_frame",
 			perintah: "DrawImage",
-			message0: "Image %1 Gambar",
+			message0: "Draw Image %1",
 			inputsInline: true,
 			args: {
 				sprite: EOutput.Image,
@@ -169,7 +169,7 @@ class ImageBlockData {
 		// DrawImageXY
 		this.list.push({
 			type: "ha.be.Spr.Gambar",
-			message0: "Image %1 gambar pada posisi x: %2 y: %3 %4",
+			message0: "Draw Image %1 at position x: %2 y: %3 %4",
 			perintah: "DrawImageXY",
 			inputsInline: true,
 			args: {
@@ -179,7 +179,7 @@ class ImageBlockData {
 				dummy: ""
 			},
 			tooltip: `
-            Menggambar image pada posisi x, y.
+            Draw an image at position x, y.
         `
 		})
 
@@ -187,7 +187,7 @@ class ImageBlockData {
 		//ha.be.Spr.Ubin;
 		this.list.push({
 			type: "ha.be.Spr.Ubin",
-			message0: "image %1 gambar ubin %5 posisi x %2 y %3 frame %4",
+			message0: "Draw tiled image %1 at position x %2 y %3 frame %4",
 			perintah: "Tile",
 			inputsInline: true,
 			args: {
@@ -198,8 +198,8 @@ class ImageBlockData {
 				dummy: ''
 			},
 			tooltip: `
-            Menggambar image dengan efek ubin yang memenuhi layar
-        `
+            Render an image with tiling effect filling the screen
+            `
 		})
 
 		// DrawImageAnim
@@ -268,8 +268,8 @@ class ImageBlockData {
 				scaleY: 1
 			},
 			tooltip: `
-				Posisikan Image relative terhadap x, y dengan jarak, dan skala tertentu
-			`
+            Position the image relative to x, y with a specified distance and scale
+            `
 		})
 
 		// const PositionImagePolar = ha.be.Spr.posisiPolar;

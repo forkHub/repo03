@@ -70,3 +70,11 @@ demoList.push({
 	parentId: "-1",
 	kategori: "mahir"
 })
+
+demoList.push({
+	id: 'tata_surya3',
+	type: 'project',
+	nama: "tata surya 3",
+	parentId: "-1",
+	kategori: "mahir"
+})
